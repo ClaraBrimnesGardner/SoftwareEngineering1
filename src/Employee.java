@@ -10,5 +10,11 @@ public class Employee {
         this.ID=ID;
     }
 
+    public String getEmployeeID(){
+        return ID;
+    }
+
+
+
 
 }
