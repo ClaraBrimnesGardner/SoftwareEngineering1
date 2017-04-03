@@ -5,7 +5,7 @@
 import java.util.*;
 public class System {
     private List<Employee> employeeList=new ArrayList<Employee>();
-
+    // Method to addEmployee
     public void addEmployee(String ID){
         Employee employeeWithID = employeeByID(ID);
         if(employeeWithID==null) {
@@ -14,10 +14,12 @@ public class System {
         }
     }
 
+    // Method to get list om employees
     public List<Employee> getEmployeeList(){
         return employeeList;
     }
 
+    // Method to get an employee with af specifik string
     public Employee employeeByID(String ID){
         for(int i=0;i<employeeList.size();i++){
             if(employeeList.get(i).getEmployeeID().equals(ID)) {
