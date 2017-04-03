@@ -3,13 +3,19 @@
  */
 public class Employee {
     String employeeID;
-    int RegistreredTime;
+    double RegistreredTime;
 
     // Constructor
     public Employee(String ID){
         this.employeeID=ID;
     }
-    
+
+    // Method to register time
+    public void registerTime(double hours){
+
+    }
+
+
     // Getter methods
     public String getEmployeeID(){
         return employeeID;
