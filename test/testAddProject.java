@@ -32,5 +32,13 @@ public class testAddProject {
         // Tjekker om der er logget ind
         assertFalse(softwareHouse.employeeLoggedIn());
 
+        String projectID = "Project01";
+        // Tjekker om der kommer en fejlmeddelelse
+        try {
+            softwareHouse.addProject(projectID);
+        }
+        catch (OperationNotAllowedExeption e) {
+            assertEquals(e,"You have to be logged in, in order to add a project");
+        }
     }
 }
