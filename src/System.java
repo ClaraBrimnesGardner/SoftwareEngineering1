@@ -28,5 +28,15 @@ public class System {
     }
 
 
+    public void addProject(String projectName) {
+    }
 
+    public void login(String workerID) {
+    }
+
+    public KeyStore getProjects() {
+    }
+
+    public void employeeLoggedIn() {
+    }
 }
