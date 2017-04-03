@@ -2,16 +2,17 @@
  * Created by clarabrimnesgardner on 27/03/2017.
  */
 public class Employee {
-    String ID;
+    String employeeID;
     int RegistreredTime;
 
     // Constructor
     public Employee(String ID){
-        this.ID=ID;
+        this.employeeID=ID;
     }
-
+    
+    // Getter methods
     public String getEmployeeID(){
-        return ID;
+        return employeeID;
     }
 
 

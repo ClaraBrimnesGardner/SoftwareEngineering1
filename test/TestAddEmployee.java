@@ -14,6 +14,21 @@ public class TestAddEmployee {
         String ID = "Employee1";
         SoftwareHouse.addEmployee(ID);
         assertEquals(SoftwareHouse.getEmployeeList().size(),1);
+        assertEquals(SoftwareHouse.employeeByID(ID).getEmployeeID(),ID);
 
     }
+    /*
+    Test that the method only adds an Employee, when no current Employee with that ID is registered
+
+     */
+    @Test
+    public void testAddAlreadyRegisteredEmployee() {
+        System SoftwareHouse = new System();
+        String ID = "Employee1";
+        SoftwareHouse.addEmployee(ID);
+        SoftwareHouse.addEmployee(ID);
+        assertEquals(SoftwareHouse.getEmployeeList().size(), 1);
+    }
+
+
 }
