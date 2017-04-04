@@ -5,6 +5,7 @@
 import java.util.*;
 public class System {
     private List<Employee> employeeList=new ArrayList<Employee>();
+    private List<Project> projectList=new ArrayList<Project>();
     // Method to addEmployee
     public void addEmployee(String ID){
         Employee employeeWithID = employeeByID(ID);

@@ -2,8 +2,8 @@
  * Created by clarabrimnesgardner on 27/03/2017.
  */
 public class Employee {
-    String employeeID;
-    System Firm;
+    private String employeeID;
+    private System system;
 
     // Constructor
     public Employee(String ID){
@@ -18,4 +18,8 @@ public class Employee {
         return employeeID;
     }
 
+    public static void addProject(Project project) {
+        system.projectList.add(project);
+
+    }
 }
