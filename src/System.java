@@ -1,10 +1,13 @@
 /**
  * Created by clarabrimnesgardner on 27/03/2017.
  */
-
 import java.util.*;
+
 public class System {
+    private boolean loggedIn = false;
     private List<Employee> employeeList=new ArrayList<Employee>();
+
+
     // Method to addEmployee
     public void addEmployee(String ID){
         Employee employeeWithID = employeeByID(ID);
@@ -27,6 +30,18 @@ public class System {
             }
         }
         return null;
+    }
+
+    public void employeeLogin(String workerID) {
+        loggedIn = true;
+    }
+
+    public void employeeLogoff() {
+        loggedIn = false;
+    }
+
+    public boolean employeeLoggedIn() {
+        return loggedIn;
     }
 
 }
