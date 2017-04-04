@@ -5,13 +5,13 @@ import java.util.*;
 
 public class System {
     private boolean loggedIn = false;
-    private List<Employee> employeeList;
-    private List<Project> projectList;
+    public List<Employee> employeeList;
+    public List<Project> projectList;
     private String Test;
 
     public System () {
-        this.employees=new ArrayList<Employee>();
-        this.projects=new ArrayList<Project>();
+        this.employeeList = new ArrayList<Employee>();
+        this.projectList = new ArrayList<Project>();
     }
 
     // Method to addEmployee
