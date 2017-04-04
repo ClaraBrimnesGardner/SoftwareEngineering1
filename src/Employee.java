@@ -3,16 +3,15 @@
  */
 public class Employee {
     String employeeID;
-    double RegistreredTime;
 
     // Constructor
     public Employee(String ID){
         this.employeeID=ID;
     }
 
-    // Method to register time
-    public void registerTime(double hours){
-
+    // Method to addProject. The method returns true, if the project is succesfully added. Otherwise
+    public boolean addProject(){
+        
     }
 
 
