@@ -10,9 +10,6 @@ public class Employee {
     }
 
     // Method to addProject. The method returns true, if the project is succesfully added. Otherwise
-    public boolean addProject(){
-        
-    }
 
 
     // Getter methods
