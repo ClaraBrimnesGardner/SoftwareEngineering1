@@ -16,6 +16,7 @@ public class TestAddEmployee {
         SoftwareHouse.addEmployee(worker);
         assertEquals(SoftwareHouse.getEmployeeList().size(),1);
         assertEquals(SoftwareHouse.employeeByID(ID).getEmployeeID(),ID);
+        assertEquals(SoftwareHouse.employeeByID(ID).getSystem(),SoftwareHouse);
 
     }
     /*

@@ -10,13 +10,14 @@ public class Employee {
         this.employeeID=ID;
     }
 
-    // Method to addProject. The method returns true, if the project is succesfully added. Otherwise the function returns
-
+    // Setter methods
+    public void setSystem(System newSystem){this.system=newSystem;}
 
     // Getter methods
     public String getEmployeeID(){
         return employeeID;
     }
+    public System getSystem() {return system;}
 
     public static void addProject(Project project) {
         project.projectID=1234;
