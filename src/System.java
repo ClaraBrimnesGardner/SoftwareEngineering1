@@ -6,7 +6,7 @@ import java.util.*;
 public class System {
     private boolean loggedIn = false;
     private List<Employee> employeeList = new ArrayList<Employee>();
-    private String Test12;
+    private String Test123;
 
 
     // Method to addEmployee
