@@ -3,13 +3,14 @@
  */
 public class Employee {
     String employeeID;
+    System Firm;
 
     // Constructor
     public Employee(String ID){
         this.employeeID=ID;
     }
 
-    // Method to addProject. The method returns true, if the project is succesfully added. Otherwise
+    // Method to addProject. The method returns true, if the project is succesfully added. Otherwise the function returns
 
 
     // Getter methods
