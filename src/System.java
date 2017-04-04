@@ -5,9 +5,14 @@ import java.util.*;
 
 public class System {
     private boolean loggedIn = false;
-    private List<Employee> employeeList = new ArrayList<Employee>();
+    private List<Employee> employeeList;
+    private List<Project> projectList;
     private String Test;
 
+    public System () {
+        this.employees=new ArrayList<Employee>();
+        this.projects=new ArrayList<Project>();
+    }
 
     // Method to addEmployee
     public void addEmployee(Employee worker){
