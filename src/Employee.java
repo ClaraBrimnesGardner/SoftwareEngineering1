@@ -5,7 +5,7 @@ public class Employee {
     private String employeeID;
     private System system;
 
-    // Constructor
+    // Constructor 
     public Employee(String ID){
         this.employeeID=ID;
     }
