@@ -1,7 +1,8 @@
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
-public class testLogin {
+public class TestLogin {
+
     @Test
     public void testUserLogin() {
         System softwareHouse = new System();
@@ -10,8 +11,9 @@ public class testLogin {
         assertFalse(softwareHouse.employeeLoggedIn());
 
         String workerID = "Employee01";
-        softwareHouse.addEmployee(workerID);
-        softwareHouse.employeeLogin(workerID);
+        Employee worker = new Employee(workerID);
+        softwareHouse.addEmployee(worker);
+        softwareHouse.employeeLogin(worker);
 
         // Tjekker om der er logget ind
         assertTrue(softwareHouse.employeeLoggedIn());
@@ -22,11 +24,12 @@ public class testLogin {
     public void testUserLogoff() {
         System softwareHouse = new System();
         String workerID = "Employee01";
-        softwareHouse.addEmployee(workerID);
+        Employee worker = new Employee(workerID);
+        softwareHouse.addEmployee(worker);
 
         // Tjekker om der er logget ind
         assertFalse(softwareHouse.employeeLoggedIn());
-        softwareHouse.employeeLogin(workerID);
+        softwareHouse.employeeLogin(worker);
         assertTrue(softwareHouse.employeeLoggedIn());
 
         // Logger ud
