@@ -19,7 +19,6 @@ public class Employee {
     }
 
     public static void addProject(Project project) {
-        system.projectList.add(project);
-
+        project.projectID=1234;
     }
 }
