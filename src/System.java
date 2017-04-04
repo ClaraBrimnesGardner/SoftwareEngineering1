@@ -1,6 +1,7 @@
 /**
   * Created by clarabrimnesgardner on 27/03/2017.
  */
+
 import java.util.*;
 
 public class System {
@@ -47,15 +48,4 @@ public class System {
     public boolean employeeLoggedIn() {
         return loggedIn;
     }
-    public void addProject(String projectName) {
     }
-
-    public void login(String workerID) {
-    }
-
-    public getProjects() {
-    }
-
-    public void employeeLoggedIn() {
-    }
-}
