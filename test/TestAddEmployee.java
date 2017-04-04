@@ -12,7 +12,8 @@ public class TestAddEmployee {
     public void testAddEmployee(){
         System SoftwareHouse = new System();
         String ID = "Employee1";
-        SoftwareHouse.addEmployee(ID);
+        Employee worker = new Employee(ID);
+        SoftwareHouse.addEmployee(worker);
         assertEquals(SoftwareHouse.getEmployeeList().size(),1);
         assertEquals(SoftwareHouse.employeeByID(ID).getEmployeeID(),ID);
 
@@ -25,8 +26,9 @@ public class TestAddEmployee {
     public void testAddAlreadyRegisteredEmployee() {
         System SoftwareHouse = new System();
         String ID = "Employee1";
-        SoftwareHouse.addEmployee(ID);
-        SoftwareHouse.addEmployee(ID);
+        Employee worker = new Employee(ID);
+        SoftwareHouse.addEmployee(worker);
+        SoftwareHouse.addEmployee(worker);
         assertEquals(SoftwareHouse.getEmployeeList().size(), 1);
     }
 

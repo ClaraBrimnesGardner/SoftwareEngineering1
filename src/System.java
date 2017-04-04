@@ -5,15 +5,13 @@ import java.util.*;
 
 public class System {
     private boolean loggedIn = false;
-    private List<Employee> employeeList=new ArrayList<Employee>();
+    private List<Employee> employeeList = new ArrayList<Employee>();
 
 
     // Method to addEmployee
-    public void addEmployee(String ID){
-        Employee employeeWithID = employeeByID(ID);
-        if(employeeWithID==null) {
-            Employee Worker = new Employee(ID);
-            employeeList.add(Worker);
+    public void addEmployee(Employee worker){
+        if (!employeeList.contains(worker)) {
+            employeeList.add(worker);
         }
     }
 
@@ -32,8 +30,10 @@ public class System {
         return null;
     }
 
-    public void employeeLogin(String workerID) {
-        loggedIn = true;
+    public void employeeLogin(Employee worker) {
+        if (employeeList.contains(worker)) {
+            loggedIn = true;
+        }
     }
 
     public void employeeLogoff() {
