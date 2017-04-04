@@ -7,6 +7,7 @@ public class System {
     private boolean loggedIn = false;
     private List<Employee> employeeList = new ArrayList<Employee>();
     private String Test;
+    private int poelsemand = 0;
 
 
     // Method to addEmployee
