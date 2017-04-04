@@ -1,17 +1,17 @@
 /**
-  * Created by clarabrimnesgardner on 27/03/2017.
+ * Created by clarabrimnesgardner on 27/03/2017.
  */
+
 import java.util.*;
-
 public class System {
-    private boolean loggedIn = false;
-    private List<Employee> employeeList = new ArrayList<Employee>();
-
-
+    private List<Employee> employeeList=new ArrayList<Employee>();
+    private List<Project> projectList=new ArrayList<Project>();
     // Method to addEmployee
-    public void addEmployee(Employee worker){
-        if (!employeeList.contains(worker)) {
-            employeeList.add(worker);
+    public void addEmployee(String ID){
+        Employee employeeWithID = employeeByID(ID);
+        if(employeeWithID==null) {
+            Employee Worker = new Employee(ID);
+            employeeList.add(Worker);
         }
     }
 
@@ -30,28 +30,4 @@ public class System {
         return null;
     }
 
-    public void employeeLogin(Employee worker) {
-        if (employeeList.contains(worker)) {
-            loggedIn = true;
-        }
-    }
-
-    public void employeeLogoff() {
-        loggedIn = false;
-    }
-
-    public boolean employeeLoggedIn() {
-        return loggedIn;
-    }
-    public void addProject(String projectName) {
-    }
-
-    public void login(String workerID) {
-    }
-
-    public getProjects() {
-    }
-
-    public void employeeLoggedIn() {
-    }
 }
