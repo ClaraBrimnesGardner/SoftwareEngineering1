@@ -12,6 +12,8 @@ public class System {
     public void addEmployee(Employee worker){
         if (!employeeList.contains(worker)) {
             employeeList.add(worker);
+            worker.setSystem(this);
+
         }
     }
 
