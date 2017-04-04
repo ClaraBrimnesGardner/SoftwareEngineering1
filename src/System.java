@@ -13,6 +13,7 @@ public class System {
         Employee employeeWithID = employeeByID(ID);
         if(employeeWithID==null) {
             Employee Worker = new Employee(ID);
+            Worker.setSystem(this);
             employeeList.add(Worker);
         }
     }
