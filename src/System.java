@@ -6,7 +6,7 @@ import java.util.*;
 public class System {
     private boolean loggedIn = false;
     private List<Employee> employeeList = new ArrayList<Employee>();
-    private String Test;
+    private String Test1;
 
 
     // Method to addEmployee
@@ -14,7 +14,6 @@ public class System {
         if (!employeeList.contains(worker)) {
             employeeList.add(worker);
             worker.setSystem(this);
-            // HEJ he h
 
         }
     }
