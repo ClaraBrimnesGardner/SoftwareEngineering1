@@ -13,7 +13,7 @@ public class Employee {
     // Setter methods
     public void setSystem(System newSystem){this.system=newSystem;}
 
-    // Getter methods
+    // Getter methods 
     public String getEmployeeID(){
         return employeeID;
     }
