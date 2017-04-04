@@ -9,13 +9,12 @@ public class System {
     private String Test;
     private int poelsemand = 0;
 
-
     // Method to addEmployee
     public void addEmployee(Employee worker){
         if (!employeeList.contains(worker)) {
             employeeList.add(worker);
             worker.setSystem(this);
-            // HEJ he h
+            // HEJ med dig
 
         }
     }
