@@ -33,7 +33,7 @@ public class TestAddProject {
     public void testAddExistingProject(){
         System SoftwareHouse = new System();
         // Creates two projects
-        String projectID = "project1";
+        String projectID = "project";
         Project project1 = new Project(projectID);
         Project project2 = new Project(projectID);
         // Creates an employee and adds him to the system
