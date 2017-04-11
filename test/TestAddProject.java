@@ -10,7 +10,7 @@ public class TestAddProject {
         // Creates a system
         System SoftwareHouse = new System();
         // Creates a project
-        String projectID = "project1";
+        String projectID = "project11";
         Project project = new Project(projectID);
         // Creates an employee and adds him to the system
         String employeeID = "Employee1";
