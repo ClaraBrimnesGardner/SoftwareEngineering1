@@ -3,12 +3,24 @@
  */
 public class Project {
     public String name;
-    public int projectID;
+    private String projectID;
     public Employee projectLeader;
     public System system;
 
-    public Project (int projectID, System system) {
+    public Project (String projectID) {
         this.projectID = projectID;
-        this.system=system;
+    }
+
+    // Getter methods
+    public String getProjectID(){
+        return projectID;
+    }
+    public System getSystem(){
+        return system;
+    }
+
+    // Setter methods
+    public void setSystem(System newSystem){
+        system=newSystem;
     }
 }
