@@ -6,14 +6,17 @@ import java.util.*;
 public class System {
     private boolean loggedIn = false;
     private List<Employee> employeeList = new ArrayList<Employee>();
-    private String Test123;
+    private String Test12;
 
+    private String Test;
+    private int poelsemand = 0;
 
     // Method to addEmployee
     public void addEmployee(Employee worker){
         if (!employeeList.contains(worker)) {
             employeeList.add(worker);
             worker.setSystem(this);
+            // HEJ med dig
 
         }
     }
