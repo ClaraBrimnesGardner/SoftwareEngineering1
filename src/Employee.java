@@ -3,8 +3,8 @@
  */
 
 public class Employee {
-    public String employeeID;
-    public System system;
+    protected String employeeID;
+    protected System system;
 
     // Constructor 
     public Employee(String ID){

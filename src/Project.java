@@ -3,14 +3,14 @@
  */
 
 public class Project {
-    public String name;
+    private String name;
     public int projectID;
     public Employee projectLeader;
     public System system;
 
     // Constructor
     public Project (String name) {
-        this.projectID = projectID;
+        this.name = name;
     }
 
     // Getter methods
@@ -19,6 +19,9 @@ public class Project {
     }
     public System getSystem(){
         return system;
+    }
+    public String getName(){
+        return name;
     }
 
     // Setter methods

@@ -30,7 +30,7 @@ public class Database {
 
     public Employee getEmployee(String ID) {
         for (Employee employee: employeeList) {
-            if (employee.employeeID == ID)
+            if (employee.employeeID.equals(ID))
                 return employee;
         }
         return null;
@@ -38,7 +38,7 @@ public class Database {
 
     public Project getProject (int ID) {
         for (Project project:projectList){
-            if (project.projectID == ID) return project;
+            if (project.projectID==ID) return project;
         }
         return null;
     }
