@@ -6,16 +6,15 @@ public class TestAddProject {
     Tests that the method addProject adds one Project with the correct ID
      */
     @Test
-    public void testAddProject(){
+    public void testAddProject() throws WrongInputException {
         // Creates a system
         System SoftwareHouse = new System();
         // Creates a project
         String projectID = "project11";
-        Project project = new Project(projectID);
+        SoftwareHouse.createProject(projectID);
         // Creates an employee and adds him to the system
         String employeeID = "Employee1";
-        Employee worker = new Employee(employeeID);
-        SoftwareHouse.addEmployee(worker);
+        SoftwareHouse.createEmployee(employeeID);
 
         // The employee adds the project to the system
         Employee employee1=SoftwareHouse.employeeByID(employeeID);

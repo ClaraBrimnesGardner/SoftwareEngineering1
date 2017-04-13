@@ -27,6 +27,7 @@ public class Database {
     public List<Project> getProjectList() {
         return projectList;
     }
+
     public Employee getEmployee(String ID) {
         for (Employee employee: employeeList) {
             if (employee.employeeID == ID)

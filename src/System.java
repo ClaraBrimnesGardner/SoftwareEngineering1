@@ -27,7 +27,7 @@ public class System {
         };
     }
 
-    private void createProject (String name) throws WrongInputException {
+    public void createProject (String name) throws WrongInputException {
         for (Project project:database.projectList) {
             if (project.name.equals(name)) throw new WrongInputException("Project name is used");
         }

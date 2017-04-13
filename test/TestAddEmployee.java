@@ -1,20 +1,19 @@
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
-
 /**
  * Created by clarabrimnesgardner on 27/03/2017.
  */
+
 public class TestAddEmployee {
     /*
     Tests that the method addEmployee adds one Employee with the correct ID
      */
     @Test
-    public void testAddEmployee(){
+    public void testAddEmployee() throws WrongInputException {
         System SoftwareHouse = new System();
         String ID = "Employee1";
-        Employee worker = new Employee(ID);
-        SoftwareHouse.addEmployee(worker);
-        assertEquals(SoftwareHouse.getEmployeeList().size(),1);
+        SoftwareHouse.createEmployee(ID);
+        assertEquals(database.numberOfEmployees(),1);
         assertEquals(SoftwareHouse.employeeByID(ID).getEmployeeID(),ID);
         assertEquals(SoftwareHouse.employeeByID(ID).getSystem(),SoftwareHouse);
 
