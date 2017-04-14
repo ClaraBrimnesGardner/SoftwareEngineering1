@@ -1,25 +1,41 @@
 /**
  * Created by clarabrimnesgardner on 27/03/2017.
  */
+import java.util.*;
 public class Employee {
-    private String employeeID;
-    private System system;
+    protected String employeeID;
+    //protected System system;
+    protected List<Project> projectLeaderList;
+    protected Database database;
 
     // Constructor 
     public Employee(String ID){
         this.employeeID=ID;
+        projectLeaderList = new ArrayList<Project>();
+
     }
-    //Test
-    // Setter methods
-    public void setSystem(System newSystem){this.system=newSystem;}
 
     // Getter methods 
     public String getEmployeeID(){
         return employeeID;
     }
-    public System getSystem() {return system;}
-
-    public void addProject(Project project){
-        system.addProjectToList(project);
+    //public System getSystem() {return system;}
+    public List<Project> getProjectLeaderList(){
+        return projectLeaderList;
     }
+
+    // Setter methods
+    public void setDatabase(Database database){
+        this.database=database;
+    }
+
+    // Method to become projectLeader
+    public void becomeProjectLeader(int projectID){
+        Project project=database.getProject(projectID);
+        boolean projectFree = project.setProjectLeader(this);
+        if(projectFree==true){
+            projectLeaderList.add(project);
+        }
+    }
+
 }

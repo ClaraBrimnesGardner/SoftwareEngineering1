@@ -6,52 +6,50 @@ public class TestAddProject {
     Tests that the method addProject adds one Project with the correct ID
      */
     @Test
-    public void testAddProject(){
+    public void testAddProject() throws WrongInputException {
         // Creates a system
         System SoftwareHouse = new System();
-        // Creates a project
-        String projectID = "project11";
-        Project project = new Project(projectID);
-        // Creates an employee and adds him to the system
-        String employeeID = "Employee1";
-        Employee worker = new Employee(employeeID);
-        SoftwareHouse.addEmployee(worker);
-
-        // The employee adds the project to the system
-        Employee employee1=SoftwareHouse.employeeByID(employeeID);
-        employee1.addProject(project);
-        assertEquals(SoftwareHouse.getProjectList().size(),1);
-        assertEquals(SoftwareHouse.projectByID(projectID).getProjectID(),projectID);
-        assertEquals(SoftwareHouse.projectByID(projectID).getSystem(),SoftwareHouse);
+        // Add a project to the system
+        SoftwareHouse.createProject("test");
+        assertEquals(SoftwareHouse.getProjects().size(),1);
+        assertEquals(SoftwareHouse.getProjects().get(0).getName(),"test");
     }
 
-      /*
-    Test that the method only adds a project, when no current project with that ID is registered
+
+    /*
+    Tests that the method addProject only adds a project, when no current project with that ID is registered
 
      */
     @Test
-    public void testAddExistingProject(){
+    public void testAddExistingProject() throws WrongInputException {
         System SoftwareHouse = new System();
-        // Creates two projects
-        String projectID = "project";
-        Project project1 = new Project(projectID);
-        Project project2 = new Project(projectID);
-        // Creates an employee and adds him to the system
-        String employeeID = "Employee1";
-        Employee worker = new Employee(employeeID);
-        SoftwareHouse.addEmployee(worker);
+        // Add a project to the system
+        SoftwareHouse.createProject("test");
+        assertEquals(SoftwareHouse.getProjects().size(),1);
+        assertEquals(SoftwareHouse.getProjects().get(0).getName(),"test");
+        // Add another project to the system with same name
+        try {
+            SoftwareHouse.createProject("test");
+        } catch (WrongInputException e){
+            assertEquals("Projectname is used", e.getMessage());
+        }
+        assertEquals(SoftwareHouse.getProjects().size(),1);
 
-        // Employee adds the first project to the system
-        Employee employee1=SoftwareHouse.employeeByID(employeeID);
-        employee1.addProject(project1);
-        assertEquals(SoftwareHouse.getProjectList().size(),1);
-        assertEquals(SoftwareHouse.projectByID(projectID).getProjectID(),projectID);
-        assertEquals(SoftwareHouse.projectByID(projectID).getSystem(),SoftwareHouse);
 
-        // Employee adds the second project to the system
-        employee1.addProject(project1);
-        assertEquals(SoftwareHouse.getProjectList().size(),1);
     }
+    /*
+    Test that two Projects can be added
+     */
+    @Test
+    public void testAddTwoProjects() throws WrongInputException{
+        System SoftwareHouse = new System();
+        // Add a project to the system
+        SoftwareHouse.createProject("test1");
+        SoftwareHouse.createProject("test2");
+        assertEquals(2,SoftwareHouse.getProjects().size());
+    }
+
+
 
 
 }

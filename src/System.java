@@ -1,73 +1,67 @@
 /**
   * Created by clarabrimnesgardner on 27/03/2017.
  */
+
 import java.util.*;
 
 public class System {
-    private boolean loggedIn = false;
-    private List<Employee> employeeList = new ArrayList<Employee>();
-    private List<Project> projectList = new ArrayList<Project>();
+    public Employee employee;
+    private Database database;
 
-
-    // Method to addEmployee
-    public void addEmployee(Employee worker){
-        if (!employeeList.contains(worker)) {
-            employeeList.add(worker);
-            worker.setSystem(this);
-
-        }
+    // Constructor
+    public System () {
+        this.database = new Database();
     }
 
-    // Method to add Project to projectList
-    public void addProjectToList(Project project){
-        if(!projectList.contains(project)){
-            projectList.add(project);
-            project.setSystem(this);
-        }
-    }
+
 
     /*
-     * Getter methods
-     */
-    // Method to get list om employees
-    public List<Employee> getEmployeeList(){
-        return employeeList;
+    public System(Database database) {
+        this.database=database;
     }
+    */
 
-    // Method to get list of projects
-    public List<Project> getProjectList() {return projectList;}
-
-    // Method to get an employee with af specific ID
-    public Employee employeeByID(String ID){
-        for(int i=0;i<employeeList.size();i++){
-            if(employeeList.get(i).getEmployeeID().equals(ID)) {
-                return employeeList.get(i);
-            }
+    public String[] logIn(String ID) throws WrongInputException {
+        Employee employee=database.getEmployee(ID);
+        if (employee==null) {
+            throw new WrongInputException ("Employee doesn't excist");
         }
-        return null;
+        this.employee=employee;
+        // lav noget med projektleder
+        return new String[] {
+                "Succesfully logged in as " + employee.employeeID + " with id: " + employee.employeeID
+        };
+    }
+    public void logOff(){
+        employee=null;
     }
 
-    // Method to get a project with af specific ID
-    public Project projectByID(String ID){
-        for(int i=0;i<projectList.size();i++){
-            if(projectList.get(i).getProjectID().equals(ID)){
-                return projectList.get(i);
-            }
+
+    public void createProject (String name) throws WrongInputException {
+        for (Project project:database.projectList) {
+            if (project.getName().equals((name))) throw new WrongInputException("Projectname is used");
         }
-        return null;
+        Project project = new Project(name);
+        database.addProject(project);
     }
 
-    public void employeeLogin(Employee worker) {
-        if (employeeList.contains(worker)) {
-            loggedIn = true;
+    public void createEmployee (String ID) throws WrongInputException {
+        for (Employee employee:database.employeeList){
+            if(employee.getEmployeeID().equals((ID))) throw new WrongInputException("Employee ID is used");
         }
+        Employee employee = new Employee(ID);
+        database.addEmployee(employee);
     }
 
-    public void employeeLogoff() {
-        loggedIn = false;
+    // Getter methods
+    // Get projects metode
+    public List<Project> getProjects(){
+        return database.getProjectList();
     }
 
-    public boolean employeeLoggedIn() {
-        return loggedIn;
+    // Get employees metode
+    public List<Employee> getEmployees(){
+        return database.getEmployeeList();
     }
-    }
+
+}
