@@ -23,12 +23,17 @@ public class System {
 
     public String[] logIn(String ID) throws WrongInputException {
         Employee employee=database.getEmployee(ID);
-        if (employee==null) throw new WrongInputException ("Employee doesn't excist");
-        employee=employee;
+        if (employee==null) {
+            throw new WrongInputException ("Employee doesn't excist");
+        }
+        this.employee=employee;
         // lav noget med projektleder
         return new String[] {
                 "Succesfully logged in as " + employee.employeeID + " with id: " + employee.employeeID
         };
+    }
+    public void logOff(){
+        employee=null;
     }
 
 

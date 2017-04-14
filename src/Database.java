@@ -47,11 +47,13 @@ public class Database {
     public void addEmployee(Employee employee) throws WrongInputException {
         if (employee==null) throw new WrongInputException("Employee doesn't excist");
         employeeList.add(employee);
+        employee.setDatabase(this);
     }
 
     protected Project addProject (Project project) throws WrongInputException {
         if (project==null) throw new WrongInputException("Project doesn't excist");
-        project.projectID=newProjectID++;
+        project.projectID=newProjectID;
+        newProjectID++;
         projectList.add(project);
         return project;
     }

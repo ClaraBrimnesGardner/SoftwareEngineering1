@@ -5,7 +5,7 @@
 public class Project {
     private String name;
     public int projectID;
-    public Employee projectLeader;
+    public Employee projectLeader=null;
     public System system;
 
     // Constructor
@@ -27,5 +27,14 @@ public class Project {
     // Setter methods
     public void setSystem(System newSystem){
         system=newSystem;
+    }
+
+    public boolean setProjectLeader(Employee projectLeader){
+        if(this.projectLeader==null) {
+            this.projectLeader = projectLeader;
+            return true;
+        }
+        return false;
+
     }
 }
