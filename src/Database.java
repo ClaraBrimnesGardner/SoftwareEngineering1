@@ -14,7 +14,7 @@ public class Database {
     int newEmployeeID;
 
     // Constructor
-    public Database () {
+    public Database () { 
         this.employeeList = new ArrayList<Employee>();
         this.projectList = new ArrayList<Project>();
         this.assignmentList = new ArrayList<Assignment>();
