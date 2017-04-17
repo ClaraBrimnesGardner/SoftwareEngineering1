@@ -73,9 +73,14 @@ public class Database {
         projectList.add(project);
         project.setDatabase(this);
     }
-    public void addAssignment(Assignment assignment) throws WrongInputException{
-        if (assignment==null) throw new WrongInputException("Assignment doesn't exist");
+    public void addAssignment(Assignment assignment) throws WrongInputException {
+        if (assignment == null) throw new WrongInputException("Assignment doesn't exist");
         assignmentList.add(assignment);
+    }
+
+    public void addAssignmentEmployee(AssignmentEmployee assignmentEmployee) throws WrongInputException{
+        if(assignmentEmployee==null) throw new WrongInputException("Assignment doesn't exist");
+
     }
 
     public int numberOfprojects () {

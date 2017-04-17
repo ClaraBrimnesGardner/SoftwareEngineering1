@@ -7,6 +7,5 @@ public class AssignmentEmployee {
 
     public AssignmentEmployee(Employee employee) {
         this.employee = employee;
-        this.TaskID = TaskID;
     }
 }

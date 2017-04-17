@@ -5,6 +5,8 @@ public class Assignment {
     private String name;
     private Project project;
     private int budgetedTime;
+    private int bookedTime;
+    private Database database;
 
 
 
@@ -28,4 +30,8 @@ public class Assignment {
     public void setBudgetedTime(int budgetedTime){
         this.budgetedTime=budgetedTime;
     }
+
+
+
+
 }
