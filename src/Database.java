@@ -32,6 +32,17 @@ public class Database {
         return projectList;
     }
 
+    public List<Project> getProjectLeaderList(Employee employee){
+        List<Project> projectLeaderList = new ArrayList<Project>();
+        for( Project project: projectList){
+            if(project.getProjectLeader()!=null && project.getProjectLeader().equals(employee)){
+                projectLeaderList.add(project);
+            }
+
+        }
+        return projectLeaderList;
+    }
+
     public List<Assignment> getAssignmentList() {return assignmentList;}
 
     public List<Assignment> getProjectAssignmentList(Project project){
@@ -76,6 +87,7 @@ public class Database {
     public void addAssignment(Assignment assignment) throws WrongInputException {
         if (assignment == null) throw new WrongInputException("Assignment doesn't exist");
         assignmentList.add(assignment);
+        assignment.setDatabase(this);
     }
 
     public void addAssignmentEmployee(AssignmentEmployee assignmentEmployee) throws WrongInputException{

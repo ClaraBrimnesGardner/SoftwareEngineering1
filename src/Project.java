@@ -6,22 +6,25 @@ import java.util.*;
 public class Project {
     private String name;
     public int projectID;
-    public Employee projectLeader = null;
+    public Employee projectLeader;
     public System system;
     private Database database;
 
     // Constructor
     public Project (String name) {
         this.name = name;
+        this.projectLeader=null;
     }
 
     // Getter methods
     public int getProjectID(){
         return projectID;
     }
+
     public String getProjectName(){
         return name;
     }
+
     public System getSystem(){
         return system;
     }
@@ -29,9 +32,18 @@ public class Project {
     public String getName(){
         return name;
     }
+
     public List<Assignment> getAssignmentList(){
         return database.getProjectAssignmentList(this);
     }
+
+    public Employee getProjectLeader() {
+        if(projectLeader==null){
+            return null;
+        }
+        return projectLeader;}
+
+
     public Assignment getAssignmentByName(String name){
         for(Assignment assignment:database.getAssignmentList()){
             if(assignment.getName().equals(name)){
@@ -46,7 +58,7 @@ public class Project {
     }
 
     public boolean setProjectLeader(Employee projectLeader){
-        if(this.projectLeader == null) {
+        if(this.projectLeader==null) {
             this.projectLeader = projectLeader;
             return true;
         }
