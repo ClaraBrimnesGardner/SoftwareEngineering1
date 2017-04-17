@@ -7,6 +7,7 @@ import java.util.*;
 public class Database {
     public List<Employee> employeeList;
     public List<Project> projectList;
+    private List<Assignment> assignmentList;
 
     int newProjectID;
     int newEmployeeID;
@@ -15,6 +16,7 @@ public class Database {
     public Database () {
         this.employeeList = new ArrayList<Employee>();
         this.projectList = new ArrayList<Project>();
+        this.assignmentList = new ArrayList<Assignment>();
 
         this.newProjectID = 0;
         this.newEmployeeID = 0;
@@ -27,6 +29,18 @@ public class Database {
     public List<Project> getProjectList() {
         return projectList;
     }
+
+    public List<Assignment> getAssignmentList() {return assignmentList;}
+
+    public List<Assignment> getProjectAssignmentList(Project project){
+        List<Assignment> projectAssignmentList = new ArrayList<Assignment>();
+        for(Assignment assignment: assignmentList) {
+            if(assignment.getProject().equals(project))
+                projectAssignmentList.add(assignment);
+        }
+        return projectAssignmentList;
+    }
+
 
     public Employee getEmployee(String ID) {
         for (Employee employee: employeeList) {
@@ -50,12 +64,16 @@ public class Database {
         employee.setDatabase(this);
     }
 
-    protected Project addProject (Project project) throws WrongInputException {
+    public void addProject (Project project) throws WrongInputException {
         if (project==null) throw new WrongInputException("Project doesn't excist");
         project.projectID=newProjectID;
         newProjectID++;
         projectList.add(project);
-        return project;
+        project.setDatabase(this);
+    }
+    public void addAssignment(Assignment assignment) throws WrongInputException{
+        if (assignment==null) throw new WrongInputException("Assignment doesn't exist");
+        assignmentList.add(assignment);
     }
 
     public int numberOfprojects () {

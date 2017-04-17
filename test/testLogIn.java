@@ -11,13 +11,13 @@ public class testLogIn {
     public void testLogIn() throws WrongInputException{
         // Creates a system
         System SoftwareHouse = new System();
-        assertEquals(SoftwareHouse.employee,null);
+        assertEquals(SoftwareHouse.getCurrentEmployee(),null);
         SoftwareHouse.createEmployee("Employee1");
         SoftwareHouse.logIn("Employee1");
-        assertEquals(SoftwareHouse.employee.getEmployeeID(),"Employee1");
-        assertEquals(SoftwareHouse.getEmployees().get(0),SoftwareHouse.employee);
+        assertEquals(SoftwareHouse.getCurrentEmployee().getEmployeeID(),"Employee1");
+        assertEquals(SoftwareHouse.getEmployees().get(0),SoftwareHouse.getCurrentEmployee());
         SoftwareHouse.logOff();
-        assertEquals(SoftwareHouse.employee,null);
+        assertEquals(SoftwareHouse.getCurrentEmployee(),null);
 
     }
 }

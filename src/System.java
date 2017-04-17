@@ -5,7 +5,7 @@
 import java.util.*;
 
 public class System {
-    public Employee employee;
+    private Employee employee;
     private Database database;
 
     // Constructor
@@ -54,14 +54,14 @@ public class System {
     }
 
     // Getter methods
-    // Get projects metode
     public List<Project> getProjects(){
         return database.getProjectList();
     }
 
-    // Get employees metode
     public List<Employee> getEmployees(){
         return database.getEmployeeList();
     }
+
+    public Employee getCurrentEmployee() {return employee;}
 
 }

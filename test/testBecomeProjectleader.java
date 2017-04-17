@@ -16,14 +16,14 @@ public class testBecomeProjectleader {
         SoftwareHouse.createProject("Project1");
         // Login as employee
         SoftwareHouse.logIn(ID);
-        assertEquals(SoftwareHouse.employee.getEmployeeID(),ID);
-        assertEquals(SoftwareHouse.employee,SoftwareHouse.getEmployees().get(0));
+        assertEquals(SoftwareHouse.getCurrentEmployee().getEmployeeID(),ID);
+        assertEquals(SoftwareHouse.getCurrentEmployee(),SoftwareHouse.getEmployees().get(0));
 
         // Become projectLeader
 
-        assertEquals(SoftwareHouse.employee.getProjectLeaderList().size(),0);
-        SoftwareHouse.employee.becomeProjectLeader(0);
-        assertEquals(SoftwareHouse.employee.getProjectLeaderList().size(),1);
+        assertEquals(SoftwareHouse.getCurrentEmployee().getProjectLeaderList().size(),0);
+        SoftwareHouse.getCurrentEmployee().becomeProjectLeader(0);
+        assertEquals(SoftwareHouse.getCurrentEmployee().getProjectLeaderList().size(),1);
 
     }
     /*
@@ -42,23 +42,23 @@ public class testBecomeProjectleader {
         SoftwareHouse.createProject("Project1");
         // Login as employee
         SoftwareHouse.logIn(ID);
-        assertEquals(SoftwareHouse.employee.getEmployeeID(),ID);
-        assertEquals(SoftwareHouse.employee,SoftwareHouse.getEmployees().get(0));
+        assertEquals(SoftwareHouse.getCurrentEmployee().getEmployeeID(),ID);
+        assertEquals(SoftwareHouse.getCurrentEmployee(),SoftwareHouse.getEmployees().get(0));
 
         // Become projectLeader
 
-        assertEquals(SoftwareHouse.employee.getProjectLeaderList().size(),0);
-        SoftwareHouse.employee.becomeProjectLeader(0);
-        assertEquals(SoftwareHouse.employee.getProjectLeaderList().size(),1);
+        assertEquals(SoftwareHouse.getCurrentEmployee().getProjectLeaderList().size(),0);
+        SoftwareHouse.getCurrentEmployee().becomeProjectLeader(0);
+        assertEquals(SoftwareHouse.getCurrentEmployee().getProjectLeaderList().size(),1);
         SoftwareHouse.logOff();
 
         // Creates a new employee
         String ID2="Employee2";
         SoftwareHouse.createEmployee(ID2);
         SoftwareHouse.logIn(ID2);
-        assertEquals(SoftwareHouse.employee.getProjectLeaderList().size(),0);
-        SoftwareHouse.employee.becomeProjectLeader(0);
-        assertEquals(SoftwareHouse.employee.getProjectLeaderList().size(),0);
+        assertEquals(SoftwareHouse.getCurrentEmployee().getProjectLeaderList().size(),0);
+        SoftwareHouse.getCurrentEmployee().becomeProjectLeader(0);
+        assertEquals(SoftwareHouse.getCurrentEmployee().getProjectLeaderList().size(),0);
 
     }
     @Test
@@ -73,21 +73,21 @@ public class testBecomeProjectleader {
         SoftwareHouse.createProject("Project1");
         // Login as employee
         SoftwareHouse.logIn(ID);
-        assertEquals(SoftwareHouse.employee.getEmployeeID(),ID);
-        assertEquals(SoftwareHouse.employee,SoftwareHouse.getEmployees().get(0));
+        assertEquals(SoftwareHouse.getCurrentEmployee().getEmployeeID(),ID);
+        assertEquals(SoftwareHouse.getCurrentEmployee(),SoftwareHouse.getEmployees().get(0));
 
         // Become projectLeader
 
-        assertEquals(SoftwareHouse.employee.getProjectLeaderList().size(),0);
-        SoftwareHouse.employee.becomeProjectLeader(0);
-        assertEquals(SoftwareHouse.employee.getProjectLeaderList().size(),1);
+        assertEquals(SoftwareHouse.getCurrentEmployee().getProjectLeaderList().size(),0);
+        SoftwareHouse.getCurrentEmployee().becomeProjectLeader(0);
+        assertEquals(SoftwareHouse.getCurrentEmployee().getProjectLeaderList().size(),1);
 
         // Adds another project
         SoftwareHouse.createProject("Project2");
-        SoftwareHouse.employee.becomeProjectLeader(1);
-        assertEquals(SoftwareHouse.employee.getProjectLeaderList().size(),2);
-        SoftwareHouse.employee.becomeProjectLeader(1);
-        assertEquals(SoftwareHouse.employee.getProjectLeaderList().size(),2);
+        SoftwareHouse.getCurrentEmployee().becomeProjectLeader(1);
+        assertEquals(SoftwareHouse.getCurrentEmployee().getProjectLeaderList().size(),2);
+        SoftwareHouse.getCurrentEmployee().becomeProjectLeader(1);
+        assertEquals(SoftwareHouse.getCurrentEmployee().getProjectLeaderList().size(),2);
 
     }
 

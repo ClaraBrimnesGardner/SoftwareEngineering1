@@ -19,9 +19,18 @@ public class Employee {
     public String getEmployeeID(){
         return employeeID;
     }
-    //public System getSystem() {return system;}
+
     public List<Project> getProjectLeaderList(){
         return projectLeaderList;
+    }
+
+    public Project getProjectByName(String name){
+        for(Project project:projectLeaderList){
+            if(project.getProjectName().equals(name)){
+                return project;
+            }
+        }
+        return null;
     }
 
     // Setter methods
