@@ -86,7 +86,7 @@ public class Database {
         return this.employeeList.size();
     }
 
-    public List<Employee> getAvailableEmployees(int startWeek, int endWeek, int hours) {
+    public List<Employee> getAvailableEmployees(WeekCalendar startWeek, WeekCalendar endWeek, int hours) {
         List<Employee> available = new ArrayList<Employee>();
         for (Employee employee : employeeList) {
             if (employee.availableHours(startWeek, endWeek) >= hours) {

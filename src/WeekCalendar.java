@@ -12,4 +12,12 @@ public class WeekCalendar {
 
 
     }
+
+    public int getWeekNumber() {
+        return weekNumber;
+    }
+
+    public int weeksTo(WeekCalendar endWeek) {
+        return endWeek.getWeekNumber() - weekNumber;
+    }
 }
