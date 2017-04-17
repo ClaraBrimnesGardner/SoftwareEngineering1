@@ -8,4 +8,8 @@ public class AssignmentEmployee {
     public AssignmentEmployee(Employee employee) {
         this.employee = employee;
     }
+
+    public Employee getEmployee() {
+        return employee;
+    }
 }

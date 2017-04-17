@@ -91,7 +91,7 @@ public class Database {
         return this.employeeList.size();
     }
 
-    public List<Employee> getAvailableEmployees(int startWeek, int endWeek, int hours) {
+    public List<Employee> getAvailableEmployees(WeekCalendar startWeek, WeekCalendar endWeek, int hours) {
         List<Employee> available = new ArrayList<Employee>();
         for (Employee employee : employeeList) {
             if (employee.availableHours(startWeek, endWeek) >= hours) {
@@ -102,10 +102,10 @@ public class Database {
     }
 
 
-    public List<AssignmentEmployee> getAssignmentEmployeeList() {
+    public List<AssignmentEmployee> getAssignmentEmployeeList(String employeeID) {
         List<AssignmentEmployee> assignments = new ArrayList<AssignmentEmployee>();
         for (AssignmentEmployee assignment : assignmentEmployeeList) {
-            if (assignment.employee.employeeID == employeeID) {
+            if (assignment.getEmployee().employeeID == employeeID) {
                 assignments.add(assignment);
             }
         }
