@@ -13,8 +13,6 @@ public class System {
         this.database = new Database();
     }
 
-
-
     /*
     public System(Database database) {
         this.database=database;
@@ -22,16 +20,17 @@ public class System {
     */
 
     public String[] logIn(String ID) throws WrongInputException {
-        Employee employee=database.getEmployee(ID);
-        if (employee==null) {
+        Employee employee = database.getEmployee(ID);
+        if (employee == null) {
             throw new WrongInputException ("Employee doesn't excist");
         }
-        this.employee=employee;
+        this.employee = employee;
         // lav noget med projektleder
         return new String[] {
                 "Succesfully logged in as " + employee.employeeID + " with id: " + employee.employeeID
         };
     }
+
     public void logOff(){
         employee=null;
     }

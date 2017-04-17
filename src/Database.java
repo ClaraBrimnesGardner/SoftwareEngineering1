@@ -7,6 +7,7 @@ import java.util.*;
 public class Database {
     public List<Employee> employeeList;
     public List<Project> projectList;
+    public List<AssignmentEmployee> assignmentEmployeeList;
 
     int newProjectID;
     int newEmployeeID;
@@ -15,6 +16,7 @@ public class Database {
     public Database () {
         this.employeeList = new ArrayList<Employee>();
         this.projectList = new ArrayList<Project>();
+        this.assignmentEmployeeList = new ArrayList<AssignmentEmployee>();
 
         this.newProjectID = 0;
         this.newEmployeeID = 0;
@@ -66,4 +68,24 @@ public class Database {
         return this.employeeList.size();
     }
 
+    public List<Employee> getAvailableEmployees(int startWeek, int endWeek, int hours) {
+        List<Employee> available = new ArrayList<Employee>();
+        for (Employee employee : employeeList) {
+            if (employee.availableHours(startWeek, endWeek) >= hours) {
+                available.add(employee);
+            }
+        }
+        return available;
+    }
+
+
+    public List<AssignmentEmployee> getAssignmentEmployeeList() {
+        List<AssignmentEmployee> assignments = new ArrayList<AssignmentEmployee>();
+        for (AssignmentEmployee assignment : assignmentEmployeeList) {
+            if (assignment.employee.employeeID == employeeID) {
+                assignments.add(assignment);
+            }
+        }
+        return assignments;
+    }
 }

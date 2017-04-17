@@ -11,7 +11,9 @@ public class TestAddProject {
         System SoftwareHouse = new System();
         // Add a project to the system
         SoftwareHouse.createProject("test");
+
         assertEquals(SoftwareHouse.getProjects().size(),1);
+
         assertEquals(SoftwareHouse.getProjects().get(0).getName(),"test");
     }
 
