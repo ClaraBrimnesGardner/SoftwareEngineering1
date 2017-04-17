@@ -47,18 +47,20 @@ public class Employee {
         }
     }
 
-    public double availableHours(int startWeek, int endWeek) {
-        double hours = 37.5*(endWeek - startWeek);
-        return hours - bookedHours();
+    public double availableHours(WeekCalendar startWeek, WeekCalendar endWeek) {
+        double hours = 37.5*startWeek.weeksTo(endWeek);
+        return hours - bookedHours(startWeek, endWeek);
     }
 
-    private double bookedHours() {
+    public double bookedHours(WeekCalendar startWeek, WeekCalendar endWeek) {
         double bookedHours = 0;
-        List<AssignmentEmployee> assignmentList = database.getAssignmentEmployeeList();
+        List<AssignmentEmployee> assignmentList = database.getAssignmentEmployeeList(employeeID);
         for (AssignmentEmployee assignment : assignmentList) {
-            //tæller
-
-            bookedHours++;
+            for (WeekCalendar week : assignment.getWeekList()) {
+                if (week.getWeekNumber() <= endWeek.getWeekNumber() || week.getWeekNumber() >= startWeek.getWeekNumber()) {
+                    bookedHours += week.getBookedHours();
+                }
+            }
         }
         return bookedHours;
     }
