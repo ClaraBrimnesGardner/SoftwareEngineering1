@@ -47,4 +47,19 @@ public class Employee {
         }
     }
 
+    public double availableHours(int startWeek, int endWeek) {
+        double hours = 37.5*(endWeek - startWeek);
+        return hours - bookedHours();
+    }
+
+    private double bookedHours() {
+        double bookedHours = 0;
+        List<AssignmentEmployee> assignmentList = database.getAssignmentEmployeeList();
+        for (AssignmentEmployee assignment : assignmentList) {
+            //tæller
+
+            bookedHours++;
+        }
+        return bookedHours;
+    }
 }
