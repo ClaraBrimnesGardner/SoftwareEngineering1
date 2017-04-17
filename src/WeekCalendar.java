@@ -7,11 +7,9 @@ public class WeekCalendar {
     private int bookedHours = 0;
 
     // constructor
-    public void weekCalendar(int year, int weekNumber) {
+    public WeekCalendar(int year, int weekNumber) {
         this.weekNumber = weekNumber;
         this.year = year;
-
-
     }
 
     public void setBookedHours(int halfHours) {

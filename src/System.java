@@ -2,6 +2,7 @@
   * Created by clarabrimnesgardner on 27/03/2017.
  */
 
+import javax.xml.crypto.Data;
 import java.util.*;
 
 public class System {
@@ -62,5 +63,9 @@ public class System {
     }
 
     public Employee getCurrentEmployee() {return employee;}
+
+    public Database getDatabase() {
+        return database;
+    }
 
 }
