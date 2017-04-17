@@ -4,6 +4,7 @@
 public class WeekCalendar {
     private int weekNumber;
     private int year;
+    private int bookedHours = 0;
 
     // constructor
     public void weekCalendar(int year, int weekNumber) {
@@ -11,6 +12,14 @@ public class WeekCalendar {
         this.year = year;
 
 
+    }
+
+    public void setBookedHours(int halfHours) {
+        this.bookedHours = halfHours;
+    }
+
+    public int getBookedHours() {
+        return bookedHours;
     }
 
     public int getWeekNumber() {
