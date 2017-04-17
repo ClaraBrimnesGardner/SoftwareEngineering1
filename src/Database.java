@@ -97,10 +97,10 @@ public class Database {
     }
 
 
-    public List<AssignmentEmployee> getAssignmentEmployeeList() {
+    public List<AssignmentEmployee> getAssignmentEmployeeList(String employeeID) {
         List<AssignmentEmployee> assignments = new ArrayList<AssignmentEmployee>();
         for (AssignmentEmployee assignment : assignmentEmployeeList) {
-            if (assignment.employee.employeeID == employeeID) {
+            if (assignment.getEmployee().employeeID == employeeID) {
                 assignments.add(assignment);
             }
         }

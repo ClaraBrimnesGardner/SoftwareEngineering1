@@ -54,7 +54,7 @@ public class Employee {
 
     private double bookedHours() {
         double bookedHours = 0;
-        List<AssignmentEmployee> assignmentList = database.getAssignmentEmployeeList();
+        List<AssignmentEmployee> assignmentList = database.getAssignmentEmployeeList(employeeID);
         for (AssignmentEmployee assignment : assignmentList) {
             //tæller
 

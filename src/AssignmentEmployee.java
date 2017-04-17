@@ -9,4 +9,8 @@ public class AssignmentEmployee {
         this.employee = employee;
         this.TaskID = TaskID;
     }
+
+    public Employee getEmployee() {
+        return employee;
+    }
 }
