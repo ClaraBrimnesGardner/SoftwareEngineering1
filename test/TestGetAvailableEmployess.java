@@ -19,8 +19,7 @@ public class TestGetAvailableEmployess {
         SoftwareHouse.createProject("Test");
 
         WeekCalendar week1 = new WeekCalendar(2017,1);
-        WeekCalendar week2 = new WeekCalendar(2017,2);
 
-        assertEquals(2,SoftwareHouse.getDatabase().getAvailableEmployees(week1,week2,10).size());
+        assertEquals(2,SoftwareHouse.getDatabase().getAvailableEmployees(week1,2,10).size());
     }
 }
