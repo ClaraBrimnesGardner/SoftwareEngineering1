@@ -21,6 +21,12 @@ public class AssignmentEmployee {
         return employee;
     }
 
+    public void addBooking(WeekBooking weekBooking) {
+        weekBookings.add(weekBooking);
+    }
+
+
+
 
 
 }

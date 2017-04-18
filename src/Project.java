@@ -81,12 +81,12 @@ public class Project {
 
     }
 
-    public void manAssignment(Assignment assignment, Employee employee) throws OperationNotAllowedException {
-        if (!(system.getCurrentEmployee() == projectLeader)) {
-            throw new OperationNotAllowedException("Only the project leader has authority to do this");
-        }
+    public void manAssignment(Employee employee, Assignment assignment, WeekBooking weekBooking) {
+        AssignmentEmployee assignmentEmployee = new AssignmentEmployee(employee);
+        assignmentEmployee.addBooking(weekBooking);
+
+        database.assignmentEmployeeList.add(assignmentEmployee);
 
     }
 
-    // Method to set budgeted time for an assignment (given by name)
 }
