@@ -5,6 +5,8 @@ public class Assignment {
     private String name;
     private Project project;
     private int budgetedTime;
+    private int bookedTime;
+    private Database database;
 
 
 
@@ -13,6 +15,7 @@ public class Assignment {
     public Assignment(String name, Project project){
         this.name=name;
         this.project=project;
+        bookedTime=0;
     }
 
     // Getter methods
@@ -28,4 +31,13 @@ public class Assignment {
     public void setBudgetedTime(int budgetedTime){
         this.budgetedTime=budgetedTime;
     }
+    public void setDatabase(Database database){
+        this.database=database;
+    }
+
+
+
+
+
+
 }

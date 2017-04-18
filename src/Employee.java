@@ -5,13 +5,12 @@ import java.util.*;
 public class Employee {
     protected String employeeID;
     //protected System system;
-    protected List<Project> projectLeaderList;
+    //protected List<Project> projectLeaderList;
     protected Database database;
 
     // Constructor 
     public Employee(String ID){
         this.employeeID=ID;
-        projectLeaderList = new ArrayList<Project>();
 
     }
 
@@ -21,11 +20,13 @@ public class Employee {
     }
 
     public List<Project> getProjectLeaderList(){
+        List<Project> projectLeaderList;
+        projectLeaderList=database.getProjectLeaderList(this);
         return projectLeaderList;
     }
 
     public Project getProjectByName(String name){
-        for(Project project:projectLeaderList){
+        for(Project project:database.getProjectLeaderList(this)){
             if(project.getProjectName().equals(name)){
                 return project;
             }
@@ -42,9 +43,7 @@ public class Employee {
     public void becomeProjectLeader(int projectID){
         Project project=database.getProject(projectID);
         boolean projectFree = project.setProjectLeader(this);
-        if(projectFree==true){
-            projectLeaderList.add(project);
-        }
+
     }
 
     public double availableHours(WeekCalendar startWeek, WeekCalendar endWeek) {
