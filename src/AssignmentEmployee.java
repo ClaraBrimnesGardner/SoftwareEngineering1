@@ -7,14 +7,14 @@ import java.util.*;
 public class AssignmentEmployee {
     private int TaskID;
     private Employee employee;
-    private List<WeekCalendar> weekList = new ArrayList<WeekCalendar>();
+    private List<WeekBooking> weekBookings = new ArrayList<WeekBooking>();
 
     public AssignmentEmployee(Employee employee) {
         this.employee = employee;
     }
 
-    public List<WeekCalendar> getWeekList() {
-        return weekList;
+    public List<WeekBooking> getWeekList() {
+        return weekBookings;
     }
 
     public Employee getEmployee() {

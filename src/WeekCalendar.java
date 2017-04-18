@@ -4,7 +4,6 @@
 public class WeekCalendar {
     private int weekNumber;
     private int year;
-    private int bookedHours = 0;
 
     // constructor
     public WeekCalendar(int year, int weekNumber) {
@@ -12,19 +11,42 @@ public class WeekCalendar {
         this.year = year;
     }
 
-    public void setBookedHours(int halfHours) {
-        this.bookedHours = halfHours;
-    }
-
-    public int getBookedHours() {
-        return bookedHours;
-    }
+    public int getYear() { return year;}
 
     public int getWeekNumber() {
         return weekNumber;
     }
 
     public int weeksTo(WeekCalendar endWeek) {
-        return endWeek.getWeekNumber() - weekNumber;
+        return (endWeek.getYear()-year)*52 + endWeek.getWeekNumber() - weekNumber;
     }
+
+    public boolean before(WeekCalendar other) {
+        if (other.getYear() > year) {
+            return true;
+        }
+            else if (other.getYear() == year) {
+            return (other.getWeekNumber() >= weekNumber);
+        }
+        return false;
+    }
+
+    public boolean after(WeekCalendar other) {
+        if (other.getYear() < year) {
+            return true;
+        }
+            else if (other.getYear() == year) {
+                return (other.getWeekNumber() <= weekNumber);
+            }
+        return false;
+    }
+
+    public void increaseWeek(int duration) {
+        weekNumber += duration;
+        while (weekNumber > 52) {
+            weekNumber -= 52;
+            year++;
+        }
+    }
+
 }
