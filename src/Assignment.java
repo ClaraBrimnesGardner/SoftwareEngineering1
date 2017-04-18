@@ -11,8 +11,8 @@ public class Assignment {
 
     // Constructor
     public Assignment(String name, Project project){
-        this.name=name;
-        this.project=project;
+        this.name = name;
+        this.project = project;
     }
 
     // Getter methods

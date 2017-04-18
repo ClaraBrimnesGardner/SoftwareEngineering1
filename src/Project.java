@@ -69,5 +69,12 @@ public class Project {
 
     }
 
+    public void manAssignment(Assignment assignment, Employee employee) throws OperationNotAllowedException {
+        if (!(system.getCurrentEmployee() == projectLeader)) {
+            throw new OperationNotAllowedException("Only the project leader has authority to do this");
+        }
+
+    }
+
     // Method to set budgeted time for an assignment (given by name)
 }
