@@ -12,7 +12,6 @@ public class Employee {
     // Constructor 
     public Employee(String ID){
         this.employeeID=ID;
-
     }
 
     // Getter methods 
