@@ -1,7 +1,6 @@
 /**
  * Created by clarabrimnesgardner on 27/03/2017.
  */
-
 import java.util.*;
 public class Employee {
     protected String employeeID;
@@ -46,13 +45,13 @@ public class Employee {
 
     }
 
-    public double availableHours(WeekCalendar weekCalendar, int duration) {
-        double hours = 37.5*duration;
+    public int availableHours(WeekCalendar weekCalendar, int duration) {
+        int hours = 38*duration;
         return hours - bookedHours(weekCalendar,duration);
     }
 
-    public double bookedHours(WeekCalendar week, int duration) {
-        double bookedHours = 0;
+    public int bookedHours(WeekCalendar week, int duration) {
+        int bookedHours = 0;
         WeekCalendar endWeek = new WeekCalendar(week.getYear(),week.getWeekNumber());
         endWeek.increaseWeek(duration);
 
@@ -66,4 +65,5 @@ public class Employee {
         }
         return bookedHours;
     }
+
 }

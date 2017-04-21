@@ -35,6 +35,17 @@ public class Assignment {
         this.database=database;
     }
 
+    // Method to man an assignment
+    public void manAssignment(Employee employee) throws WrongInputException{
+        AssignmentEmployee assignmentEmployee = new AssignmentEmployee(employee);
+        if(database!=null){
+            database.addAssignmentEmployee(assignmentEmployee);
+        }
+
+
+    }
+
+
 
 
 
