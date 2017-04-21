@@ -10,7 +10,8 @@ public class TestAddProject {
         // Creates a system
         System SoftwareHouse = new System();
         // Add a project to the system
-        SoftwareHouse.createProject("test");
+        Project test = new Project("test");
+        SoftwareHouse.createProject(test);
 
         assertEquals(SoftwareHouse.getProjects().size(),1);
 
@@ -26,12 +27,14 @@ public class TestAddProject {
     public void testAddExistingProject() throws WrongInputException {
         System SoftwareHouse = new System();
         // Add a project to the system
-        SoftwareHouse.createProject("test");
+        Project test = new Project("test");
+        SoftwareHouse.createProject(test);
         assertEquals(SoftwareHouse.getProjects().size(),1);
         assertEquals(SoftwareHouse.getProjects().get(0).getName(),"test");
         // Add another project to the system with same name
+        Project test2 = new Project("test");
         try {
-            SoftwareHouse.createProject("test");
+            SoftwareHouse.createProject(test2);
         } catch (WrongInputException e){
             assertEquals("Projectname is used", e.getMessage());
         }
@@ -46,8 +49,10 @@ public class TestAddProject {
     public void testAddTwoProjects() throws WrongInputException{
         System SoftwareHouse = new System();
         // Add a project to the system
-        SoftwareHouse.createProject("test1");
-        SoftwareHouse.createProject("test2");
+        Project test = new Project("test");
+        Project test1 = new Project("Hej");
+        SoftwareHouse.createProject(test);
+        SoftwareHouse.createProject(test1);
         assertEquals(2,SoftwareHouse.getProjects().size());
     }
 

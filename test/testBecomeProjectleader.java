@@ -15,7 +15,8 @@ public class testBecomeProjectleader {
         assertEquals(SoftwareHouse.getEmployees().size(),1);
 
         // Adds a project
-        SoftwareHouse.createProject("Project1");
+        Project test = new Project("test");
+        SoftwareHouse.createProject(test);
         // Login as employee
         SoftwareHouse.logIn(ID);
         assertEquals(SoftwareHouse.getCurrentEmployee().getEmployeeID(),ID);
@@ -42,7 +43,8 @@ public class testBecomeProjectleader {
         assertEquals(SoftwareHouse.getEmployees().size(),1);
 
         // Adds a project
-        SoftwareHouse.createProject("Project1");
+        Project test = new Project("test");
+        SoftwareHouse.createProject(test);
         // Login as employee
         SoftwareHouse.logIn(ID);
         assertEquals(SoftwareHouse.getCurrentEmployee().getEmployeeID(),ID);
@@ -73,7 +75,8 @@ public class testBecomeProjectleader {
         assertEquals(SoftwareHouse.getEmployees().size(),1);
 
         // Adds a project
-        SoftwareHouse.createProject("Project1");
+        Project test = new Project("test");
+        SoftwareHouse.createProject(test);
         // Login as employee
         SoftwareHouse.logIn(ID);
         assertEquals(SoftwareHouse.getCurrentEmployee().getEmployeeID(),ID);
@@ -86,7 +89,8 @@ public class testBecomeProjectleader {
         assertEquals(SoftwareHouse.getCurrentEmployee().getProjectLeaderList().size(),1);
 
         // Adds another project
-        SoftwareHouse.createProject("Project2");
+        Project test2 = new Project("test2");
+        SoftwareHouse.createProject(test2);
         SoftwareHouse.getCurrentEmployee().becomeProjectLeader(1);
         assertEquals(SoftwareHouse.getCurrentEmployee().getProjectLeaderList().size(),2);
         SoftwareHouse.getCurrentEmployee().becomeProjectLeader(1);

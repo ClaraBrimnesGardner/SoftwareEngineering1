@@ -36,7 +36,7 @@ public class Assignment {
     }
 
     // Method to man an assignment
-    public void manAssignment(Employee employee) throws WrongInputException{
+    public void manAssignment(Employee employee, WeekCalendar week, int duration, int hours) throws WrongInputException{
         AssignmentEmployee assignmentEmployee = new AssignmentEmployee(employee);
         if(database!=null){
             database.addAssignmentEmployee(assignmentEmployee);
