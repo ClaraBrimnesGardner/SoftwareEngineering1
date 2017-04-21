@@ -15,13 +15,14 @@ public class TestGetAvailableEmployess {
         // Adds another employee
         String ID2 = "Employee2";
         SoftwareHouse.createEmployee(ID2);
-
-        SoftwareHouse.createProject("Test");
+        Project test = new Project("test");
+        SoftwareHouse.createProject(test);
 
         WeekCalendar week1 = new WeekCalendar(2017,1);
+        SoftwareHouse.logIn(ID2);
 
         assertEquals(2,SoftwareHouse.getDatabase().getAvailableEmployees(week1,1,38).size());
         assertEquals(0,SoftwareHouse.getDatabase().getAvailableEmployees(week1,1,40).size());
-
+        assertEquals(38,SoftwareHouse.getCurrentEmployee().availableHours(week1,1));
     }
 }
