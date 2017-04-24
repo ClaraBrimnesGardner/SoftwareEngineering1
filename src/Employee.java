@@ -47,18 +47,25 @@ public class Employee {
 
     public int availableHours(WeekCalendar weekCalendar, int duration) {
         int hours = 38*duration;
-        return hours - bookedHours(weekCalendar,duration);
+        return (hours - bookedHours(weekCalendar,duration));
     }
 
     public int bookedHours(WeekCalendar week, int duration) {
+
+        // Setting the booked hours to 0
         int bookedHours = 0;
+        // Setting the endWeek
         WeekCalendar endWeek = new WeekCalendar(week.getYear(),week.getWeekNumber());
         endWeek.increaseWeek(duration);
 
+        // Retrieving a list of all assignments with the current employee
         List<AssignmentEmployee> assignmentList = database.getAssignmentEmployeeList(employeeID);
+        // Looping over all assignments with the current employees
         for (AssignmentEmployee assignment : assignmentList) {
+            // Getting all bookings for the current week
             for (WeekBooking booking : assignment.getWeekList()) {
-                if (booking.getWeekCalendar().before(endWeek) && booking.getWeekCalendar().after(week)) {
+                // Getting the booked hours
+                if (booking.getWeekCalendar().before(endWeek)&& booking.getWeekCalendar().after(week)) {
                     bookedHours += booking.getBookedHours();
                 }
             }

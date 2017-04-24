@@ -92,6 +92,7 @@ public class Database {
 
     public void addAssignmentEmployee(AssignmentEmployee assignmentEmployee) throws WrongInputException{
         if(assignmentEmployee==null) throw new WrongInputException("Assignment doesn't exist");
+        assignmentEmployeeList.add(assignmentEmployee);
 
     }
 
@@ -117,10 +118,20 @@ public class Database {
     public List<AssignmentEmployee> getAssignmentEmployeeList(String employeeID) {
         List<AssignmentEmployee> assignments = new ArrayList<AssignmentEmployee>();
         for (AssignmentEmployee assignment : assignmentEmployeeList) {
-            if (assignment.getEmployee().employeeID == employeeID) {
+            if (assignment.getEmployee().getEmployeeID()==employeeID) {
                 assignments.add(assignment);
             }
         }
         return assignments;
     }
+    /*
+    public List<Assignment> getProjectAssignmentList(Project project){
+        List<Assignment> projectAssignmentList = new ArrayList<Assignment>();
+        for(Assignment assignment: assignmentList) {
+            if(assignment.getProject().equals(project))
+                projectAssignmentList.add(assignment);
+        }
+        return projectAssignmentList;
+    }
+    */
 }
