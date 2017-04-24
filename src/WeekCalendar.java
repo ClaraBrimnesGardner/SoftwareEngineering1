@@ -41,12 +41,15 @@ public class WeekCalendar {
         return false;
     }
 
-    public void increaseWeek(int duration) {
-        weekNumber += duration;
-        while (weekNumber > 52) {
-            weekNumber -= 52;
-            year++;
+    public WeekCalendar increaseWeek(int duration) {
+        int newWeekNumber=weekNumber+duration;
+        int newYear=year;
+        while (newWeekNumber > 52) {
+            newWeekNumber -= 52;
+            newYear++;
         }
+        WeekCalendar newWeek= new WeekCalendar(newYear, newWeekNumber);
+        return newWeek;
     }
 
 }

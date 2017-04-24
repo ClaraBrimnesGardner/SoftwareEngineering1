@@ -1,6 +1,7 @@
 /**
  * Created by clarabrimnesgardner on 17/04/2017.
  */
+import java.lang.System;
 public class Assignment {
     private String name;
     private Project project;
@@ -41,22 +42,25 @@ public class Assignment {
         if(database!=null){
             database.addAssignmentEmployee(assignmentEmployee);
         }
-        WeekCalendar endWeek=new WeekCalendar(week.getYear(),week.getWeekNumber());
-        endWeek.increaseWeek(duration);
-        WeekCalendar currentWeek=new WeekCalendar(week.getYear(),week.getWeekNumber());
         int availableHours;
-        while(currentWeek.before(endWeek) && hours>0){
-            currentWeek.increaseWeek(1);
-            availableHours=employee.availableHours(currentWeek,1);
-            if (availableHours >= hours) {
-                WeekBooking newBooking = new WeekBooking(week, hours);
-                assignmentEmployee.addBooking(newBooking);
-                hours=hours-hours;
-            } else {
-                WeekBooking newBooking = new WeekBooking(week, availableHours);
+        while(hours>0){
+            WeekCalendar newWeek = new WeekCalendar(week.getYear(),week.getWeekNumber());
+            availableHours=employee.availableHours(newWeek,1);
+            if(availableHours<=hours){
+                WeekBooking newBooking = new WeekBooking(newWeek,availableHours);
                 assignmentEmployee.addBooking(newBooking);
                 hours=hours-availableHours;
+
             }
+            else {
+                WeekBooking newBooking = new WeekBooking(newWeek, hours);
+                assignmentEmployee.addBooking(newBooking);
+                hours=0;
+
+
+            }
+
+            week=week.increaseWeek(1);
         }
 
 
