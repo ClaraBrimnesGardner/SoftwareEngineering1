@@ -41,6 +41,26 @@ public class Assignment {
         if(database!=null){
             database.addAssignmentEmployee(assignmentEmployee);
         }
+        WeekCalendar endWeek=new WeekCalendar(week.getYear(),week.getWeekNumber());
+        endWeek.increaseWeek(duration);
+        WeekCalendar currentWeek=new WeekCalendar(week.getYear(),week.getWeekNumber());
+        int availableHours;
+        while(currentWeek.before(endWeek) && hours>0){
+            currentWeek.increaseWeek(1);
+            availableHours=employee.availableHours(currentWeek,1);
+            if (availableHours >= hours) {
+                WeekBooking newBooking = new WeekBooking(week, hours);
+                assignmentEmployee.addBooking(newBooking);
+                hours=hours-hours;
+            } else {
+                WeekBooking newBooking = new WeekBooking(week, availableHours);
+                assignmentEmployee.addBooking(newBooking);
+                hours=hours-availableHours;
+            }
+        }
+
+
+
 
 
     }

@@ -114,14 +114,14 @@ public class TestCreateAssignment {
         // Become projectLeader
 
         assertEquals(SoftwareHouse.getCurrentEmployee().getProjectLeaderList().size(), 1);
-        SoftwareHouse.getCurrentEmployee().becomeProjectLeader(1);
+        //SoftwareHouse.getCurrentEmployee().becomeProjectLeader(1);
 
-
+        /*
         // Add an activity
         currentProject = SoftwareHouse.getCurrentEmployee().getProjectByName("Project2");
         currentProject.createAssignment("test1");
         assertEquals(SoftwareHouse.getCurrentEmployee().getProjectByName("Project2").getAssignmentList().size(), 1);
         assertEquals(SoftwareHouse.getCurrentEmployee().getProjectByName("Project1").getAssignmentList().size(), 1);
-
+        */
     }
 }
