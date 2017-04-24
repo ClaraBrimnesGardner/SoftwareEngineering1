@@ -16,8 +16,7 @@ public class TestCreateAssignment {
         assertEquals(SoftwareHouse.getEmployees().size(), 1);
 
         // Adds a project
-        Project test = new Project("Project1");
-        SoftwareHouse.createProject(test);
+        SoftwareHouse.createProject("Project1");
         // Login as employee
         SoftwareHouse.logIn(ID);
         assertEquals(SoftwareHouse.getCurrentEmployee().getEmployeeID(), ID);
@@ -50,8 +49,7 @@ public class TestCreateAssignment {
         assertEquals(SoftwareHouse.getEmployees().size(), 1);
 
         // Adds a project
-        Project test = new Project("Project1");
-        SoftwareHouse.createProject(test);
+        SoftwareHouse.createProject("test");
         // Login as employee
         SoftwareHouse.logIn(ID);
         assertEquals(SoftwareHouse.getCurrentEmployee().getEmployeeID(), ID);
@@ -68,7 +66,7 @@ public class TestCreateAssignment {
         currentProject.createAssignment("test");
 
         // Checks that the currentEmployee now has a project with an assignment
-        assertEquals(SoftwareHouse.getCurrentEmployee().getProjectByName("Project1").getAssignmentList().size(), 1);
+        assertEquals(SoftwareHouse.getCurrentEmployee().getProjectByName("test").getAssignmentList().size(), 1);
 
         // Add another activity
 
@@ -90,8 +88,7 @@ public class TestCreateAssignment {
         assertEquals(SoftwareHouse.getEmployees().size(), 1);
 
         // Adds a project
-        Project test = new Project("Project1");
-        SoftwareHouse.createProject(test);
+        SoftwareHouse.createProject("Project1");
         // Login as employee
         SoftwareHouse.logIn(ID);
         assertEquals(SoftwareHouse.getCurrentEmployee().getEmployeeID(), ID);
@@ -113,8 +110,7 @@ public class TestCreateAssignment {
 
         // Adds another project
         // Adds a project
-        Project test2 = new Project("Project2");
-        SoftwareHouse.createProject(test2);
+        SoftwareHouse.createProject("Project2");
         // Become projectLeader
 
         assertEquals(SoftwareHouse.getCurrentEmployee().getProjectLeaderList().size(), 1);
