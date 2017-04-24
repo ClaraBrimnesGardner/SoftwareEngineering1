@@ -80,16 +80,19 @@ public class TestManAssignment {
 
         // Create WeekCalendar
         WeekCalendar week1 = new WeekCalendar(2017, 1);
+        WeekCalendar week2 = new WeekCalendar(2017, 2);
 
         // manAssignment
         Assignment currentAssignment = currentProject.getAssignmentByName("test");
         assertEquals(SoftwareHouse.getCurrentEmployee().availableHours(week1, 1), 38);
+        assertEquals(SoftwareHouse.getCurrentEmployee().availableHours(week2,1),38);
 
         currentAssignment.manAssignment(SoftwareHouse.getEmployees().get(0), week1, 2, 40);
-
         assertEquals(SoftwareHouse.getDatabase().getAssignmentEmployeeList(ID).size(), 1);
-        assertEquals(SoftwareHouse.getEmployees().get(0).availableHours(week1,1),0);
+        assertEquals(SoftwareHouse.getEmployees().get(0).availableHours(week1, 1), 0);
         //assertEquals(SoftwareHouse.getEmployees().get(0).bookedHours(week1, 1), 38);
-        //assertEquals(SoftwareHouse.getCurrentEmployee().availableHours(week1.increaseWeek(1),1),2);
+        //assertEquals(SoftwareHouse.getEmployees().get(0).availableHours(week2, 1), 36);
+
+        //assertEquals(SoftwareHouse.getEmployees().get(0).bookedHours(week2,1),2);
     }
 }
