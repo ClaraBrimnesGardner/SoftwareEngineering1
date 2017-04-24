@@ -78,8 +78,8 @@ public class Database {
     }
 
     public void addProject (Project project) throws WrongInputException {
-        if (project==null) throw new WrongInputException("Project doesn't excist");
-        project.projectID=newProjectID;
+        if (project == null) throw new WrongInputException("Project doesn't excist");
+        project.projectID = newProjectID;
         newProjectID++;
         projectList.add(project);
         project.setDatabase(this);
