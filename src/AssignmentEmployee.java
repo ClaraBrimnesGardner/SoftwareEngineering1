@@ -7,7 +7,7 @@ import java.util.*;
 public class AssignmentEmployee {
     private int TaskID;
     private Employee employee;
-    private List<WeekBooking> weekBookings = new ArrayList<WeekBooking>();
+    private List<WeekBooking> weekBookings = new ArrayList<>();
 
     public AssignmentEmployee(Employee employee) {
         this.employee = employee;

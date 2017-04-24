@@ -8,7 +8,7 @@ public class testLogIn {
     Test that the LogIn and LogOff functions work
      */
     @Test
-    public void testLogIn() throws WrongInputException{
+    public void testLogIn() throws WrongInputException {
         // Creates a system
         System SoftwareHouse = new System();
         assertEquals(SoftwareHouse.getCurrentEmployee(),null);
@@ -18,6 +18,5 @@ public class testLogIn {
         assertEquals(SoftwareHouse.getEmployees().get(0),SoftwareHouse.getCurrentEmployee());
         SoftwareHouse.logOff();
         assertEquals(SoftwareHouse.getCurrentEmployee(),null);
-
     }
 }

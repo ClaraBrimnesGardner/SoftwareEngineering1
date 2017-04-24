@@ -37,18 +37,13 @@ public class System {
     }
 
 
-    public void createProject (Project newProject) throws WrongInputException {
-        for (Project project:database.getProjectList()){
-            if (project.getName().equals((newProject.getName()))) throw new WrongInputException("Projectname is used");
-
-        }
-        database.addProject(newProject);
-        /*for (Project project:database.projectList) {
+    public void createProject (String name) throws WrongInputException {
+        for (Project project : database.getProjectList()){
             if (project.getName().equals((name))) throw new WrongInputException("Projectname is used");
+
         }
         Project project = new Project(name);
         database.addProject(project);
-        */
     }
 
     public void createEmployee (String ID) throws WrongInputException {

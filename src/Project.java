@@ -1,6 +1,7 @@
 /**
  * Created by sarad on 04-04-2017.
  */
+import javax.xml.crypto.Data;
 import java.util.*;
 
 public class Project {
@@ -69,7 +70,9 @@ public class Project {
     public void setDatabase(Database database){
         this.database=database;
     }
-
+    public Database getDatabase(){
+        return database;
+    }
 
     // Method to create an assignment
     public void createAssignment(String name) throws WrongInputException{
@@ -77,16 +80,17 @@ public class Project {
             if (assignment.getName().equals((name))) throw new WrongInputException("Projectname is used");
         }
         Assignment newAssignment = new Assignment(name,this);
-        database.addAssignment(newAssignment);
+        getDatabase().addAssignment(newAssignment);
 
     }
 
-    public void manAssignment(Employee employee, Assignment assignment, WeekBooking weekBooking) {
+    /*public void manAssignment(Employee employee, Assignment assignment, WeekBooking weekBooking) {
         AssignmentEmployee assignmentEmployee = new AssignmentEmployee(employee);
         assignmentEmployee.addBooking(weekBooking);
 
         database.assignmentEmployeeList.add(assignmentEmployee);
 
     }
+    */
 
 }

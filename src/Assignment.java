@@ -38,9 +38,23 @@ public class Assignment {
     // Method to man an assignment
     public void manAssignment(Employee employee, WeekCalendar week, int duration, int hours) throws WrongInputException{
         AssignmentEmployee assignmentEmployee = new AssignmentEmployee(employee);
-        if(database!=null){
+        //if(database!=null){
             database.addAssignmentEmployee(assignmentEmployee);
+        //}
+        WeekBooking newBooking = new WeekBooking(week,hours);
+        assignmentEmployee.addBooking(newBooking);
+        /*int availableHours = employee.availableHours(week,1);
+
+        if(availableHours>=hours){
+            WeekBooking newBooking = new WeekBooking(week, hours);
+            assignmentEmployee.addBooking(newBooking);
         }
+        else{
+            WeekBooking newBooking = new WeekBooking(week, availableHours);
+            assignmentEmployee.addBooking(newBooking);
+
+        }
+        */
 
 
     }

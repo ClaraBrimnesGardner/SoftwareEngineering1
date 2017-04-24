@@ -1,9 +1,11 @@
+import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 /**
  * Created by Tobias on 17/04/2017.
  */
 
-import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.*;
 
 public class TestGetAvailableEmployess {
     @Test
@@ -15,8 +17,7 @@ public class TestGetAvailableEmployess {
         // Adds another employee
         String ID2 = "Employee2";
         SoftwareHouse.createEmployee(ID2);
-        Project test = new Project("test");
-        SoftwareHouse.createProject(test);
+        SoftwareHouse.createProject("test");
 
         WeekCalendar week1 = new WeekCalendar(2017,1);
         SoftwareHouse.logIn(ID2);
