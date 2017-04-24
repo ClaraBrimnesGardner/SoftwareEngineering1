@@ -59,7 +59,6 @@ public class Assignment {
 
 
             }
-            availableHours=employee.availableHours(week,1);
 
             week=week.increaseWeek(1);
         }
