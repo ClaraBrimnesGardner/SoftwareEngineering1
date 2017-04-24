@@ -38,23 +38,29 @@ public class Assignment {
     // Method to man an assignment
     public void manAssignment(Employee employee, WeekCalendar week, int duration, int hours) throws WrongInputException{
         AssignmentEmployee assignmentEmployee = new AssignmentEmployee(employee);
-        //if(database!=null){
+        if(database!=null){
             database.addAssignmentEmployee(assignmentEmployee);
-        //}
-        WeekBooking newBooking = new WeekBooking(week,hours);
-        assignmentEmployee.addBooking(newBooking);
-        /*int availableHours = employee.availableHours(week,1);
-
-        if(availableHours>=hours){
-            WeekBooking newBooking = new WeekBooking(week, hours);
-            assignmentEmployee.addBooking(newBooking);
         }
-        else{
-            WeekBooking newBooking = new WeekBooking(week, availableHours);
-            assignmentEmployee.addBooking(newBooking);
-
+        WeekCalendar endWeek=new WeekCalendar(week.getYear(),week.getWeekNumber());
+        endWeek.increaseWeek(duration);
+        WeekCalendar currentWeek=new WeekCalendar(week.getYear(),week.getWeekNumber());
+        int availableHours;
+        while(currentWeek.before(endWeek) && hours>0){
+            currentWeek.increaseWeek(1);
+            availableHours=employee.availableHours(currentWeek,1);
+            if (availableHours >= hours) {
+                WeekBooking newBooking = new WeekBooking(week, hours);
+                assignmentEmployee.addBooking(newBooking);
+                hours=hours-hours;
+            } else {
+                WeekBooking newBooking = new WeekBooking(week, availableHours);
+                assignmentEmployee.addBooking(newBooking);
+                hours=hours-availableHours;
+            }
         }
-        */
+
+
+
 
 
     }
