@@ -58,13 +58,10 @@ public class Project {
     public void setSystem(System newSystem){system = newSystem;
     }
 
-    public boolean setProjectLeader(Employee projectLeader){
+    public void setProjectLeader(Employee projectLeader){
         if(this.projectLeader==null) {
             this.projectLeader = projectLeader;
-            return true;
         }
-        return false;
-
     }
 
     public void setDatabase(Database database){

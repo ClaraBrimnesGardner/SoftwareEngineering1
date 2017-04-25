@@ -11,17 +11,40 @@ public class Database {
     public List<AssignmentEmployee> assignmentEmployeeList;
 
     int newProjectID;
-    int newEmployeeID;
+    int newTaskID;
 
     // Constructor
-    public Database () { 
+    public Database () {
         this.employeeList = new ArrayList<Employee>();
         this.projectList = new ArrayList<Project>();
         this.assignmentList = new ArrayList<Assignment>();
         this.assignmentEmployeeList = new ArrayList<AssignmentEmployee>();
 
         this.newProjectID = 0;
-        this.newEmployeeID = 0;
+        this.newTaskID=0;
+    }
+
+    // Methods to get lists
+    public List<Assignment> getAssignmentList() {return assignmentList;}
+
+    public List<AssignmentEmployee> getAssignmentEmployeeList(String employeeID) {
+        List<AssignmentEmployee> assignments = new ArrayList<AssignmentEmployee>();
+        for (AssignmentEmployee assignment : assignmentEmployeeList) {
+            if (assignment.getEmployee().getEmployeeID()==employeeID) {
+                assignments.add(assignment);
+            }
+        }
+        return assignments;
+    }
+
+    public List<Employee> getAvailableEmployees(WeekCalendar startWeek, int duration, int hours) {
+        List<Employee> available = new ArrayList<Employee>();
+        for (Employee employee : employeeList) {
+            if (employee.availableHours(startWeek, duration) >= hours) {
+                available.add(employee);
+            }
+        }
+        return available;
     }
 
     public List<Employee> getEmployeeList(){
@@ -43,8 +66,6 @@ public class Database {
         return projectLeaderList;
     }
 
-    public List<Assignment> getAssignmentList() {return assignmentList;}
-
     public List<Assignment> getProjectAssignmentList(Project project){
         List<Assignment> projectAssignmentList = new ArrayList<Assignment>();
         for(Assignment assignment: assignmentList) {
@@ -54,7 +75,7 @@ public class Database {
         return projectAssignmentList;
     }
 
-
+    // Methods to get objects
     public Employee getEmployee(String ID) {
         for (Employee employee: employeeList) {
             if (employee.employeeID.equals(ID))
@@ -70,6 +91,19 @@ public class Database {
         return null;
     }
 
+    // Methods to add objects
+    public void addAssignment(Assignment assignment) throws WrongInputException {
+        if (assignment == null) throw new WrongInputException("Assignment doesn't exist");
+        assignmentList.add(assignment);
+        assignment.setDatabase(this);
+    }
+
+    public void addAssignmentEmployee(AssignmentEmployee assignmentEmployee) throws WrongInputException {
+        if (assignmentEmployee == null) throw new WrongInputException("Assignment doesn't exist");
+        assignmentEmployee.setTaskID(newTaskID);
+        newTaskID++;
+        assignmentEmployeeList.add(assignmentEmployee);
+    }
 
     public void addEmployee(Employee employee) throws WrongInputException {
         if (employee==null) throw new WrongInputException("Employee doesn't excist");
@@ -84,17 +118,7 @@ public class Database {
         projectList.add(project);
         project.setDatabase(this);
     }
-    public void addAssignment(Assignment assignment) throws WrongInputException {
-        if (assignment == null) throw new WrongInputException("Assignment doesn't exist");
-        assignmentList.add(assignment);
-        assignment.setDatabase(this);
-    }
 
-    public void addAssignmentEmployee(AssignmentEmployee assignmentEmployee) throws WrongInputException{
-        if(assignmentEmployee==null) throw new WrongInputException("Assignment doesn't exist");
-        assignmentEmployeeList.add(assignmentEmployee);
-
-    }
 
     public int numberOfprojects () {
         return this.projectList.size();
@@ -104,34 +128,5 @@ public class Database {
         return this.employeeList.size();
     }
 
-    public List<Employee> getAvailableEmployees(WeekCalendar startWeek, int duration, int hours) {
-        List<Employee> available = new ArrayList<Employee>();
-        for (Employee employee : employeeList) {
-            if (employee.availableHours(startWeek, duration) >= hours) {
-                available.add(employee);
-            }
-        }
-        return available;
-    }
 
-
-    public List<AssignmentEmployee> getAssignmentEmployeeList(String employeeID) {
-        List<AssignmentEmployee> assignments = new ArrayList<AssignmentEmployee>();
-        for (AssignmentEmployee assignment : assignmentEmployeeList) {
-            if (assignment.getEmployee().getEmployeeID()==employeeID) {
-                assignments.add(assignment);
-            }
-        }
-        return assignments;
-    }
-    /*
-    public List<Assignment> getProjectAssignmentList(Project project){
-        List<Assignment> projectAssignmentList = new ArrayList<Assignment>();
-        for(Assignment assignment: assignmentList) {
-            if(assignment.getProject().equals(project))
-                projectAssignmentList.add(assignment);
-        }
-        return projectAssignmentList;
-    }
-    */
 }

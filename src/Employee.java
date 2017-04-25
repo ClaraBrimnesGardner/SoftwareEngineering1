@@ -2,6 +2,7 @@
  * Created by clarabrimnesgardner on 27/03/2017.
  */
 import java.util.*;
+import java.lang.System;
 public class Employee {
     protected String employeeID;
     //protected System system;
@@ -41,12 +42,12 @@ public class Employee {
     // Method to become projectLeader
     public void becomeProjectLeader(int projectID){
         Project project=database.getProject(projectID);
-        boolean projectFree = project.setProjectLeader(this);
+        project.setProjectLeader(this);
 
     }
 
     public int availableHours(WeekCalendar weekCalendar, int duration) {
-        int hours = 38*duration;
+        int hours = 38*(duration);
         return (hours - bookedHours(weekCalendar,duration));
     }
 
@@ -55,8 +56,9 @@ public class Employee {
         // Setting the booked hours to 0
         int bookedHours = 0;
         // Setting the endWeek
-        WeekCalendar endWeek = new WeekCalendar(week.getYear(),week.getWeekNumber());
-        endWeek.increaseWeek(duration);
+
+        WeekCalendar endWeek=new WeekCalendar(week.getYear(),week.getWeekNumber());
+        endWeek=endWeek.increaseWeek(duration-1);
 
         // Retrieving a list of all assignments with the current employee
         List<AssignmentEmployee> assignmentList = database.getAssignmentEmployeeList(employeeID);
