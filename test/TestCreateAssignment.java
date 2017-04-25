@@ -23,10 +23,8 @@ public class TestCreateAssignment {
         assertEquals(SoftwareHouse.getCurrentEmployee(), SoftwareHouse.getEmployees().get(0));
 
         // Become projectLeader
-
         assertEquals(SoftwareHouse.getCurrentEmployee().getProjectLeaderList().size(), 0);
         SoftwareHouse.getCurrentEmployee().becomeProjectLeader(0);
-
 
         // Add an activity
         Project currentProject = SoftwareHouse.getCurrentEmployee().getProjectLeaderList().get(0);
@@ -79,6 +77,9 @@ public class TestCreateAssignment {
 
     }
 
+    /*
+    Test that two assignments can be added
+     */
     @Test
     public void testTwoProjectAndAssignments() throws WrongInputException{
         // Creates a system

@@ -20,7 +20,6 @@ public class TestAddProject {
 
     /*
     Tests that the method addProject only adds a project, when no current project with that ID is registered
-
      */
     @Test
     public void testAddExistingProject() throws WrongInputException {
