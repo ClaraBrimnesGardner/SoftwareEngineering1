@@ -54,7 +54,7 @@ public class Assignment {
         while(hours>0 && week.before(endWeek)){
             WeekCalendar newWeek = new WeekCalendar(week.getYear(),week.getWeekNumber());
 
-            availableHours=employee.availableHours(newWeek,1);
+            availableHours=employee.getAvailableHours(newWeek,1);
             if(availableHours<=hours){
                 bookedTime+=availableHours;
                 WeekBooking newBooking = new WeekBooking(newWeek,availableHours);

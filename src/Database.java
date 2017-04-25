@@ -40,7 +40,7 @@ public class Database {
     public List<Employee> getAvailableEmployees(WeekCalendar startWeek, int duration, int hours) {
         List<Employee> available = new ArrayList<Employee>();
         for (Employee employee : employeeList) {
-            if (employee.availableHours(startWeek, duration) >= hours) {
+            if (employee.getAvailableHours(startWeek, duration) >= hours) {
                 available.add(employee);
             }
         }

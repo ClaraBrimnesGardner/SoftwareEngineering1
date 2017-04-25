@@ -28,7 +28,7 @@ public class TestGetAvailableEmployess {
 
         assertEquals(2,SoftwareHouse.getDatabase().getAvailableEmployees(week1,1,38).size());
         assertEquals(0,SoftwareHouse.getDatabase().getAvailableEmployees(week1,1,40).size());
-        assertEquals(38,SoftwareHouse.getCurrentEmployee().availableHours(week1,1));
+        assertEquals(38,SoftwareHouse.getCurrentEmployee().getAvailableHours(week1,1));
 
 
     }
@@ -72,7 +72,7 @@ public class TestGetAvailableEmployess {
 
         // manAssignment
         currentAssignment.manAssignment(currentEmployee,week1,1,20);
-        assertEquals(currentEmployee.availableHours(week1,1),18);
+        assertEquals(currentEmployee.getAvailableHours(week1,1),18);
 
         // getAvailable employee
         List<Employee> availableEmployees2=SoftwareHouse.getDatabase().getAvailableEmployees(week1,1,20);
