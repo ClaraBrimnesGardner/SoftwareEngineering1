@@ -3,7 +3,6 @@
  */
 
 public class WeekBooking {
-
     private WeekCalendar weekCalendar;
     private int bookedHours;
 

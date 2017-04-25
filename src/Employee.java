@@ -5,8 +5,6 @@ import java.util.*;
 import java.lang.System;
 public class Employee {
     protected String employeeID;
-    //protected System system;
-    //protected List<Project> projectLeaderList;
     protected Database database;
 
     // Constructor 
@@ -17,6 +15,10 @@ public class Employee {
     // Getter methods 
     public String getEmployeeID(){
         return employeeID;
+    }
+
+    public List<AssignmentEmployee> getAssignmentEmployeeList(){
+       return database.getAssignmentEmployeeList(employeeID);
     }
 
     public List<Project> getProjectLeaderList(){
@@ -34,6 +36,7 @@ public class Employee {
         return null;
     }
 
+
     // Setter methods
     public void setDatabase(Database database){
         this.database=database;
@@ -46,13 +49,12 @@ public class Employee {
 
     }
 
-    public int availableHours(WeekCalendar weekCalendar, int duration) {
+    public int getAvailableHours(WeekCalendar weekCalendar, int duration) {
         int hours = 38*(duration);
-        return (hours - bookedHours(weekCalendar,duration));
+        return (hours - getBookedHours(weekCalendar,duration));
     }
 
-    public int bookedHours(WeekCalendar week, int duration) {
-
+    public int getBookedHours(WeekCalendar week, int duration) {
         // Setting the booked hours to 0
         int bookedHours = 0;
         // Setting the endWeek
@@ -61,7 +63,7 @@ public class Employee {
         endWeek=endWeek.increaseWeek(duration-1);
 
         // Retrieving a list of all assignments with the current employee
-        List<AssignmentEmployee> assignmentList = database.getAssignmentEmployeeList(employeeID);
+        List<AssignmentEmployee> assignmentList = getAssignmentEmployeeList();
         // Looping over all assignments with the current employees
         for (AssignmentEmployee assignment : assignmentList) {
             // Getting all bookings for the current week
@@ -73,5 +75,17 @@ public class Employee {
             }
         }
         return bookedHours;
+    }
+
+    public int getRegisteredHours(DayCalendar dayCalendar){
+        int registeredHours=0;
+        for(AssignmentEmployee assignmentEmployee:getAssignmentEmployeeList()) {
+            for (DayRegistration dayRegistration : assignmentEmployee.getDayRegistrationList()){
+                if (dayCalendar.equals(dayRegistration.getDayCalendar())) {
+                    registeredHours += dayRegistration.getRegisteredHours();
+                }
+            }
+        }
+        return registeredHours;
     }
 }
