@@ -20,6 +20,10 @@ public class Assignment {
     }
 
     // Getter methods
+    public int getBookedTime() {return bookedTime;}
+
+    public int getBudgetedTime(){return budgetedTime;}
+
     public String getName(){
         return name;
     }
@@ -32,6 +36,7 @@ public class Assignment {
     public void setBudgetedTime(int budgetedTime){
         this.budgetedTime=budgetedTime;
     }
+
     public void setDatabase(Database database){
         this.database=database;
     }
@@ -42,31 +47,28 @@ public class Assignment {
         if(database!=null){
             database.addAssignmentEmployee(assignmentEmployee);
         }
+        WeekCalendar endWeek = new WeekCalendar(week.getYear(),week.getWeekNumber());
+        endWeek=endWeek.increaseWeek(duration-1);
+
         int availableHours;
-        while(hours>0){
+        while(hours>0 && week.before(endWeek)){
             WeekCalendar newWeek = new WeekCalendar(week.getYear(),week.getWeekNumber());
+
             availableHours=employee.availableHours(newWeek,1);
             if(availableHours<=hours){
+                bookedTime+=availableHours;
                 WeekBooking newBooking = new WeekBooking(newWeek,availableHours);
                 assignmentEmployee.addBooking(newBooking);
                 hours=hours-availableHours;
-
             }
             else {
+                bookedTime+=hours;
                 WeekBooking newBooking = new WeekBooking(newWeek, hours);
                 assignmentEmployee.addBooking(newBooking);
                 hours=0;
-
-
             }
-
             week=week.increaseWeek(1);
         }
-
-
-
-
-
     }
 
 

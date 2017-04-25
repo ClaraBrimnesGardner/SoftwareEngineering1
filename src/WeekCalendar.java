@@ -2,45 +2,46 @@
  * Created by Tobias on 17/04/2017.
  */
 public class WeekCalendar {
+    // Declaring fields
     private int weekNumber;
     private int year;
 
-    // constructor
+    // Constructor
     public WeekCalendar(int year, int weekNumber) {
         this.weekNumber = weekNumber;
         this.year = year;
     }
 
-    public int getYear() { return year;}
-
+    // Getter methods
     public int getWeekNumber() {
         return weekNumber;
     }
 
-    public int weeksTo(WeekCalendar endWeek) {
-        return (endWeek.getYear()-year)*52 + endWeek.getWeekNumber() - weekNumber;
+    public int getYear() { return year;}
+
+    // Method which determines whether a given week is after this week
+    public boolean after(WeekCalendar other) {
+        if (other.getYear() < year) {
+            return true;
+        }
+        else if (other.getYear() == year) {
+            return (other.getWeekNumber() <= weekNumber);
+        }
+        return false;
     }
 
+    // Method which determines whether a given week is before this week
     public boolean before(WeekCalendar other) {
         if (other.getYear() > year) {
             return true;
         }
-            else if (other.getYear() == year) {
+        else if (other.getYear() == year) {
             return (other.getWeekNumber() >= weekNumber);
         }
         return false;
     }
 
-    public boolean after(WeekCalendar other) {
-        if (other.getYear() < year) {
-            return true;
-        }
-            else if (other.getYear() == year) {
-                return (other.getWeekNumber() <= weekNumber);
-            }
-        return false;
-    }
-
+    // Method which returns a WeekCalendar a given number of weeks after this week
     public WeekCalendar increaseWeek(int duration) {
         int newWeekNumber=weekNumber+duration;
         int newYear=year;
@@ -51,5 +52,11 @@ public class WeekCalendar {
         WeekCalendar newWeek= new WeekCalendar(newYear, newWeekNumber);
         return newWeek;
     }
+
+    // Method which calculates the number of weeks to a given week
+    public int weeksTo(WeekCalendar endWeek) {
+        return (endWeek.getYear()-year)*52 + endWeek.getWeekNumber() - weekNumber;
+    }
+
 
 }

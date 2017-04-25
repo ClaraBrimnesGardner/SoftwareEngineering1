@@ -14,19 +14,12 @@ public class System {
         this.database = new Database();
     }
 
-    /*
-    public System(Database database) {
-        this.database=database;
-    }
-    */
-
     public String[] logIn(String ID) throws WrongInputException {
         Employee employee = database.getEmployee(ID);
         if (employee == null) {
             throw new WrongInputException ("Employee doesn't excist");
         }
         this.employee = employee;
-        // lav noget med projektleder
         return new String[] {
                 "Succesfully logged in as " + employee.employeeID + " with id: " + employee.employeeID
         };
@@ -36,6 +29,13 @@ public class System {
         employee=null;
     }
 
+    public void createEmployee (String ID) throws WrongInputException {
+        for (Employee employee:database.employeeList){
+            if(employee.getEmployeeID().equals((ID))) throw new WrongInputException("Employee ID is used");
+        }
+        Employee employee = new Employee(ID);
+        database.addEmployee(employee);
+    }
 
     public void createProject (String name) throws WrongInputException {
         for (Project project : database.getProjectList()){
@@ -46,13 +46,7 @@ public class System {
         database.addProject(project);
     }
 
-    public void createEmployee (String ID) throws WrongInputException {
-        for (Employee employee:database.employeeList){
-            if(employee.getEmployeeID().equals((ID))) throw new WrongInputException("Employee ID is used");
-        }
-        Employee employee = new Employee(ID);
-        database.addEmployee(employee);
-    }
+
 
     // Getter methods
     public List<Project> getProjects(){
