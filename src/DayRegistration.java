@@ -3,12 +3,12 @@
  */
 public class DayRegistration {
     private DayCalendar dayCalendar;
-    private int registeredHours;
+    private int registeredHalfHours;
 
     // Constructor
     public DayRegistration(DayCalendar dayCalendar, int registeredHours){
         this.dayCalendar=dayCalendar;
-        this.registeredHours=registeredHours;
+        this.registeredHalfHours=registeredHours;
     }
 
     // Getter methods
@@ -16,11 +16,11 @@ public class DayRegistration {
         return dayCalendar;
     }
 
-    public int getRegisteredHours(){
-        return  registeredHours;
+    public int getRegisteredHalfHours(){
+        return  registeredHalfHours;
     }
 
-    public void addHours(int hours){
-        registeredHours+=registeredHours;
+    public void addHours(int halfHours){
+        registeredHalfHours+=registeredHalfHours;
     }
 }

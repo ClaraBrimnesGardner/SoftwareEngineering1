@@ -46,8 +46,8 @@ public class Project {
 
 
     public Assignment getAssignmentByName(String name){
-        for(Assignment assignment:database.getAssignmentList()){
-            if(assignment.getName().equals(name)){
+        for(Assignment assignment:database.getProjectAssignmentList(this)){
+            if(assignment.getName().equals((name))){
                 return assignment;
             }
         }

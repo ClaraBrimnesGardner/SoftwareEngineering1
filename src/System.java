@@ -46,6 +46,20 @@ public class System {
         database.addProject(project);
     }
 
+    public void becomeProjectLeader(int ProjectID) throws OperationNotAllowedException{
+        if(employee==(null)){
+            throw new OperationNotAllowedException("LogIn to become projectleader");
+        }
+        employee.becomeProjectLeader(ProjectID);
+    }
+
+    public void registerTime(DayCalendar dayCalendar, int halfHours, int assignmentID) throws Exception{
+        if(employee==null){
+            throw new OperationNotAllowedException("LogIn to register time");
+        }
+        AssignmentEmployee currentAssignment = employee.getAssignmentEmployeeByID(assignmentID);
+        currentAssignment.registerTime(dayCalendar, halfHours);
+    }
 
 
     // Getter methods
@@ -61,6 +75,14 @@ public class System {
 
     public Database getDatabase() {
         return database;
+    }
+
+    public int getNumberOfEmployees(){
+        return database.getNumberOfEmployees();
+    }
+
+    public int getNumberOfProjects(){
+        return database.getNumberOfProjects();
     }
 
 }

@@ -36,6 +36,15 @@ public class Employee {
         return null;
     }
 
+    public AssignmentEmployee getAssignmentEmployeeByID(int ID){
+        for(AssignmentEmployee assignmentEmployee:getAssignmentEmployeeList()){
+            if(assignmentEmployee.getTaskID()==ID){
+                return assignmentEmployee;
+            }
+        }
+        return null;
+    }
+
 
     // Setter methods
     public void setDatabase(Database database){
@@ -50,13 +59,13 @@ public class Employee {
     }
 
     public int getAvailableHours(WeekCalendar weekCalendar, int duration) {
-        int hours = 38*(duration);
-        return (hours - getBookedHours(weekCalendar,duration));
+        int halfHours = 80*(duration);
+        return (halfHours - getBookedHours(weekCalendar,duration));
     }
 
     public int getBookedHours(WeekCalendar week, int duration) {
         // Setting the booked hours to 0
-        int bookedHours = 0;
+        int bookedHalfHours = 0;
         // Setting the endWeek
 
         WeekCalendar endWeek=new WeekCalendar(week.getYear(),week.getWeekNumber());
@@ -70,22 +79,22 @@ public class Employee {
             for (WeekBooking booking : assignment.getWeekList()) {
                 // Getting the booked hours
                 if (booking.getWeekCalendar().before(endWeek)&& booking.getWeekCalendar().after(week)) {
-                    bookedHours += booking.getBookedHours();
+                    bookedHalfHours += booking.getBookedHours();
                 }
             }
         }
-        return bookedHours;
+        return bookedHalfHours;
     }
 
-    public int getRegisteredHours(DayCalendar dayCalendar){
-        int registeredHours=0;
+    public int getRegisteredHalfHours(DayCalendar dayCalendar){
+        int registeredHalfHours=0;
         for(AssignmentEmployee assignmentEmployee:getAssignmentEmployeeList()) {
             for (DayRegistration dayRegistration : assignmentEmployee.getDayRegistrationList()){
                 if (dayCalendar.equals(dayRegistration.getDayCalendar())) {
-                    registeredHours += dayRegistration.getRegisteredHours();
+                    registeredHalfHours += dayRegistration.getRegisteredHalfHours();
                 }
             }
         }
-        return registeredHours;
+        return registeredHalfHours;
     }
 }

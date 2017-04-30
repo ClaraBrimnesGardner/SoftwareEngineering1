@@ -27,8 +27,8 @@ public class TestGetAvailableEmployess {
         SoftwareHouse.logIn(ID2);
 
         assertEquals(2,SoftwareHouse.getDatabase().getAvailableEmployees(week1,1,38).size());
-        assertEquals(0,SoftwareHouse.getDatabase().getAvailableEmployees(week1,1,40).size());
-        assertEquals(38,SoftwareHouse.getCurrentEmployee().getAvailableHours(week1,1));
+        assertEquals(0,SoftwareHouse.getDatabase().getAvailableEmployees(week1,1,81).size());
+        assertEquals(80,SoftwareHouse.getCurrentEmployee().getAvailableHours(week1,1));
 
 
     }
@@ -72,14 +72,14 @@ public class TestGetAvailableEmployess {
 
         // manAssignment
         currentAssignment.manAssignment(currentEmployee,week1,1,20);
-        assertEquals(currentEmployee.getAvailableHours(week1,1),18);
+        assertEquals(currentEmployee.getAvailableHours(week1,1),60);
 
         // getAvailable employee
-        List<Employee> availableEmployees2=SoftwareHouse.getDatabase().getAvailableEmployees(week1,1,20);
+        List<Employee> availableEmployees2=SoftwareHouse.getDatabase().getAvailableEmployees(week1,1,61);
         assertEquals(availableEmployees2.size(),0);
 
         // Checks that the employee is available for 18 hours
-        List<Employee> availableEmployees3=SoftwareHouse.getDatabase().getAvailableEmployees(week1,1,18);
+        List<Employee> availableEmployees3=SoftwareHouse.getDatabase().getAvailableEmployees(week1,1,60);
         assertEquals(availableEmployees3.size(),1);
 
 

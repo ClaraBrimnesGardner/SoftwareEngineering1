@@ -120,11 +120,11 @@ public class Database {
     }
 
 
-    public int numberOfprojects () {
+    public int getNumberOfProjects () {
         return this.projectList.size();
     }
 
-    public int numberOfemplyees () {
+    public int getNumberOfEmployees () {
         return this.employeeList.size();
     }
 

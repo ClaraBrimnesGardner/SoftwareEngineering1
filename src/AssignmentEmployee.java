@@ -4,7 +4,9 @@ import java.util.*;
  * Created by Tobias on 17/04/2017.
  */
 
+
 public class AssignmentEmployee {
+    private static final int MAX_REGISTERED_HALF_HOURS= 16;
     private int TaskID;
     private Employee employee;
     private List<WeekBooking> weekBookings = new ArrayList<>();
@@ -25,11 +27,9 @@ public class AssignmentEmployee {
         return employee;
     }
 
-    public int getAssignmentEmployeeByID(int TaskID){
+    public int getTaskID(){
         return TaskID;
     }
-
-
 
     // Setter methods
     public void setTaskID(int TaskID){
@@ -41,14 +41,17 @@ public class AssignmentEmployee {
     }
 
     // Method to register time
-    public void registerTime(DayCalendar dayCalendar, int hours){
+    public void registerTime(DayCalendar dayCalendar, int halfHours) throws TooManyHoursException{
+        if(employee.getRegisteredHalfHours(dayCalendar)+halfHours>=MAX_REGISTERED_HALF_HOURS){
+            throw new TooManyHoursException("You have already registered too many hours today");
+        }
         for(DayRegistration dayRegistration:dayRegistrationList){
             if (dayRegistration.getDayCalendar().equals(dayCalendar)){
-                dayRegistration.addHours(hours);
+                dayRegistration.addHours(halfHours);
                 return;
             }
         }
-        DayRegistration newDayRegistration = new DayRegistration(dayCalendar, hours);
+        DayRegistration newDayRegistration = new DayRegistration(dayCalendar, halfHours);
         dayRegistrationList.add(newDayRegistration);
 
     }
