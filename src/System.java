@@ -2,8 +2,9 @@
   * Created by clarabrimnesgardner on 27/03/2017.
  */
 
-import javax.xml.crypto.Data;
 import java.util.*;
+import javax.xml.crypto.Data;
+
 
 public class System {
     private Employee employee;
@@ -37,16 +38,6 @@ public class System {
         database.addEmployee(employee);
     }
 
-    public void createProject (String name) throws WrongInputException {
-        for (Project project : database.getProjectList()){
-            if (project.getName().equals((name))) throw new WrongInputException("Projectname is used");
-
-        }
-        Project project = new Project(name);
-        database.addProject(project);
-    }
-
-
 
     // Getter methods
     public List<Project> getProjects(){
@@ -63,4 +54,27 @@ public class System {
         return database;
     }
 
+    public void createProject (String name) throws WrongInputException {
+        for (Project project : database.getProjectList()){
+            if (project.getName().equals((name))) throw new WrongInputException("Projectname is used");
+
+        }
+        Project project = new Project(name);
+        database.addProject(project);
+    }
+
+
+    public boolean seekAssistance(String employeeID, String assignmentID, int year, int weekNumber, int bookedHours) throws WrongInputException {
+        WeekCalendar weekCalendar = new WeekCalendar(year, weekNumber);
+        WeekBooking booking = new WeekBooking(weekCalendar,bookedHours);
+        Employee assistanceEmployee = database.getEmployee(employeeID);
+
+        if (assistanceEmployee == null) throw new WrongInputException("Wrong employee name");
+        if (!assistanceEmployee.isAvailable(weekCalendar,1,bookedHours)) throw new WrongInputException("Employee is not available");
+
+        Assignment assignment = database.getAssignment(assignmentID);
+        if (database.createBooking(assistanceEmployee, assignment, booking)) return true;
+
+        return false;
+    }
 }

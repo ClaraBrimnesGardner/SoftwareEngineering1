@@ -3,6 +3,7 @@
  */
 
 import java.util.*;
+import java.lang.System;
 
 public class Database {
     public List<Employee> employeeList;
@@ -84,9 +85,16 @@ public class Database {
         return null;
     }
 
-    public Project getProject (int ID) {
+    public Project getProject(int ID) {
         for (Project project:projectList){
             if (project.projectID==ID) return project;
+        }
+        return null;
+    }
+
+    public Assignment getAssignment(String ID) {
+        for (Assignment assignment:assignmentList){
+            if (assignment.name.equals(ID)) return assignment;
         }
         return null;
     }
@@ -117,6 +125,19 @@ public class Database {
         newProjectID++;
         projectList.add(project);
         project.setDatabase(this);
+    }
+
+    public boolean createBooking(Employee employee, Assignment assignment, WeekBooking booking) throws WrongInputException {
+        if (employee == null) throw new WrongInputException("Employee does not exist");
+        if (assignment == null) throw new WrongInputException("Assignment does not exist");
+
+        AssignmentEmployee task = new AssignmentEmployee(employee);
+        if (task.addBooking(booking)) {
+            assignmentEmployeeList.add(task);
+            return true;
+        }
+
+        return true;
     }
 
 

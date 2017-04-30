@@ -1,4 +1,5 @@
 import java.util.*;
+import java.lang.System;
 
 /**
  * Created by Tobias on 17/04/2017.
@@ -36,8 +37,13 @@ public class AssignmentEmployee {
         this.TaskID=TaskID;
     }
 
-    public void addBooking(WeekBooking weekBooking) {
-        weekBookings.add(weekBooking);
+    public boolean addBooking(WeekBooking weekBooking) {
+        if(weekBooking != null) {
+            System.out.println("test2");
+            weekBookings.add(weekBooking);
+            return true;
+        }
+        return false;
     }
 
     // Method to register time
