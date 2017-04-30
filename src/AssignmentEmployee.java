@@ -42,6 +42,12 @@ public class AssignmentEmployee {
 
     // Method to register time
     public void registerTime(DayCalendar dayCalendar, int hours){
+        for(DayRegistration dayRegistration:dayRegistrationList){
+            if (dayRegistration.getDayCalendar().equals(dayCalendar)){
+                dayRegistration.addHours(hours);
+                return;
+            }
+        }
         DayRegistration newDayRegistration = new DayRegistration(dayCalendar, hours);
         dayRegistrationList.add(newDayRegistration);
 

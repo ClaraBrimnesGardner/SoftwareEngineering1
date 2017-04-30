@@ -19,4 +19,8 @@ public class DayRegistration {
     public int getRegisteredHours(){
         return  registeredHours;
     }
+
+    public void addHours(int hours){
+        registeredHours+=registeredHours;
+    }
 }

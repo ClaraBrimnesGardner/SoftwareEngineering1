@@ -10,8 +10,4 @@ public class DayCalendar {
         this.weekCalendar=weekCalendar;
         this.dayNumber=dayNumber;
     }
-
-
-
-
 }
