@@ -51,5 +51,4 @@ public class WeekCalendar {
         WeekCalendar newWeek= new WeekCalendar(newYear, newWeekNumber);
         return newWeek;
     }
-
 }
