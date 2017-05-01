@@ -82,10 +82,6 @@ public class Screen {
         btnAddProject.setBounds(655, 432, 117, 29);
         frame.getContentPane().add(btnAddProject);
 
-        JButton btnGetProjects = new JButton("Get projects");
-        btnGetProjects.setBounds(407, 116, 117, 29);
-        frame.getContentPane().add(btnGetProjects);
-
         /*     TEXTFIELDS:     */
 
         // The log in field
@@ -198,17 +194,6 @@ public class Screen {
                     e1.printStackTrace();
                     JOptionPane.showMessageDialog(null,"Project already exists");
                 }
-            }
-        });
-
-        /** The get projects button **/
-        btnGetProjects.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                DefaultListModel model = new DefaultListModel();
-                for (Project projects : system.getProjects()) {
-                    model.addElement(projects.getProjectName());
-                }
-                list.setModel(model);
             }
         });
 

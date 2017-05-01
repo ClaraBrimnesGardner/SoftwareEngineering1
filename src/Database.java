@@ -66,7 +66,8 @@ public class Database {
         }
         return projectLeaderList;
     }
-    public List<Project> getFreeProjects(){
+
+    public List<Project> getAvailableProjects(){
         List<Project> freeProjectList = new ArrayList<>();
         for(Project project: projectList){
             if(project.getProjectLeader()==null) {
