@@ -3,6 +3,7 @@
  */
 
 import java.util.*;
+import java.lang.System;
 
 public class Database {
     public List<Employee> employeeList;
@@ -113,7 +114,7 @@ public class Database {
 
     public void addProject (Project project) throws WrongInputException {
         if (project == null) throw new WrongInputException("Project doesn't excist");
-        project.projectID = newProjectID;
+        project.setProjectID(newProjectID);
         newProjectID++;
         projectList.add(project);
         project.setDatabase(this);
