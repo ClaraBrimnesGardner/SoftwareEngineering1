@@ -35,11 +35,8 @@ public class TestAddEmployee {
         } catch (WrongInputException e){
             assertEquals(e.getMessage(),"Employee ID is used");
         }
-
-
-
-
     }
+
     @Test
     public void testAddTwoEmployees() throws WrongInputException{
         System SoftwareHouse = new System();
@@ -49,8 +46,4 @@ public class TestAddEmployee {
         SoftwareHouse.createEmployee(ID2);
         assertEquals(SoftwareHouse.getEmployees().size(),2);
     }
-
-
-
-
 }
