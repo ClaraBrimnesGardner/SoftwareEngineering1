@@ -58,6 +58,9 @@ public class System {
             throw new OperationNotAllowedException("LogIn to register time");
         }
         AssignmentEmployee currentAssignment = employee.getAssignmentEmployeeByID(assignmentID);
+        if(currentAssignment==null){
+            throw new OperationNotAllowedException("You are not manned to an assignment with the given ID");
+        }
         currentAssignment.registerTime(dayCalendar, halfHours);
     }
 

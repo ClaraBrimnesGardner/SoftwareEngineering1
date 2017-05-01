@@ -26,7 +26,7 @@ public class BlackBoxTestRegisterHours {
     Become Projectleader
 
     Step 5:
-    Adds an assignment
+    Adds an assignment and man yourself to it.
 
     Step 6:
     Registers 4 hours to the assignment
@@ -92,7 +92,7 @@ public class BlackBoxTestRegisterHours {
     Become Projectleader
 
     Step 5:
-    Adds an assignment
+    Adds an assignment and man yourself to it
 
     Step 6:
     Registers 8 hours to the assignment
@@ -157,7 +157,7 @@ public class BlackBoxTestRegisterHours {
    Become Projectleader
 
    Step 5:
-   Adds an assignment
+   Adds an assignment and man yourself to it
 
    Step 6:
    Registers 12 hours to the assignment
@@ -225,7 +225,7 @@ public class BlackBoxTestRegisterHours {
    Become Projectleader
 
    Step 5:
-   Adds assignments
+   Adds assignments and man yourself to them
 
    Step 6:
    Registers 2 hours to each project
@@ -307,7 +307,7 @@ public class BlackBoxTestRegisterHours {
    Become Projectleader
 
    Step 5:
-   Adds assignments
+   Adds assignments and man yourself to them
 
    Step 6:
    Registers 4 hours to each project
@@ -373,7 +373,7 @@ public class BlackBoxTestRegisterHours {
     }
 
      /*
-   Test 5:
+   Test 6:
    Register 12 hours in one day at two different assignments.
 
    Step 1:
@@ -389,7 +389,7 @@ public class BlackBoxTestRegisterHours {
    Become Projectleader
 
    Step 5:
-   Adds assignments
+   Adds assignments and man yourself to them
 
    Step 6:
    Registers 6 hours to each project
@@ -458,6 +458,32 @@ public class BlackBoxTestRegisterHours {
         }
         assertEquals(12,SoftwareHouse.getCurrentEmployee().getRegisteredHalfHours(day1));
     }
+
+      /*
+   Test 7:
+   Register  4 hours to an assignment you are not manned to
+
+   Step 1:
+   Create a system
+
+   Step 2:
+   Add an employee
+
+   Step 3:
+   Add a project
+
+   Step 4:
+   Become Projectleader
+
+   Step 5:
+   Adds an assignment
+
+   Step 6:
+   Registers 6 hours to the assignment
+    */
+
+
+
 
 
 
