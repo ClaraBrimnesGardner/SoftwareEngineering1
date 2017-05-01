@@ -66,6 +66,15 @@ public class Database {
         }
         return projectLeaderList;
     }
+    public List<Project> getFreeProjects(){
+        List<Project> freeProjectList = new ArrayList<>();
+        for(Project project: projectList){
+            if(project.getProjectLeader()==null) {
+                freeProjectList.add(project);
+            }
+        }
+        return freeProjectList;
+    }
 
     public List<Assignment> getProjectAssignmentList(Project project){
         List<Assignment> projectAssignmentList = new ArrayList<Assignment>();
