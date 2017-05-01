@@ -77,12 +77,4 @@ public class System {
         return database;
     }
 
-    public int getNumberOfEmployees(){
-        return database.getNumberOfEmployees();
-    }
-
-    public int getNumberOfProjects(){
-        return database.getNumberOfProjects();
-    }
-
 }

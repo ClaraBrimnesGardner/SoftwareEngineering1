@@ -38,17 +38,17 @@ public class BlackBoxTestRegisterHours {
         System SoftwareHouse = new System();
 
         // Step 2
-        assertEquals(0,SoftwareHouse.getNumberOfEmployees());
+        assertEquals(0,SoftwareHouse.getDatabase().getNumberOfEmployees());
         String EID01 = "CBG";
         SoftwareHouse.createEmployee(EID01);
-        assertEquals(1,SoftwareHouse.getNumberOfEmployees());
+        assertEquals(1,SoftwareHouse.getDatabase().getNumberOfEmployees());
 
         // Step 3
-        assertEquals(0,SoftwareHouse.getNumberOfProjects());
+        assertEquals(0,SoftwareHouse.getDatabase().getNumberOfProjects());
         String PID01="Project01";
         SoftwareHouse.createProject(PID01);
         Project currentProject=SoftwareHouse.getProjects().get(0);
-        assertEquals(1,SoftwareHouse.getNumberOfProjects());
+        assertEquals(1,SoftwareHouse.getDatabase().getNumberOfProjects());
 
         // Step 4
         SoftwareHouse.logIn(EID01);
@@ -103,17 +103,17 @@ public class BlackBoxTestRegisterHours {
         System SoftwareHouse = new System();
 
         // Step 2
-        assertEquals(0,SoftwareHouse.getNumberOfEmployees());
+        assertEquals(0,SoftwareHouse.getDatabase().getNumberOfEmployees());
         String EID01 = "CBG";
         SoftwareHouse.createEmployee(EID01);
-        assertEquals(1,SoftwareHouse.getNumberOfEmployees());
+        assertEquals(1,SoftwareHouse.getDatabase().getNumberOfEmployees());
 
         // Step 3
-        assertEquals(0,SoftwareHouse.getNumberOfProjects());
+        assertEquals(0,SoftwareHouse.getDatabase().getNumberOfProjects());
         String PID01="Project01";
         SoftwareHouse.createProject(PID01);
         Project currentProject=SoftwareHouse.getProjects().get(0);
-        assertEquals(1,SoftwareHouse.getNumberOfProjects());
+        assertEquals(1,SoftwareHouse.getDatabase().getNumberOfProjects());
 
         // Step 4
         SoftwareHouse.logIn(EID01);
@@ -168,17 +168,17 @@ public class BlackBoxTestRegisterHours {
         System SoftwareHouse = new System();
 
         // Step 2
-        assertEquals(0,SoftwareHouse.getNumberOfEmployees());
+        assertEquals(0,SoftwareHouse.getDatabase().getNumberOfEmployees());
         String EID01 = "CBG";
         SoftwareHouse.createEmployee(EID01);
-        assertEquals(1,SoftwareHouse.getNumberOfEmployees());
+        assertEquals(1,SoftwareHouse.getDatabase().getNumberOfEmployees());
 
         // Step 3
-        assertEquals(0,SoftwareHouse.getNumberOfProjects());
+        assertEquals(0,SoftwareHouse.getDatabase().getNumberOfProjects());
         String PID01="Project01";
         SoftwareHouse.createProject(PID01);
         Project currentProject=SoftwareHouse.getProjects().get(0);
-        assertEquals(1,SoftwareHouse.getNumberOfProjects());
+        assertEquals(1,SoftwareHouse.getDatabase().getNumberOfProjects());
 
         // Step 4
         SoftwareHouse.logIn(EID01);
@@ -237,21 +237,21 @@ public class BlackBoxTestRegisterHours {
         System SoftwareHouse = new System();
 
         // Step 2
-        assertEquals(0,SoftwareHouse.getNumberOfEmployees());
+        assertEquals(0,SoftwareHouse.getDatabase().getNumberOfEmployees());
         String EID01 = "CBG";
         SoftwareHouse.createEmployee(EID01);
-        assertEquals(1,SoftwareHouse.getNumberOfEmployees());
+        assertEquals(1,SoftwareHouse.getDatabase().getNumberOfEmployees());
 
         // Step 3
-        assertEquals(0,SoftwareHouse.getNumberOfProjects());
+        assertEquals(0,SoftwareHouse.getDatabase().getNumberOfProjects());
         String PID01="Project01";
         SoftwareHouse.createProject(PID01);
         Project project1=SoftwareHouse.getProjects().get(0);
-        assertEquals(1,SoftwareHouse.getNumberOfProjects());
+        assertEquals(1,SoftwareHouse.getDatabase().getNumberOfProjects());
         String PID02="Project02";
         SoftwareHouse.createProject(PID02);
         Project project2=SoftwareHouse.getProjects().get(1);
-        assertEquals(2,SoftwareHouse.getNumberOfProjects());
+        assertEquals(2,SoftwareHouse.getDatabase().getNumberOfProjects());
 
         // Step 4
         SoftwareHouse.logIn(EID01);
