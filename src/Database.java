@@ -102,6 +102,12 @@ public class Database {
         return null;
     }
 
+    public Assignment getAssignment(String ID) {
+        for(Assignment assignment: assignmentList) {
+            if(assignment.name.equals(ID)) return assignment;
+        }
+        return null;
+    }
     // Methods to add objects
     public void addAssignment(Assignment assignment) throws WrongInputException {
         if (assignment == null) throw new WrongInputException("Assignment doesn't exist");
@@ -128,6 +134,19 @@ public class Database {
         newProjectID++;
         projectList.add(project);
         project.setDatabase(this);
+    }
+
+    public boolean createBooking(Employee employee, Assignment assignment, WeekBooking booking) throws WrongInputException {
+        if (employee == null) throw new WrongInputException("Employee does not exist");
+        if (assignment == null) throw new WrongInputException("Assignment does not exist");
+
+        AssignmentEmployee task = new AssignmentEmployee(employee);
+        if (task.addBooking(booking)) {
+            assignmentEmployeeList.add(task);
+            return true;
+        }
+
+        return false;
     }
 
 

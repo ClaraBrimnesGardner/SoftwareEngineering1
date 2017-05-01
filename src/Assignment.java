@@ -3,7 +3,7 @@
  */
 import java.lang.System;
 public class Assignment {
-    private String name;
+    public String name;
     private Project project;
     private int budgetedTime;
     private int bookedTime;
