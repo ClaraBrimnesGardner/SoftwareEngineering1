@@ -62,6 +62,13 @@ public class Employee {
         return false;
     }
 
+    public boolean isAvailable (WeekCalendar startWeek, int duration, int hours) {
+        if (getAvailableHours(startWeek, duration) >= hours) {
+            return true;
+        }
+        return false;
+    }
+
     public int getBookedHours(WeekCalendar week, int duration) {
         // Setting the booked hours to 0
         int bookedHours = 0;
