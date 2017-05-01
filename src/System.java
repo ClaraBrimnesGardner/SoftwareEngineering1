@@ -64,6 +64,19 @@ public class System {
         currentAssignment.registerTime(dayCalendar, halfHours);
     }
 
+    public boolean seekAssistance(String employeeID, String assignmentID, int year, int weekNumber, int bookedHours) throws WrongInputException {
+        WeekCalendar weekCalendar = new WeekCalendar(year, weekNumber);
+        WeekBooking booking = new WeekBooking(weekCalendar,bookedHours);
+        Employee assistanceEmployee = database.getEmployee(employeeID);
+
+        if (assistanceEmployee == null) throw new WrongInputException("Wrong employee name");
+        if (!assistanceEmployee.isAvailable(weekCalendar,1,bookedHours)) throw new WrongInputException("Employee is not available");
+
+        Assignment assignment = database.getAssignment(assignmentID);
+        if (database.createBooking(assistanceEmployee, assignment, booking)) return true;
+
+        return false;
+    }
 
     // Getter methods
     public List<Project> getProjects(){

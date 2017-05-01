@@ -36,8 +36,11 @@ public class AssignmentEmployee {
         this.TaskID=TaskID;
     }
 
-    public void addBooking(WeekBooking weekBooking) {
-        weekBookings.add(weekBooking);
+    public boolean addBooking(WeekBooking weekBooking) {
+        if(weekBookings.add(weekBooking)) {
+            return true;
+        }
+        return false;
     }
 
     // Method to register time

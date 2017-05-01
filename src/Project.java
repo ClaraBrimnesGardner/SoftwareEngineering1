@@ -5,7 +5,7 @@ import javax.xml.crypto.Data;
 import java.util.*;
 
 public class Project {
-    private String name;
+    public String name;
     public int projectID;
     public Employee projectLeader;
     public System system;
