@@ -672,6 +672,15 @@ public class Screen {
             }
         });
 
+        btnToday.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                    DayCalendar dayCalendar = system.getThisDay();
+                    textWeekNumber.setText("" + dayCalendar.weekCalendar.getWeekNumber());
+                    textDayNumber.setText("" + dayCalendar.dayNumber);
+            }
+        });
+
         btnRegisterTime.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -743,6 +752,8 @@ public class Screen {
                 lblDayNumber.setVisible(false);
                 lblWeekNumber.setVisible(false);
                 lblTypeWeekNumber.setVisible(false);
+                textDayNumber.setText("");
+                textWeekNumber.setText("");
 
             }
         });
@@ -800,6 +811,8 @@ public class Screen {
                 lblDayNumber.setVisible(false);
                 lblWeekNumber.setVisible(false);
                 lblTypeWeekNumber.setVisible(false);
+                textDayNumber.setText("");
+                textWeekNumber.setText("");
             }
         });
 
