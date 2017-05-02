@@ -107,4 +107,9 @@ public class System {
         return database;
     }
 
+    public int convertToHalfHours(double hours) {
+        hours *= 2;
+        return ((int) hours);
+    }
+
 }
