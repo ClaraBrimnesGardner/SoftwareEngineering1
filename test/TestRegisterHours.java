@@ -203,11 +203,9 @@ public class TestRegisterHours {
         } catch (TooManyHoursException e){
             assertEquals(e.getMessage(),"You have already registered too many hours today");
         }
-
-
-
         assertEquals(currentEmployee.getRegisteredHalfHours(day1),0);
     }
+
 
 
 

@@ -25,6 +25,9 @@ public class TestGetAvailableEmployess {
 
         WeekCalendar week1 = new WeekCalendar(2017,1);
         SoftwareHouse.logIn(ID2);
+        assertEquals(80,SoftwareHouse.getEmployees().get(0).getAvailableHours(week1,1));
+
+        assertEquals(0,SoftwareHouse.getDatabase().getAvailableEmployees(week1,1,81).size());
 
         assertEquals(2,SoftwareHouse.getDatabase().getAvailableEmployees(week1,1,38).size());
         assertEquals(0,SoftwareHouse.getDatabase().getAvailableEmployees(week1,1,81).size());

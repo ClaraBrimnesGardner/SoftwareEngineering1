@@ -33,7 +33,7 @@ public class BlackBoxTestRegisterHours {
      */
 
     @Test
-    public void registerLessThanAllowedTimeOneDayOneProject()throws Exception{
+    public void testRegisterLessThanAllowedTimeOneDayOneProject()throws Exception{
         // Step 1
         System SoftwareHouse = new System();
 
@@ -65,7 +65,7 @@ public class BlackBoxTestRegisterHours {
         assertEquals(1,currentProject.getAssignmentList().size());
         Assignment currentAssignment=currentProject.getAssignmentByName(AID01);
 
-        // Step 6
+
         WeekCalendar week1 = new WeekCalendar(2017,1);
 
         currentAssignment.manAssignment(currentEmployee, week1,1,20);
@@ -98,7 +98,7 @@ public class BlackBoxTestRegisterHours {
     Registers 8 hours to the assignment
      */
     @Test
-    public void registerAllowedTimeOneDayOneProject() throws Exception{
+    public void testRegisterAllowedTimeOneDayOneProject() throws Exception{
         // Step 1
         System SoftwareHouse = new System();
 
@@ -163,7 +163,7 @@ public class BlackBoxTestRegisterHours {
    Registers 12 hours to the assignment
     */
     @Test
-    public void registerMoreThanAllowedTimeOneDayOneProject() throws Exception{
+    public void testRegisterMoreThanAllowedTimeOneDayOneProject() throws Exception{
         // Step 1
         System SoftwareHouse = new System();
 
@@ -232,7 +232,7 @@ public class BlackBoxTestRegisterHours {
     */
 
     @Test
-    public void registerLessAllowedTimeTwoProjects() throws Exception{
+    public void testRegisterLessAllowedTimeTwoProjects() throws Exception{
         // Step 1
         System SoftwareHouse = new System();
 
@@ -314,7 +314,7 @@ public class BlackBoxTestRegisterHours {
     */
 
     @Test
-    public void registerAllowedTimeTwoProjects() throws Exception{
+    public void testRegisterAllowedTimeTwoProjects() throws Exception{
         // Step 1
         System SoftwareHouse = new System();
 
@@ -396,7 +396,7 @@ public class BlackBoxTestRegisterHours {
     */
 
     @Test
-    public void registerMoreThanAllowedTimeTwoProjects() throws Exception{
+    public void testRegisterMoreThanAllowedTimeTwoProjects() throws Exception{
         // Step 1
         System SoftwareHouse = new System();
 
@@ -459,6 +459,8 @@ public class BlackBoxTestRegisterHours {
         assertEquals(12,SoftwareHouse.getCurrentEmployee().getRegisteredHalfHours(day1));
     }
 
+
+
       /*
    Test 7:
    Register  4 hours to an assignment you are not manned to
@@ -481,6 +483,52 @@ public class BlackBoxTestRegisterHours {
    Step 6:
    Registers 6 hours to the assignment
     */
+    @Test
+    public void testRegisterToAssignmentNotMannedTo() throws Exception{
+        // Step 1
+        System SoftwareHouse = new System();
+
+        // Step 2
+        assertEquals(0,SoftwareHouse.getDatabase().getNumberOfEmployees());
+        String EID01 = "CBG";
+        SoftwareHouse.createEmployee(EID01);
+        assertEquals(1,SoftwareHouse.getDatabase().getNumberOfEmployees());
+
+        // Step 3
+        assertEquals(0,SoftwareHouse.getDatabase().getNumberOfProjects());
+        String PID01="Project01";
+        SoftwareHouse.createProject(PID01);
+        Project currentProject=SoftwareHouse.getProjects().get(0);
+        assertEquals(1,SoftwareHouse.getDatabase().getNumberOfProjects());
+
+        // Step 4
+        SoftwareHouse.logIn(EID01);
+        assertEquals("CBG",SoftwareHouse.getCurrentEmployee().getEmployeeID());
+        Employee currentEmployee=SoftwareHouse.getCurrentEmployee();
+        assertEquals(0,currentEmployee.getProjectLeaderList().size());
+        SoftwareHouse.becomeProjectLeader(currentProject.getProjectID());
+        assertEquals(1,currentEmployee.getProjectLeaderList().size());
+
+        // Step 5
+        String AID01="Assignment01";
+        assertEquals(0,currentProject.getAssignmentList().size());
+        currentProject.createAssignment(AID01);
+        assertEquals(1,currentProject.getAssignmentList().size());
+        Assignment currentAssignment=currentProject.getAssignmentByName(AID01);
+
+        // Step 6
+        WeekCalendar week1 = new WeekCalendar(2017,1);
+
+
+        DayCalendar day1 = new DayCalendar(week1,1);
+        try{
+            SoftwareHouse.registerTime(day1,12,0);
+        } catch (OperationNotAllowedException e){
+            assertEquals("You are not manned to an assignment with the given ID",e.getMessage());
+        }
+        assertEquals(0,SoftwareHouse.getCurrentEmployee().getRegisteredHalfHours(day1));
+    }
+
 
 
 
