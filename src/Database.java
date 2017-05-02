@@ -140,13 +140,21 @@ public class Database {
         if (employee == null) throw new WrongInputException("Employee does not exist");
         if (assignment == null) throw new WrongInputException("Assignment does not exist");
 
-        AssignmentEmployee task = new AssignmentEmployee(employee);
+        AssignmentEmployee task = new AssignmentEmployee(employee,assignment);
         if (task.addBooking(booking)) {
             assignmentEmployeeList.add(task);
             return true;
         }
 
         return false;
+    }
+
+    public AssignmentEmployee getAssignmentEmployeeByNameAndEmployee(String name, Employee employee) {
+        for (AssignmentEmployee assignmentEmployee : assignmentEmployeeList) {
+            if ((assignmentEmployee.getAssignment().getName() == name) && (assignmentEmployee.employee.equals(employee))) {
+                return assignmentEmployee;
+            }
+        }
     }
 
 

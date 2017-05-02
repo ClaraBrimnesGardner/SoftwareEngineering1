@@ -11,10 +11,16 @@ public class AssignmentEmployee {
     public Employee employee;
     private List<WeekBooking> weekBookings = new ArrayList<>();
     private List<DayRegistration> dayRegistrationList = new ArrayList<>();
+    private Assignment assignment;
 
-    public AssignmentEmployee(Employee employee) {
+    public Assignment getAssignment() {
+        return assignment;
+    }
+
+    public AssignmentEmployee(Employee employee, Assignment assignment) {
         this.taskID = taskID;
         this.employee = employee;
+        this.assignment = assignment;
     }
 
     //Getter methods

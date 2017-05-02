@@ -692,9 +692,10 @@ public class Screen {
                 btnRegisterTime2.setVisible(true);
                 btnToday.setVisible(true);
                 DefaultListModel assignments = new DefaultListModel();
-                for (AssignmentEmployee assignment : system.getCurrentEmployee().getAssignmentEmployeeList()) {
-                    assignments.addElement("ID:" + assignment.getTaskID());
+                for (AssignmentEmployee assignment : system.getDatabase().getAssignmentEmployeeList(system.getCurrentEmployee().getEmployeeID())) {
+                    assignments.addElement(assignment.getAssignment().getName());
                 }
+                list.setModel(assignments);
                 textDayNumber.setVisible(true);
                 textWeekNumber.setVisible(true);
                 lblDayNumber.setVisible(true);

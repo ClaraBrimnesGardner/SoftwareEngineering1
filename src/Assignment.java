@@ -1,7 +1,7 @@
 /**
  * Created by clarabrimnesgardner on 17/04/2017.
  */
-import java.lang.System;
+
 public class Assignment {
     public String name;
     private Project project;
@@ -41,7 +41,7 @@ public class Assignment {
 
     // Method to man an assignment
     public void manAssignment(Employee employee, WeekCalendar week, int duration, int hours) throws WrongInputException{
-        AssignmentEmployee assignmentEmployee = new AssignmentEmployee(employee);
+        AssignmentEmployee assignmentEmployee = new AssignmentEmployee(employee, this);
         if(database!=null){
             database.addAssignmentEmployee(assignmentEmployee);
         }
