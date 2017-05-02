@@ -75,6 +75,8 @@ public class System {
         return false;
     }
 
+
+
     // Getter methods
     public List<Project> getProjects(){
         return database.getProjectList();
