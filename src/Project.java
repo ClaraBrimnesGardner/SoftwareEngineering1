@@ -84,13 +84,4 @@ public class Project {
 
     }
 
-    /*public void manAssignment(Employee employee, Assignment assignment, WeekBooking weekBooking) {
-        AssignmentEmployee assignmentEmployee = new AssignmentEmployee(employee);
-        assignmentEmployee.addBooking(weekBooking);
-
-        database.assignmentEmployeeList.add(assignmentEmployee);
-
-    }
-    */
-
 }

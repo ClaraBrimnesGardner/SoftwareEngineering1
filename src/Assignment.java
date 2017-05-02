@@ -10,8 +10,6 @@ public class Assignment {
     private Database database;
 
 
-
-
     // Constructor
     public Assignment(String name, Project project){
         this.name=name;
