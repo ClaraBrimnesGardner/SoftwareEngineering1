@@ -155,6 +155,7 @@ public class Database {
                 return assignmentEmployee;
             }
         }
+        return null;
     }
 
 

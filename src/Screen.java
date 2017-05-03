@@ -163,12 +163,12 @@ public class Screen {
 
         JLabel lblWeekNumber = new JLabel("Week number");
         lblWeekNumber.setHorizontalAlignment(SwingConstants.CENTER);
-        lblWeekNumber.setBounds(173, 155, 94, 16);
+        lblWeekNumber.setBounds(257, 155, 94, 16);
         frame.getContentPane().add(lblWeekNumber);
         lblWeekNumber.setVisible(false);
 
         JLabel lblDayNumber = new JLabel("Day number");
-        lblDayNumber.setBounds(341, 155, 94, 16);
+        lblDayNumber.setBounds(394, 155, 94, 16);
         frame.getContentPane().add(lblDayNumber);
         lblDayNumber.setVisible(false);
 
@@ -176,6 +176,22 @@ public class Screen {
         lblTypeWeekNumber.setBounds(74, 241, 404, 16);
         frame.getContentPane().add(lblTypeWeekNumber);
         lblTypeWeekNumber.setVisible(false);
+
+        JLabel lblNewRegistration = new JLabel("New registration:");
+        lblNewRegistration.setBounds(74, 130, 138, 16);
+        frame.getContentPane().add(lblNewRegistration);
+        lblNewRegistration.setVisible(false);
+
+        JLabel lblYearNumber = new JLabel("Year");
+        lblYearNumber.setHorizontalAlignment(SwingConstants.CENTER);
+        lblYearNumber.setBounds(151, 155, 61, 16);
+        frame.getContentPane().add(lblYearNumber);
+        lblYearNumber.setVisible(false);
+
+        JLabel lblHours = new JLabel("Hours:");
+        lblHours.setBounds(86, 309, 61, 16);
+        frame.getContentPane().add(lblHours);
+        lblHours.setVisible(false);
 
 
         /**    BUTTONS     **/
@@ -263,7 +279,7 @@ public class Screen {
 
         // Buttons in register time
         JButton btnRegisterTime2 = new JButton("Register time");
-        btnRegisterTime2.setBounds(148, 300, 203, 29);
+        btnRegisterTime2.setBounds(275, 304, 203, 29);
         frame.getContentPane().add(btnRegisterTime2);
         btnRegisterTime2.setVisible(false);
 
@@ -271,6 +287,11 @@ public class Screen {
         btnToday.setBounds(37, 172, 82, 29);
         frame.getContentPane().add(btnToday);
         btnToday.setVisible(false);
+
+        JButton btnOldRegistrations = new JButton("Old registrations");
+        btnOldRegistrations.setBounds(148, 77, 203, 29);
+        frame.getContentPane().add(btnOldRegistrations);
+        btnOldRegistrations.setVisible(false);
 
 
 
@@ -341,16 +362,28 @@ public class Screen {
         textYear.setVisible(false);
 
         JTextField textWeekNumber = new JTextField();
-        textWeekNumber.setBounds(152, 172, 130, 26);
+        textWeekNumber.setBounds(258, 172, 93, 26);
         frame.getContentPane().add(textWeekNumber);
         textWeekNumber.setColumns(10);
         textWeekNumber.setVisible(false);
 
         JTextField textDayNumber = new JTextField();
-        textDayNumber.setBounds(316, 172, 130, 26);
+        textDayNumber.setBounds(385, 172, 93, 26);
         frame.getContentPane().add(textDayNumber);
         textDayNumber.setColumns(10);
         textDayNumber.setVisible(false);
+
+        JTextField textYearNumber = new JTextField();
+        textYearNumber.setColumns(10);
+        textYearNumber.setBounds(143, 172, 83, 26);
+        frame.getContentPane().add(textYearNumber);
+        textYearNumber.setVisible(false);
+
+        JTextField textHoursRegistration = new JTextField();
+        textHoursRegistration.setBounds(143, 304, 120, 29);
+        frame.getContentPane().add(textHoursRegistration);
+        textHoursRegistration.setColumns(10);
+        textHoursRegistration.setVisible(false);
 
 
         /**      ACTIONS      **/
@@ -612,7 +645,7 @@ public class Screen {
                 textYear.setVisible(true);
                 lblYear.setVisible(true);
                 btnGetAvailableEmployees.setVisible(true);
-                lblBudgettedTime.setText("Budgetted time:  " + system.getDatabase().getProject(currentProjectID).getAssignmentByName(currentAssignmentName).getBudgetedTime() + "hours");
+                lblBudgettedTime.setText("Budgetted time:  " + system.getDatabase().getProject(currentProjectID).getAssignmentByName(currentAssignmentName).getBudgetedTime() + " hours");
 
 
             }
@@ -678,6 +711,7 @@ public class Screen {
                     DayCalendar dayCalendar = system.getThisDay();
                     textWeekNumber.setText("" + dayCalendar.weekCalendar.getWeekNumber());
                     textDayNumber.setText("" + dayCalendar.dayNumber);
+                    textYearNumber.setText("" + dayCalendar.weekCalendar.getYear());
             }
         });
 
@@ -691,6 +725,12 @@ public class Screen {
                 lblListExplainer.setText("Your assignments:");
                 btnRegisterTime2.setVisible(true);
                 btnToday.setVisible(true);
+                lblNewRegistration.setVisible(true);
+                btnOldRegistrations.setVisible(true);
+                textYearNumber.setVisible(true);
+                lblYearNumber.setVisible(true);
+                textHoursRegistration.setVisible(true);
+                lblHours.setVisible(true);
                 DefaultListModel assignments = new DefaultListModel();
                 for (AssignmentEmployee assignment : system.getDatabase().getAssignmentEmployeeList(system.getCurrentEmployee().getEmployeeID())) {
                     assignments.addElement(assignment.getAssignment().getName());
@@ -701,7 +741,52 @@ public class Screen {
                 lblDayNumber.setVisible(true);
                 lblWeekNumber.setVisible(true);
                 lblTypeWeekNumber.setVisible(true);
+            }
+        });
 
+        btnRegisterTime2.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String assignmentName = (String) list.getModel().getElementAt(list.getSelectedIndex());
+                WeekCalendar weekCalendar = new WeekCalendar(Integer.parseInt(textYearNumber.getText()),Integer.parseInt(textWeekNumber.getText()));
+                DayCalendar dayCalendar = new DayCalendar(weekCalendar,Integer.parseInt(textDayNumber.getText()));
+                try {
+                    system.getDatabase().getAssignmentEmployeeByNameAndEmployee(assignmentName,system.getCurrentEmployee()).registerTime(dayCalendar,system.convertToHalfHours(Double.parseDouble(textHoursRegistration.getText())));
+                } catch (TooManyHoursException e1) {
+                    e1.printStackTrace();
+                    JOptionPane.showMessageDialog(null,"You have registered too many hours today");
+                }
+                textHoursRegistration.setText("");
+            }
+        });
+
+        btnOldRegistrations.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                textDayNumber.setVisible(false);
+                textWeekNumber.setVisible(false);
+                btnRegisterTime2.setVisible(false);
+                btnToday.setVisible(false);
+                lblDayNumber.setVisible(false);
+                lblWeekNumber.setVisible(false);
+                lblTypeWeekNumber.setVisible(false);
+                textDayNumber.setText("");
+                textWeekNumber.setText("");
+                textYearNumber.setText("");
+                lblNewRegistration.setVisible(false);
+                btnOldRegistrations.setVisible(false);
+                textYearNumber.setVisible(false);
+                lblYearNumber.setVisible(false);
+                textHoursRegistration.setVisible(false);
+                lblHours.setVisible(false);
+                lblListExplainer.setText("Your time registrations:");
+                DefaultListModel oldRegistrations = new DefaultListModel();
+                for (AssignmentEmployee assignmentEmployee : system.getDatabase().getAssignmentEmployeeList(system.getCurrentEmployee().employeeID)) {
+                    for (DayRegistration dayRegistration : assignmentEmployee.getDayRegistrationList()) {
+                        oldRegistrations.addElement(assignmentEmployee.getAssignment().getName() + " on " + dayRegistration.getDayCalendar().weekCalendar.getYear() + "/" + dayRegistration.getDayCalendar().weekCalendar.getWeekNumber() + "/" + dayRegistration.getDayCalendar().dayNumber + "  Hours: " + ((double) dayRegistration.getRegisteredHalfHours())/2);
+                    }
+                }
+                list.setModel(oldRegistrations);
             }
         });
 
@@ -755,6 +840,13 @@ public class Screen {
                 lblTypeWeekNumber.setVisible(false);
                 textDayNumber.setText("");
                 textWeekNumber.setText("");
+                textYearNumber.setText("");
+                lblNewRegistration.setVisible(false);
+                btnOldRegistrations.setVisible(false);
+                textYearNumber.setVisible(false);
+                lblYearNumber.setVisible(false);
+                textHoursRegistration.setVisible(false);
+                lblHours.setVisible(false);
 
             }
         });
@@ -814,6 +906,13 @@ public class Screen {
                 lblTypeWeekNumber.setVisible(false);
                 textDayNumber.setText("");
                 textWeekNumber.setText("");
+                textYearNumber.setText("");
+                lblNewRegistration.setVisible(false);
+                btnOldRegistrations.setVisible(false);
+                textYearNumber.setVisible(false);
+                lblYearNumber.setVisible(false);
+                textHoursRegistration.setVisible(false);
+                lblHours.setVisible(false);
             }
         });
 

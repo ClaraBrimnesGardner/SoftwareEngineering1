@@ -6,7 +6,7 @@ public class DayCalendar {
     int dayNumber;
 
     // Constructor
-    public DayCalendar(WeekCalendar weekCalendar, int dayNumber){
+    public DayCalendar(WeekCalendar weekCalendar, int dayNumber) {
         this.weekCalendar=weekCalendar;
         this.dayNumber=dayNumber;
     }
