@@ -102,6 +102,10 @@ public class System {
         database.deleteProject(project1);
     }
 
+    public void removeAssignment (String assignmentName) throws WrongInputException {
+        database.deleteAssignment(database.getAssignment("assigmentName"));
+    }
+
     // Getter methods
     public List<Project> getProjects(){
         return database.getProjectList();
