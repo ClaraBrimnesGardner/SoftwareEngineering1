@@ -33,7 +33,6 @@ public class AssignmentEmployee {
         List<WeekCalendar> bookedWeeks = new ArrayList<>();
         for(WeekBooking weekBooking:getWeekBookings()){
             bookedWeeks.add(weekBooking.getWeekCalendar());
-            System.out.println(weekBooking.getWeekCalendar().getWeekNumber()+" Y: "+weekBooking.getWeekCalendar().getYear() );
         }
         return bookedWeeks;
     }
@@ -66,7 +65,6 @@ public class AssignmentEmployee {
             throw new TooManyHoursException("You have registered too many hours today");
         }
         if(!getBookedWeeks().contains(dayCalendar.getWeekCalendar())){
-            System.out.println("Day: "+dayCalendar.getWeekCalendar().getWeekNumber()+"Year :"+dayCalendar.getWeekCalendar().getYear());
          throw new OperationNotAllowedException("You are not booked to this assignment in this week");
         }
         for(DayRegistration dayRegistration:dayRegistrationList){
