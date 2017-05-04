@@ -1,4 +1,5 @@
 import java.util.*;
+import java.lang.System;
 
 /**
  * Created by Tobias on 17/04/2017.
@@ -17,8 +18,17 @@ public class AssignmentEmployee {
     }
 
     //Getter methods
-    public List<WeekBooking> getWeekList() {
+    public List<WeekBooking> getWeekBookings() {
         return weekBookings;
+    }
+
+    public List<WeekCalendar> getBookedWeeks(){
+        List<WeekCalendar> bookedWeeks = new ArrayList<>();
+        for(WeekBooking weekBooking:getWeekBookings()){
+            bookedWeeks.add(weekBooking.getWeekCalendar());
+            System.out.println(weekBooking.getWeekCalendar().getWeekNumber()+" Y: "+weekBooking.getWeekCalendar().getYear() );
+        }
+        return bookedWeeks;
     }
 
     public List<DayRegistration> getDayRegistrationList(){return dayRegistrationList;}
@@ -44,9 +54,13 @@ public class AssignmentEmployee {
     }
 
     // Method to register time
-    public void registerTime(DayCalendar dayCalendar, int halfHours) throws TooManyHoursException{
+    public void registerTime(DayCalendar dayCalendar, int halfHours) throws Exception{
         if(employee.getRegisteredHalfHours(dayCalendar)+halfHours>MAX_REGISTERED_HALF_HOURS){
             throw new TooManyHoursException("You have registered too many hours today");
+        }
+        if(!getBookedWeeks().contains(dayCalendar.getWeekCalendar())){
+            System.out.println("Day: "+dayCalendar.getWeekCalendar().getWeekNumber()+"Year :"+dayCalendar.getWeekCalendar().getYear());
+         throw new OperationNotAllowedException("You are not booked to this assignment in this week");
         }
         for(DayRegistration dayRegistration:dayRegistrationList){
             if (dayRegistration.getDayCalendar().equals(dayCalendar)){

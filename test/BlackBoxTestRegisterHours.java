@@ -204,7 +204,7 @@ public class BlackBoxTestRegisterHours {
         try {
             SoftwareHouse.registerTime(day1, 24, 0);
         } catch (TooManyHoursException e){
-            assertEquals(e.getMessage(),"You have already registered too many hours today");
+            assertEquals(e.getMessage(),"You have registered too many hours today");
         }
         assertEquals(0,SoftwareHouse.getCurrentEmployee().getRegisteredHalfHours(day1));
     }
@@ -453,7 +453,7 @@ public class BlackBoxTestRegisterHours {
         try {
             SoftwareHouse.registerTime(day1, 12, 1);
         } catch (TooManyHoursException e){
-            assertEquals("You have already registered too many hours today",e.getMessage());
+            assertEquals("You have registered too many hours today",e.getMessage());
 
         }
         assertEquals(12,SoftwareHouse.getCurrentEmployee().getRegisteredHalfHours(day1));

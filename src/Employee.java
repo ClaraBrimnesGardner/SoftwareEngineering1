@@ -84,7 +84,7 @@ public class Employee {
         // Looping over all assignments with the current employees
         for (AssignmentEmployee assignment : assignmentList) {
             // Getting all bookings for the current week
-            for (WeekBooking booking : assignment.getWeekList()) {
+            for (WeekBooking booking : assignment.getWeekBookings()) {
                 // Getting the booked hours
                 if (booking.getWeekCalendar().before(endWeek)&& booking.getWeekCalendar().after(week)) {
                     bookedHalfHours += booking.getBookedHours();

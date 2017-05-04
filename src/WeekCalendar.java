@@ -57,6 +57,7 @@ public class WeekCalendar {
     public int weeksTo(WeekCalendar endWeek) {
         return (endWeek.getYear()-year)*52 + endWeek.getWeekNumber() - weekNumber;
     }
+    
 
 
 }
