@@ -53,9 +53,15 @@ public class WeekCalendar {
         return newWeek;
     }
 
-    // Method which calculates the number of weeks to a given week
-    public int weeksTo(WeekCalendar endWeek) {
-        return (endWeek.getYear()-year)*52 + endWeek.getWeekNumber() - weekNumber;
+    // Equals method
+    public boolean equals(Object o){
+        if(!(o instanceof WeekCalendar)){
+            return false;
+        }
+        if(weekNumber==((WeekCalendar) o).getWeekNumber() && year==((WeekCalendar) o).getYear()){
+            return true;
+        }
+        return false;
     }
     
 
