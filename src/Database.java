@@ -183,7 +183,7 @@ public class Database {
 
     private void deleteAssignment(Project project1) throws WrongInputException {
         for (Assignment assignment1: assignmentList) {
-            if (Assignment.getProject().equals(project1)) {
+            if (assignment1.getProject().equals(project1)) {
                 if (assignment1 == null) throw new WrongInputException("Assignement doesn't exist");
                 if (!assignmentList.remove(assignment1)) throw new WrongInputException("Assignment doesn't exsist");
                 deleteAssignmentEmployee(assignment1);
