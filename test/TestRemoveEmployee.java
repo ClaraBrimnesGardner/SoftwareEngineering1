@@ -84,7 +84,7 @@ public class TestRemoveEmployee {
         String projectID01="Project";
         SoftwareHouse.createProject(projectID01);
         Project currentProject01 = SoftwareHouse.getProjects().get(0);
-
+        SoftwareHouse.getCurrentEmployee().becomeProjectLeader(currentProject01.getProjectID());
         // Add two assignments
         String assignmentID01 = "Assignment1";
         currentProject01.createAssignment(assignmentID01);
@@ -93,9 +93,12 @@ public class TestRemoveEmployee {
         currentProject01.createAssignment(assignmentID02);
         Assignment assignment2 = currentProject01.getAssignmentByName(assignmentID02);
         assertEquals(SoftwareHouse.getDatabase().getAssignmentList().size(),2);
-        // Remove assignment
-        //assertEquals(SoftwareHouse.getDatabase().getAssignment("Assignment1").name,"Assignment1");
-        //SoftwareHouse.removeAssignment("Assignment1");
-
+        // Remove assignment1
+        SoftwareHouse.removeAssignment("Assignment1");
+        assertEquals(SoftwareHouse.getDatabase().getAssignmentList().size(),1);
+        assertEquals(SoftwareHouse.getDatabase().getProjectList().size(),1);
+        // Remove assignment2
+        SoftwareHouse.removeProject(currentProject01.getProjectID());
+        //assertEquals(SoftwareHouse.getDatabase().getProjectList().size(),0);
     }
 }
