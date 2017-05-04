@@ -55,16 +55,7 @@ public class System {
         employee.becomeProjectLeader(ProjectID);
     }
 
-    public void registerTime(DayCalendar dayCalendar, int halfHours, int assignmentID) throws Exception{
-        if(employee==null){
-            throw new OperationNotAllowedException("LogIn to register time");
-        }
-        AssignmentEmployee currentAssignment = employee.getAssignmentEmployeeByID(assignmentID);
-        if(currentAssignment==null){
-            throw new OperationNotAllowedException("You are not manned to an assignment with the given ID");
-        }
-        currentAssignment.registerTime(dayCalendar, halfHours);
-    }
+
 
     public boolean seekAssistance(String employeeID, String assignmentID, int year, int weekNumber, int bookedHours) throws WrongInputException {
         WeekCalendar weekCalendar = new WeekCalendar(year, weekNumber);
