@@ -4,6 +4,8 @@
 
 import javax.xml.crypto.Data;
 import java.util.*;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 
 public class System {
     private Employee employee;
@@ -78,6 +80,18 @@ public class System {
         return false;
     }
 
+    public static DayCalendar getThisDay () {
+        Calendar calendar=new GregorianCalendar();
+        int year=calendar.get(Calendar.YEAR);
+        int week=calendar.get(Calendar.WEEK_OF_YEAR);
+        int day=calendar.get(Calendar.DAY_OF_WEEK);
+        if (day==1) return new DayCalendar(new WeekCalendar(year,week),7);
+        return new DayCalendar(new WeekCalendar(year,week),day-1);
+    }
+
+
+
+
     // Getter methods
     public List<Project> getProjects(){
         return database.getProjectList();
@@ -91,6 +105,11 @@ public class System {
 
     public Database getDatabase() {
         return database;
+    }
+
+    public int convertToHalfHours(double hours) {
+        hours *= 2;
+        return ((int) hours);
     }
 
 }

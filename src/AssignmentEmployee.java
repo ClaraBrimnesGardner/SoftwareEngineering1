@@ -8,13 +8,20 @@ import java.lang.System;
 
 public class AssignmentEmployee {
     private static final int MAX_REGISTERED_HALF_HOURS= 16;
-    private int TaskID;
-    private Employee employee;
+    public int taskID;
+    public Employee employee;
     private List<WeekBooking> weekBookings = new ArrayList<>();
     private List<DayRegistration> dayRegistrationList = new ArrayList<>();
+    private Assignment assignment;
 
-    public AssignmentEmployee(Employee employee) {
+    public Assignment getAssignment() {
+        return assignment;
+    }
+
+    public AssignmentEmployee(Employee employee, Assignment assignment) {
+        this.taskID = taskID;
         this.employee = employee;
+        this.assignment = assignment;
     }
 
     //Getter methods
@@ -38,12 +45,12 @@ public class AssignmentEmployee {
     }
 
     public int getTaskID(){
-        return TaskID;
+        return taskID;
     }
 
     // Setter methods
     public void setTaskID(int TaskID){
-        this.TaskID=TaskID;
+        this.taskID=TaskID;
     }
 
     public boolean addBooking(WeekBooking weekBooking) {

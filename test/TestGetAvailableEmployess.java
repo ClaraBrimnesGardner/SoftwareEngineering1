@@ -23,7 +23,7 @@ public class TestGetAvailableEmployess {
         SoftwareHouse.createEmployee(ID2);
         SoftwareHouse.createProject("test");
 
-        WeekCalendar week1 = new WeekCalendar(2017,1);
+        WeekCalendar week1 = new WeekCalendar(2017,2);
         SoftwareHouse.logIn(ID2);
         assertEquals(80,SoftwareHouse.getEmployees().get(0).getAvailableHours(week1,1));
 
