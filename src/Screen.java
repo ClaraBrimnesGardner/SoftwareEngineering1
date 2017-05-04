@@ -604,6 +604,29 @@ public class Screen {
             }
         });
 
+        btnDeleteProject.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                int index = list.getSelectedIndex();
+                String string = ((String) list.getModel().getElementAt(index));
+                int space = string.indexOf("ID:") + 6;
+                string = string.substring(space);
+                int deletedProjectID = Integer.parseInt(string);
+                try {
+                    system.removeProject(deletedProjectID);
+                } catch (WrongInputException e1) {
+                    e1.printStackTrace();
+                    JOptionPane.showMessageDialog(null,e1.getMessage());
+                }
+                DefaultListModel projects = new DefaultListModel();
+                for (Project project : system.getDatabase().getProjectLeaderList(system.getCurrentEmployee())) {
+                    String name = "Name:  " + project.getName() + "   ID:   " + project.getProjectID();
+                    projects.addElement(name);
+                }
+                list.setModel(projects);
+            }
+        });
+
         /** Creating and choosing assignments in projects **/
         textCreateAssignment.addActionListener(new ActionListener() {
             @Override
