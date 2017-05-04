@@ -95,6 +95,13 @@ public class System {
         database.deleteEmployee(employee1);
     }
 
+    public void removeProject (int projectID) throws WrongInputException {
+        Project project1 = database.getProject(projectID);
+        if(project1 == null) throw new WrongInputException ("Project doesn't exist");
+        if(!project1.projectLeader.equals(employee)) throw new WrongInputException("You are not project leader of this project");
+        database.deleteProject(project1);
+    }
+
     // Getter methods
     public List<Project> getProjects(){
         return database.getProjectList();
