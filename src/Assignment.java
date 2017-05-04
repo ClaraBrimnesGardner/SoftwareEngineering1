@@ -4,6 +4,7 @@
 
 public class Assignment {
     public String name;
+    public int assignmentID;
     private Project project;
     private int budgetedTime;
     private int bookedTime;

@@ -89,13 +89,13 @@ public class System {
         return new DayCalendar(new WeekCalendar(year,week),day-1);
     }
 
-    public void deleteEmployee (String employeeID) throws WrongInputException {
-        Employee employee = database.getEmployee(employeeID);
-        if (employee.equals(employee)) throw new WrongInputException("You can't delete yourself");
-        database.deleteEmployee(employee);
+    public void removeEmployee (String employeeID) throws WrongInputException {
+        Employee employee1 = database.getEmployee(employeeID);
+        if (employee.equals(employee1)) throw new WrongInputException("You can't delete yourself");
+        database.deleteEmployee(employee1);
     }
 
-    public void deletePoject (int projectID) throws WrongInputException{
+    public void removePoject (int projectID) throws WrongInputException{
         Project project = database.getProject(projectID);
         if (project == null) throw new WrongInputException("Project doesn't exsist");
         if (!project.projectLeader.equals(employee)) throw WrongInputException("You're not project leader on this project");
