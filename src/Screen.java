@@ -91,7 +91,7 @@ public class Screen {
 
         // Choose project in the list helping label
         JLabel lblChooseProject = new JLabel("Choose one of your projects in the list:");
-        lblChooseProject.setBounds(135, 218, 279, 16);
+        lblChooseProject.setBounds(132, 148, 279, 16);
         frame.getContentPane().add(lblChooseProject);
         lblChooseProject.setVisible(false);
 
@@ -198,6 +198,11 @@ public class Screen {
         frame.getContentPane().add(lblChooseAnEmployee);
         lblChooseAnEmployee.setVisible(false);
 
+        JLabel lblDeleteProject = new JLabel("Delete one of your projects in the list:");
+        lblDeleteProject.setBounds(132, 227, 308, 16);
+        frame.getContentPane().add(lblDeleteProject);
+        lblDeleteProject.setVisible(false);
+
 
         /**    BUTTONS     **/
 
@@ -254,7 +259,7 @@ public class Screen {
         btnLeadProject.setVisible(false);
 
         JButton btnChoose = new JButton("Choose");
-        btnChoose.setBounds(193, 246, 117, 29);
+        btnChoose.setBounds(194, 176, 117, 29);
         frame.getContentPane().add(btnChoose);
         btnChoose.setVisible(false);
 
@@ -308,6 +313,10 @@ public class Screen {
         frame.getContentPane().add(btnDeleteEmployee2);
         btnDeleteEmployee2.setVisible(false);
 
+        JButton btnDeleteProject = new JButton("Delete");
+        btnDeleteProject.setBounds(194, 255, 117, 29);
+        frame.getContentPane().add(btnDeleteProject);
+        btnDeleteProject.setVisible(false);
 
 
         /**     TEXTFIELDS:     **/
@@ -423,7 +432,7 @@ public class Screen {
                     lblAs.setVisible(false);
                 } catch (WrongInputException e1) {
                     e1.printStackTrace();
-                    JOptionPane.showMessageDialog(null,e1.getMessage());
+                    JOptionPane.showMessageDialog(null, e1.getMessage());
                 }
             }
         });
@@ -447,7 +456,7 @@ public class Screen {
                     lblAs.setVisible(false);
                 } catch (WrongInputException e1) {
                     e1.printStackTrace();
-                    JOptionPane.showMessageDialog(null,e1.getMessage());
+                    JOptionPane.showMessageDialog(null, e1.getMessage());
                 }
             }
         });
@@ -460,7 +469,7 @@ public class Screen {
                     textAddEmployee.setText("");
                 } catch (WrongInputException e1) {
                     e1.printStackTrace();
-                    JOptionPane.showMessageDialog(null,e1.getMessage());
+                    JOptionPane.showMessageDialog(null, e1.getMessage());
                 }
             }
         });
@@ -473,7 +482,7 @@ public class Screen {
                     textAddEmployee.setText("");
                 } catch (WrongInputException e1) {
                     e1.printStackTrace();
-                    JOptionPane.showMessageDialog(null,e1.getMessage());
+                    JOptionPane.showMessageDialog(null, e1.getMessage());
                 }
             }
         });
@@ -487,7 +496,7 @@ public class Screen {
                     textAddProject.setText("");
                 } catch (WrongInputException e1) {
                     e1.printStackTrace();
-                    JOptionPane.showMessageDialog(null,e1.getMessage());
+                    JOptionPane.showMessageDialog(null, e1.getMessage());
                 }
             }
         });
@@ -499,7 +508,7 @@ public class Screen {
                     textAddProject.setText("");
                 } catch (WrongInputException e1) {
                     e1.printStackTrace();
-                    JOptionPane.showMessageDialog(null,e1.getMessage());
+                    JOptionPane.showMessageDialog(null, e1.getMessage());
                 }
             }
         });
@@ -508,10 +517,10 @@ public class Screen {
         btnBecomeProjectLeader.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                lblListExplainer.setText("AvailableProjects:");
+                lblListExplainer.setText("Available Projects:");
                 lblTypeProjectID.setVisible(true);
                 btnLeadProject.setVisible(true);
-                frontScreenRemoving(btnBecomeProjectLeader,btnRegisterTime,btnSeekAssistance,btnYourProjects,btnDeleteEmployees);
+                frontScreenRemoving(btnBecomeProjectLeader, btnRegisterTime, btnSeekAssistance, btnYourProjects, btnDeleteEmployees);
                 DefaultListModel projects = new DefaultListModel();
                 for (Project project : system.getDatabase().getAvailableProjects()) {
                     String name = "Name:  " + project.getName() + "   ID:   " + project.getProjectID();
@@ -526,14 +535,14 @@ public class Screen {
             public void actionPerformed(ActionEvent e) {
                 int index = list.getSelectedIndex();
                 String string = ((String) list.getModel().getElementAt(index));
-                int space = string.indexOf("ID:")+ 6;
+                int space = string.indexOf("ID:") + 6;
                 string = string.substring(space);
                 int ID = Integer.parseInt(string);
                 try {
                     system.becomeProjectLeader(ID);
                 } catch (OperationNotAllowedException e1) {
                     e1.printStackTrace();
-                    JOptionPane.showMessageDialog(null,e1.getMessage());
+                    JOptionPane.showMessageDialog(null, e1.getMessage());
                 }
                 DefaultListModel projects = new DefaultListModel();
                 for (Project project : system.getDatabase().getAvailableProjects()) {
@@ -551,6 +560,8 @@ public class Screen {
                 lblListExplainer.setText("Your projects:");
                 lblChooseProject.setVisible(true);
                 btnChoose.setVisible(true);
+                lblDeleteProject.setVisible(true);
+                btnDeleteProject.setVisible(true);
                 frontScreenRemoving(btnBecomeProjectLeader, btnRegisterTime, btnSeekAssistance, btnYourProjects, btnDeleteEmployees);
                 DefaultListModel projects = new DefaultListModel();
                 for (Project project : system.getDatabase().getProjectLeaderList(system.getCurrentEmployee())) {
@@ -566,13 +577,15 @@ public class Screen {
             public void actionPerformed(ActionEvent e) {
                 int index = list.getSelectedIndex();
                 String string = ((String) list.getModel().getElementAt(index));
-                int space = string.indexOf("ID:")+ 6;
+                int space = string.indexOf("ID:") + 6;
                 string = string.substring(space);
                 currentProjectID = Integer.parseInt(string);
                 lblChooseProject.setVisible(false);
                 btnChoose.setVisible(false);
                 lblListExplainer.setText("");
                 lblWorkingWith.setVisible(true);
+                lblDeleteProject.setVisible(false);
+                btnDeleteProject.setVisible(false);
                 lblProjectName.setText(system.getDatabase().getProject(currentProjectID).getProjectName());
                 DefaultListModel emptyModel = new DefaultListModel();
                 list.setModel(emptyModel);
@@ -599,7 +612,7 @@ public class Screen {
                     system.getDatabase().getProject(currentProjectID).createAssignment(textCreateAssignment.getText());
                 } catch (WrongInputException e1) {
                     e1.printStackTrace();
-                    JOptionPane.showMessageDialog(null,e1.getMessage());
+                    JOptionPane.showMessageDialog(null, e1.getMessage());
                 }
                 DefaultListModel assignmentList = new DefaultListModel();
                 for (Assignment assignment : system.getDatabase().getProject(currentProjectID).getAssignmentList()) {
@@ -618,7 +631,7 @@ public class Screen {
                     system.getDatabase().getProject(currentProjectID).createAssignment(textCreateAssignment.getText());
                 } catch (WrongInputException e1) {
                     e1.printStackTrace();
-                    JOptionPane.showMessageDialog(null,e1.getMessage());
+                    JOptionPane.showMessageDialog(null, e1.getMessage());
                 }
                 DefaultListModel assignmentList = new DefaultListModel();
                 for (Assignment assignment : system.getDatabase().getProject(currentProjectID).getAssignmentList()) {
@@ -633,7 +646,7 @@ public class Screen {
             @Override
             public void actionPerformed(ActionEvent e) {
                 int index = list.getSelectedIndex();
-                String assignmentName = ((String)list.getModel().getElementAt(index));
+                String assignmentName = ((String) list.getModel().getElementAt(index));
                 currentAssignmentName = assignmentName;
                 lblChooseAssignmentFrom.setVisible(false);
                 lblCreateAssignment.setVisible(false);
@@ -665,9 +678,9 @@ public class Screen {
         btnGetAvailableEmployees.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                WeekCalendar startWeek = new WeekCalendar(Integer.parseInt(textYear.getText()),Integer.parseInt(textStartWeek.getText()));
+                WeekCalendar startWeek = new WeekCalendar(Integer.parseInt(textYear.getText()), Integer.parseInt(textStartWeek.getText()));
                 DefaultListModel employees = new DefaultListModel();
-                for (Employee employee : system.getDatabase().getAvailableEmployees(startWeek,Integer.parseInt(textDuration.getText()),system.convertToHalfHours(Double.parseDouble(textHours.getText())))) {
+                for (Employee employee : system.getDatabase().getAvailableEmployees(startWeek, Integer.parseInt(textDuration.getText()), system.convertToHalfHours(Double.parseDouble(textHours.getText())))) {
                     employees.addElement(employee.getEmployeeID());
                 }
                 list.setModel(employees);
@@ -699,18 +712,18 @@ public class Screen {
             @Override
             public void actionPerformed(ActionEvent e) {
                 String name = (String) list.getModel().getElementAt(list.getSelectedIndex());
-                WeekCalendar weekCalendar = new WeekCalendar(Integer.parseInt(textYear.getText()),Integer.parseInt(textStartWeek.getText()));
+                WeekCalendar weekCalendar = new WeekCalendar(Integer.parseInt(textYear.getText()), Integer.parseInt(textStartWeek.getText()));
                 int duration = Integer.parseInt(textDuration.getText());
                 int hours = system.convertToHalfHours(Double.parseDouble(textHours.getText()));
                 try {
-                    system.getDatabase().getProject(currentProjectID).getAssignmentByName(currentAssignmentName).manAssignment(system.getDatabase().getEmployee(name),weekCalendar,duration,hours);
+                    system.getDatabase().getProject(currentProjectID).getAssignmentByName(currentAssignmentName).manAssignment(system.getDatabase().getEmployee(name), weekCalendar, duration, hours);
                 } catch (WrongInputException e1) {
                     e1.printStackTrace();
-                    JOptionPane.showMessageDialog(null,e1.getMessage());
+                    JOptionPane.showMessageDialog(null, e1.getMessage());
 
                 }
                 DefaultListModel employees = new DefaultListModel();
-                for (Employee employee : system.getDatabase().getAvailableEmployees(weekCalendar,duration,hours)) {
+                for (Employee employee : system.getDatabase().getAvailableEmployees(weekCalendar, duration, hours)) {
                     employees.addElement(employee.getEmployeeID());
                 }
                 list.setModel(employees);
@@ -720,17 +733,17 @@ public class Screen {
         btnToday.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                    DayCalendar dayCalendar = system.getThisDay();
-                    textWeekNumber.setText("" + dayCalendar.weekCalendar.getWeekNumber());
-                    textDayNumber.setText("" + dayCalendar.dayNumber);
-                    textYearNumber.setText("" + dayCalendar.weekCalendar.getYear());
+                DayCalendar dayCalendar = system.getThisDay();
+                textWeekNumber.setText("" + dayCalendar.weekCalendar.getWeekNumber());
+                textDayNumber.setText("" + dayCalendar.dayNumber);
+                textYearNumber.setText("" + dayCalendar.weekCalendar.getYear());
             }
         });
 
         btnRegisterTime.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                frontScreenRemoving(btnBecomeProjectLeader,btnRegisterTime,btnSeekAssistance,btnYourProjects,btnDeleteEmployees);
+                frontScreenRemoving(btnBecomeProjectLeader, btnRegisterTime, btnSeekAssistance, btnYourProjects, btnDeleteEmployees);
                 lblListExplainer.setText("Your assignments:");
                 btnRegisterTime2.setVisible(true);
                 btnToday.setVisible(true);
@@ -793,13 +806,12 @@ public class Screen {
                 DefaultListModel oldRegistrations = new DefaultListModel();
                 for (AssignmentEmployee assignmentEmployee : system.getDatabase().getAssignmentEmployeeList(system.getCurrentEmployee().employeeID)) {
                     for (DayRegistration dayRegistration : assignmentEmployee.getDayRegistrationList()) {
-                        oldRegistrations.addElement(assignmentEmployee.getAssignment().getName() + " on " + dayRegistration.getDayCalendar().weekCalendar.getYear() + "/" + dayRegistration.getDayCalendar().weekCalendar.getWeekNumber() + "/" + dayRegistration.getDayCalendar().dayNumber + "  Hours: " + ((double) dayRegistration.getRegisteredHalfHours())/2);
+                        oldRegistrations.addElement(assignmentEmployee.getAssignment().getName() + " on " + dayRegistration.getDayCalendar().weekCalendar.getYear() + "/" + dayRegistration.getDayCalendar().weekCalendar.getWeekNumber() + "/" + dayRegistration.getDayCalendar().dayNumber + "  Hours: " + ((double) dayRegistration.getRegisteredHalfHours()) / 2);
                     }
                 }
                 list.setModel(oldRegistrations);
             }
         });
-
 
 
         btnDeleteEmployees.addActionListener(new ActionListener() {
@@ -826,7 +838,7 @@ public class Screen {
                     system.removeEmployee((String) list.getModel().getElementAt(list.getSelectedIndex()));
                 } catch (WrongInputException e1) {
                     e1.printStackTrace();
-                    JOptionPane.showMessageDialog(null,e1.getMessage());
+                    JOptionPane.showMessageDialog(null, e1.getMessage());
                 }
                 DefaultListModel employees = new DefaultListModel();
                 for (Employee employee : system.getEmployees()) {
@@ -896,6 +908,8 @@ public class Screen {
                 btnDeleteEmployees.setVisible(true);
                 lblChooseAnEmployee.setVisible(false);
                 btnDeleteEmployee2.setVisible(false);
+                lblDeleteProject.setVisible(false);
+                btnDeleteProject.setVisible(false);
 
             }
         });
@@ -909,15 +923,11 @@ public class Screen {
                 textFieldLogIn.setVisible(true);
                 btnLogOff.setVisible(false);
                 lblLoggedInAs2.setText("");
-                btnBecomeProjectLeader.setVisible(false);
-                btnRegisterTime.setVisible(false);
-                btnSeekAssistance.setVisible(false);
+                frontScreenRemoving(btnBecomeProjectLeader, btnRegisterTime, btnSeekAssistance, btnYourProjects, btnDeleteEmployees);
                 btnMenu.setVisible(false);
-                btnYourProjects.setVisible(false);
                 lblTypeProjectID.setVisible(false);
                 btnLeadProject.setVisible(false);
-                DefaultListModel emptymodel = new DefaultListModel();
-                list.setModel(emptymodel);
+                setListEmpty(list);
                 lblListExplainer.setText("");
                 lblChooseProject.setVisible(false);
                 btnChoose.setVisible(false);
@@ -962,12 +972,18 @@ public class Screen {
                 lblYearNumber.setVisible(false);
                 textHoursRegistration.setVisible(false);
                 lblHours.setVisible(false);
-                btnDeleteEmployees.setVisible(false);
                 lblChooseAnEmployee.setVisible(false);
                 btnDeleteEmployee2.setVisible(false);
+                lblDeleteProject.setVisible(false);
+                btnDeleteProject.setVisible(false);
             }
         });
 
+    }
+
+    private void setListEmpty(JList list) {
+        DefaultListModel emptymodel = new DefaultListModel();
+        list.setModel(emptymodel);
     }
 
     private void frontScreenRemoving(JButton btnBecomeProjectLeader, JButton btnRegisterTime, JButton btnSeekAssistance, JButton btnYourProjects, JButton btnDeleteEmployees) {
