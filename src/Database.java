@@ -190,7 +190,7 @@ public class Database {
     }
 
     public void deleteAssignment(Assignment assignment1) throws WrongInputException{
-        if (assignment1 == null) throw new WrongInputException("Assignement doesn't exist");
+        if (assignment1 == null) throw new WrongInputException("Assignment doesn't exist");
         if (!assignmentList.remove(assignment1)) throw new WrongInputException("Assignment doesn't exsist");
         deleteAssignmentEmployee(assignment1);
     }

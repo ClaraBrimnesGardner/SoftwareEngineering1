@@ -1,7 +1,6 @@
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.*;
 
 /**
  * Created by sarad on 04-05-2017.
@@ -35,7 +34,6 @@ public class TestRemoveEmployee {
             SoftwareHouse.removeEmployee("Employee1");
         } catch(WrongInputException e){
             assertEquals("You can't delete yourself", e.getMessage());
-
         }
         // remove employee2
         SoftwareHouse.removeEmployee("Employee2");
@@ -63,24 +61,41 @@ public class TestRemoveEmployee {
         String projectID="Project";
         SoftwareHouse.createProject(projectID);
         Project currentProject = SoftwareHouse.getProjects().get(0);
+        assertEquals(SoftwareHouse.getDatabase().getProjectList().size(),1);
 
         // Become projectLeader
         SoftwareHouse.logIn(ID01);
         SoftwareHouse.getCurrentEmployee().becomeProjectLeader(currentProject.getProjectID());
+
+        // Try to remove project without being project leader
+        SoftwareHouse.logIn(ID02);
+        try{
+            SoftwareHouse.removeProject(currentProject.projectID);
+        } catch(WrongInputException e) {
+            assertEquals("You are not project leader of this project", e.getMessage());
+        }
+
+        // Remove project as project leader
+        SoftwareHouse.logIn(ID01);
         SoftwareHouse.removeProject(currentProject.projectID);
         assertEquals(SoftwareHouse.getDatabase().getProjectList().size(),0);
 
-        //
-        /*try{
+        // Adds project again
+        String projectID01="Project";
+        SoftwareHouse.createProject(projectID01);
+        Project currentProject01 = SoftwareHouse.getProjects().get(0);
 
-        } catch(WrongInputException e){
-            assertEquals("You can't delete yourself", e.getMessage());
+        // Add two assignments
+        String assignmentID01 = "Assignment1";
+        currentProject01.createAssignment(assignmentID01);
+        Assignment assignment1 = currentProject01.getAssignmentByName(assignmentID01);
+        String assignmentID02 = "Assignment2";
+        currentProject01.createAssignment(assignmentID02);
+        Assignment assignment2 = currentProject01.getAssignmentByName(assignmentID02);
+        assertEquals(SoftwareHouse.getDatabase().getAssignmentList().size(),2);
+        // Remove assignment
+        //assertEquals(SoftwareHouse.getDatabase().getAssignment("Assignment1").name,"Assignment1");
+        //SoftwareHouse.removeAssignment("Assignment1");
 
-        }
-
-        // Add an assignment
-        String assignmentID="Assignment1";
-        currentProject.createAssignment(assignmentID);
-        Assignment currentAssignment = currentProject.getAssignmentByName(assignmentID);*/
     }
 }

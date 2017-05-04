@@ -103,7 +103,9 @@ public class System {
     }
 
     public void removeAssignment (String assignmentName) throws WrongInputException {
-        database.deleteAssignment(database.getAssignment("assigmentName"));
+        Assignment assignment1 = database.getAssignment("assignemtName");
+        if (assignment1 == null) throw new WrongInputException("Assignment doesn't exist");
+        database.deleteAssignment(assignment1);
     }
 
     // Getter methods
