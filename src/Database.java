@@ -168,4 +168,10 @@ public class Database {
     }
 
 
+    public void deleteEmployee(Employee employee) throws WrongInputException {
+        if (employee==null) throw new WrongInputException ("Employee doesn't exist");
+        if (!employeeList.remove(employee)){
+            throw new WrongInputException ("Employee doesn't exist");
+        }
+    }
 }
