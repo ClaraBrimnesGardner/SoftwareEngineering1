@@ -68,6 +68,9 @@ public class TestRemoveEmployee {
         SoftwareHouse.logIn(ID01);
         SoftwareHouse.getCurrentEmployee().becomeProjectLeader(currentProject.getProjectID());
         SoftwareHouse.removeProject(currentProject.projectID);
+        assertEquals(SoftwareHouse.getDatabase().getProjectList().size(),0);
+
+        //
         /*try{
 
         } catch(WrongInputException e){
