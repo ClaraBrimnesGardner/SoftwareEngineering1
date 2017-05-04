@@ -71,7 +71,8 @@ public class BlackBoxTestRegisterHours {
         currentAssignment.manAssignment(currentEmployee, week1,1,20);
 
         DayCalendar day1 = new DayCalendar(week1,1);
-        SoftwareHouse.registerTime(day1,8,0);
+        AssignmentEmployee currentAssignmentEmployee = SoftwareHouse.getDatabase().getAssignmentEmployeeByNameAndEmployee(AID01,currentEmployee);
+        currentAssignmentEmployee.registerTime(day1,8);
         assertEquals(8,SoftwareHouse.getCurrentEmployee().getRegisteredHalfHours(day1));
     }
 
@@ -136,7 +137,8 @@ public class BlackBoxTestRegisterHours {
         currentAssignment.manAssignment(currentEmployee, week1,1,20);
 
         DayCalendar day1 = new DayCalendar(week1,1);
-        SoftwareHouse.registerTime(day1,16,0);
+        AssignmentEmployee currentAssignmentEmployee = SoftwareHouse.getDatabase().getAssignmentEmployeeByNameAndEmployee(AID01, currentEmployee);
+        currentAssignmentEmployee.registerTime(day1,16);
         assertEquals(16,SoftwareHouse.getCurrentEmployee().getRegisteredHalfHours(day1));
     }
 
@@ -201,8 +203,9 @@ public class BlackBoxTestRegisterHours {
         currentAssignment.manAssignment(currentEmployee, week1,1,25);
 
         DayCalendar day1 = new DayCalendar(week1,1);
+        AssignmentEmployee currentAssignmentEmployee = SoftwareHouse.getDatabase().getAssignmentEmployeeByNameAndEmployee(AID01, currentEmployee);
         try {
-            SoftwareHouse.registerTime(day1, 24, 0);
+            currentAssignmentEmployee.registerTime(day1, 24);
         } catch (TooManyHoursException e){
             assertEquals(e.getMessage(),"You have registered too many hours today");
         }
@@ -285,8 +288,10 @@ public class BlackBoxTestRegisterHours {
         assignment2.manAssignment(currentEmployee, week1,1,20);
 
         DayCalendar day1 = new DayCalendar(week1,1);
-        SoftwareHouse.registerTime(day1,4,0);
-        SoftwareHouse.registerTime(day1,4,1);
+        AssignmentEmployee assignmentEmployee1 = SoftwareHouse.getDatabase().getAssignmentEmployeeByNameAndEmployee(AID01,currentEmployee);
+        AssignmentEmployee assignmentEmployee2 = SoftwareHouse.getDatabase().getAssignmentEmployeeByNameAndEmployee(AID02,currentEmployee);
+        assignmentEmployee1.registerTime(day1,4);
+        assignmentEmployee2.registerTime(day1,4);
         assertEquals(8,SoftwareHouse.getCurrentEmployee().getRegisteredHalfHours(day1));
     }
 
@@ -367,8 +372,10 @@ public class BlackBoxTestRegisterHours {
         assignment2.manAssignment(currentEmployee, week1,1,20);
 
         DayCalendar day1 = new DayCalendar(week1,1);
-        SoftwareHouse.registerTime(day1,8,0);
-        SoftwareHouse.registerTime(day1,8,1);
+        AssignmentEmployee assignmentEmployee1 = SoftwareHouse.getDatabase().getAssignmentEmployeeByNameAndEmployee(AID01,currentEmployee);
+        AssignmentEmployee assignmentEmployee2 = SoftwareHouse.getDatabase().getAssignmentEmployeeByNameAndEmployee(AID02,currentEmployee);
+        assignmentEmployee1.registerTime(day1,8);
+        assignmentEmployee2.registerTime(day1,8);
         assertEquals(16,SoftwareHouse.getCurrentEmployee().getRegisteredHalfHours(day1));
     }
 
@@ -449,9 +456,11 @@ public class BlackBoxTestRegisterHours {
         assignment2.manAssignment(currentEmployee, week1,1,20);
 
         DayCalendar day1 = new DayCalendar(week1,1);
-        SoftwareHouse.registerTime(day1,12,0);
+        AssignmentEmployee assignmentEmployee1 = SoftwareHouse.getDatabase().getAssignmentEmployeeByNameAndEmployee(AID01, currentEmployee);
+        AssignmentEmployee assignmentEmployee2 = SoftwareHouse.getDatabase().getAssignmentEmployeeByNameAndEmployee(AID02, currentEmployee);
+        assignmentEmployee1.registerTime(day1, 12);
         try {
-            SoftwareHouse.registerTime(day1, 12, 1);
+            assignmentEmployee2.registerTime(day1,12);
         } catch (TooManyHoursException e){
             assertEquals("You have registered too many hours today",e.getMessage());
 
@@ -484,49 +493,45 @@ public class BlackBoxTestRegisterHours {
    Registers 6 hours to the assignment
     */
     @Test
-    public void testRegisterToAssignmentNotMannedTo() throws Exception{
+    public void testRegisterToAssignmentNotMannedTo() throws Exception {
         // Step 1
         System SoftwareHouse = new System();
 
         // Step 2
-        assertEquals(0,SoftwareHouse.getDatabase().getNumberOfEmployees());
+        assertEquals(0, SoftwareHouse.getDatabase().getNumberOfEmployees());
         String EID01 = "CBG";
         SoftwareHouse.createEmployee(EID01);
-        assertEquals(1,SoftwareHouse.getDatabase().getNumberOfEmployees());
+        assertEquals(1, SoftwareHouse.getDatabase().getNumberOfEmployees());
 
         // Step 3
-        assertEquals(0,SoftwareHouse.getDatabase().getNumberOfProjects());
-        String PID01="Project01";
+        assertEquals(0, SoftwareHouse.getDatabase().getNumberOfProjects());
+        String PID01 = "Project01";
         SoftwareHouse.createProject(PID01);
-        Project currentProject=SoftwareHouse.getProjects().get(0);
-        assertEquals(1,SoftwareHouse.getDatabase().getNumberOfProjects());
+        Project currentProject = SoftwareHouse.getProjects().get(0);
+        assertEquals(1, SoftwareHouse.getDatabase().getNumberOfProjects());
 
         // Step 4
         SoftwareHouse.logIn(EID01);
-        assertEquals("CBG",SoftwareHouse.getCurrentEmployee().getEmployeeID());
-        Employee currentEmployee=SoftwareHouse.getCurrentEmployee();
-        assertEquals(0,currentEmployee.getProjectLeaderList().size());
+        assertEquals("CBG", SoftwareHouse.getCurrentEmployee().getEmployeeID());
+        Employee currentEmployee = SoftwareHouse.getCurrentEmployee();
+        assertEquals(0, currentEmployee.getProjectLeaderList().size());
         SoftwareHouse.becomeProjectLeader(currentProject.getProjectID());
-        assertEquals(1,currentEmployee.getProjectLeaderList().size());
+        assertEquals(1, currentEmployee.getProjectLeaderList().size());
 
         // Step 5
-        String AID01="Assignment01";
-        assertEquals(0,currentProject.getAssignmentList().size());
+        String AID01 = "Assignment01";
+        assertEquals(0, currentProject.getAssignmentList().size());
         currentProject.createAssignment(AID01);
-        assertEquals(1,currentProject.getAssignmentList().size());
-        Assignment currentAssignment=currentProject.getAssignmentByName(AID01);
+        assertEquals(1, currentProject.getAssignmentList().size());
+        Assignment currentAssignment = currentProject.getAssignmentByName(AID01);
 
         // Step 6
-        WeekCalendar week1 = new WeekCalendar(2017,1);
+        WeekCalendar week1 = new WeekCalendar(2017, 1);
 
 
-        DayCalendar day1 = new DayCalendar(week1,1);
-        try{
-            SoftwareHouse.registerTime(day1,12,0);
-        } catch (OperationNotAllowedException e){
-            assertEquals("You are not manned to an assignment with the given ID",e.getMessage());
-        }
-        assertEquals(0,SoftwareHouse.getCurrentEmployee().getRegisteredHalfHours(day1));
+        DayCalendar day1 = new DayCalendar(week1, 1);
+        AssignmentEmployee currentAssignmentEmployee = SoftwareHouse.getDatabase().getAssignmentEmployeeByNameAndEmployee(AID01, currentEmployee);
+        assertEquals(currentAssignmentEmployee, null);
     }
 
 
