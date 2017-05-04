@@ -12,8 +12,10 @@ public class System {
     private Database database;
 
     // Constructor
-    public System () {
+    public System(){
         this.database = new Database();
+
+
     }
 
     public String[] logIn(String ID) throws WrongInputException {
