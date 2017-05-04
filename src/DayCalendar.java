@@ -22,7 +22,7 @@ public class DayCalendar {
         if(!(o instanceof DayCalendar)){
             return false;
         }
-        if(dayNumber==((DayCalendar) o).getDayNumber() && weekCalendar==((DayCalendar) o).getWeekCalendar()){
+        if(dayNumber==((DayCalendar) o).getDayNumber() && weekCalendar.equals(((DayCalendar) o).getWeekCalendar())){
             return true;
         }
         return false;
