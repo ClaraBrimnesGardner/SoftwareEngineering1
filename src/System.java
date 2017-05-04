@@ -89,10 +89,10 @@ public class System {
         return new DayCalendar(new WeekCalendar(year,week),day-1);
     }
 
-    public void deleteEmployee (String employeeID) throws WrongInputException {
-        Employee employee = database.getEmployee(employeeID);
-        if (employee.equals(employee)) throw new WrongInputException("You can't delete yourself");
-        database.deleteEmployee(employee);
+    public void removeEmployee (String employeeID) throws WrongInputException {
+        Employee employee1 = database.getEmployee(employeeID);
+        if (employee.equals(employee1)) throw new WrongInputException("You can't delete yourself");
+        database.deleteEmployee(employee1);
     }
 
     // Getter methods

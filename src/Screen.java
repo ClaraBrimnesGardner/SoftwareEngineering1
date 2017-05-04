@@ -193,6 +193,11 @@ public class Screen {
         frame.getContentPane().add(lblHours);
         lblHours.setVisible(false);
 
+        JLabel lblChooseAnEmployee = new JLabel("Choose an employee in the list to delete");
+        lblChooseAnEmployee.setBounds(112, 203, 331, 16);
+        frame.getContentPane().add(lblChooseAnEmployee);
+        lblChooseAnEmployee.setVisible(false);
+
 
         /**    BUTTONS     **/
 
@@ -232,6 +237,11 @@ public class Screen {
         btnYourProjects.setBounds(277, 246, 203, 29);
         frame.getContentPane().add(btnYourProjects);
         btnYourProjects.setVisible(false);
+
+        JButton btnDeleteEmployees = new JButton("Delete employees");
+        btnDeleteEmployees.setBounds(163, 339, 203, 29);
+        frame.getContentPane().add(btnDeleteEmployees);
+        btnDeleteEmployees.setVisible(false);
 
         JButton btnMenu = new JButton("Menu");
         btnMenu.setBounds(265, 13, 117, 29);
@@ -292,6 +302,11 @@ public class Screen {
         btnOldRegistrations.setBounds(148, 77, 203, 29);
         frame.getContentPane().add(btnOldRegistrations);
         btnOldRegistrations.setVisible(false);
+
+        JButton btnDeleteEmployee2 = new JButton("Delete");
+        btnDeleteEmployee2.setBounds(188, 231, 117, 29);
+        frame.getContentPane().add(btnDeleteEmployee2);
+        btnDeleteEmployee2.setVisible(false);
 
 
 
@@ -403,11 +418,12 @@ public class Screen {
                     btnSeekAssistance.setVisible(true);
                     btnMenu.setVisible(true);
                     btnYourProjects.setVisible(true);
+                    btnDeleteEmployees.setVisible(true);
                     lblSoftwarehuset.setVisible(false);
                     lblAs.setVisible(false);
                 } catch (WrongInputException e1) {
                     e1.printStackTrace();
-                    JOptionPane.showMessageDialog(null,"Employee does not exist");
+                    JOptionPane.showMessageDialog(null,e1.getMessage());
                 }
             }
         });
@@ -425,12 +441,13 @@ public class Screen {
                     btnRegisterTime.setVisible(true);
                     btnSeekAssistance.setVisible(true);
                     btnMenu.setVisible(true);
+                    btnDeleteEmployees.setVisible(true);
                     btnYourProjects.setVisible(true);
                     lblSoftwarehuset.setVisible(false);
                     lblAs.setVisible(false);
                 } catch (WrongInputException e1) {
                     e1.printStackTrace();
-                    JOptionPane.showMessageDialog(null,"Employee does not exist");
+                    JOptionPane.showMessageDialog(null,e1.getMessage());
                 }
             }
         });
@@ -443,7 +460,7 @@ public class Screen {
                     textAddEmployee.setText("");
                 } catch (WrongInputException e1) {
                     e1.printStackTrace();
-                    JOptionPane.showMessageDialog(null,"Employee already exists");
+                    JOptionPane.showMessageDialog(null,e1.getMessage());
                 }
             }
         });
@@ -456,7 +473,7 @@ public class Screen {
                     textAddEmployee.setText("");
                 } catch (WrongInputException e1) {
                     e1.printStackTrace();
-                    JOptionPane.showMessageDialog(null,"Employee already exists");
+                    JOptionPane.showMessageDialog(null,e1.getMessage());
                 }
             }
         });
@@ -470,7 +487,7 @@ public class Screen {
                     textAddProject.setText("");
                 } catch (WrongInputException e1) {
                     e1.printStackTrace();
-                    JOptionPane.showMessageDialog(null,"Project already exists");
+                    JOptionPane.showMessageDialog(null,e1.getMessage());
                 }
             }
         });
@@ -482,7 +499,7 @@ public class Screen {
                     textAddProject.setText("");
                 } catch (WrongInputException e1) {
                     e1.printStackTrace();
-                    JOptionPane.showMessageDialog(null,"Project already exists");
+                    JOptionPane.showMessageDialog(null,e1.getMessage());
                 }
             }
         });
@@ -498,6 +515,7 @@ public class Screen {
                 btnSeekAssistance.setVisible(false);
                 btnYourProjects.setVisible(false);
                 btnLeadProject.setVisible(true);
+                btnDeleteEmployees.setVisible(false);
                 DefaultListModel projects = new DefaultListModel();
                 for (Project project : system.getDatabase().getAvailableProjects()) {
                     String name = "Name:  " + project.getName() + "   ID:   " + project.getProjectID();
@@ -519,7 +537,7 @@ public class Screen {
                     system.becomeProjectLeader(ID);
                 } catch (OperationNotAllowedException e1) {
                     e1.printStackTrace();
-                    JOptionPane.showMessageDialog(null,"Project already has a leader");
+                    JOptionPane.showMessageDialog(null,e1.getMessage());
                 }
                 DefaultListModel projects = new DefaultListModel();
                 for (Project project : system.getDatabase().getAvailableProjects()) {
@@ -541,6 +559,7 @@ public class Screen {
                 btnRegisterTime.setVisible(false);
                 btnSeekAssistance.setVisible(false);
                 btnYourProjects.setVisible(false);
+                btnDeleteEmployees.setVisible(false);
                 DefaultListModel projects = new DefaultListModel();
                 for (Project project : system.getDatabase().getProjectLeaderList(system.getCurrentEmployee())) {
                     String name = "Name:  " + project.getName() + "   ID:   " + project.getProjectID();
@@ -588,7 +607,7 @@ public class Screen {
                     system.getDatabase().getProject(currentProjectID).createAssignment(textCreateAssignment.getText());
                 } catch (WrongInputException e1) {
                     e1.printStackTrace();
-                    JOptionPane.showMessageDialog(null,"There is already an assignment by that name");
+                    JOptionPane.showMessageDialog(null,e1.getMessage());
                 }
                 DefaultListModel assignmentList = new DefaultListModel();
                 for (Assignment assignment : system.getDatabase().getProject(currentProjectID).getAssignmentList()) {
@@ -607,7 +626,7 @@ public class Screen {
                     system.getDatabase().getProject(currentProjectID).createAssignment(textCreateAssignment.getText());
                 } catch (WrongInputException e1) {
                     e1.printStackTrace();
-                    JOptionPane.showMessageDialog(null,"There is already an assignment by that name");
+                    JOptionPane.showMessageDialog(null,e1.getMessage());
                 }
                 DefaultListModel assignmentList = new DefaultListModel();
                 for (Assignment assignment : system.getDatabase().getProject(currentProjectID).getAssignmentList()) {
@@ -695,6 +714,7 @@ public class Screen {
                     system.getDatabase().getProject(currentProjectID).getAssignmentByName(currentAssignmentName).manAssignment(system.getDatabase().getEmployee(name),weekCalendar,duration,hours);
                 } catch (WrongInputException e1) {
                     e1.printStackTrace();
+                    JOptionPane.showMessageDialog(null,e1.getMessage());
 
                 }
                 DefaultListModel employees = new DefaultListModel();
@@ -730,6 +750,7 @@ public class Screen {
                 textYearNumber.setVisible(true);
                 lblYearNumber.setVisible(true);
                 textHoursRegistration.setVisible(true);
+                btnDeleteEmployees.setVisible(false);
                 lblHours.setVisible(true);
                 DefaultListModel assignments = new DefaultListModel();
                 for (AssignmentEmployee assignment : system.getDatabase().getAssignmentEmployeeList(system.getCurrentEmployee().getEmployeeID())) {
@@ -750,11 +771,12 @@ public class Screen {
                 String assignmentName = (String) list.getModel().getElementAt(list.getSelectedIndex());
                 WeekCalendar weekCalendar = new WeekCalendar(Integer.parseInt(textYearNumber.getText()),Integer.parseInt(textWeekNumber.getText()));
                 DayCalendar dayCalendar = new DayCalendar(weekCalendar,Integer.parseInt(textDayNumber.getText()));
+                AssignmentEmployee currentAssignmentEmployee = system.getDatabase().getAssignmentEmployeeByNameAndEmployee(assignmentName,system.getCurrentEmployee());
                 try {
-                    system.getDatabase().getAssignmentEmployeeByNameAndEmployee(assignmentName,system.getCurrentEmployee()).registerTime(dayCalendar,system.convertToHalfHours(Double.parseDouble(textHoursRegistration.getText())));
-                } catch (TooManyHoursException e1) {
+                    system.registerTime(dayCalendar,system.convertToHalfHours(Double.parseDouble(textHoursRegistration.getText())),currentAssignmentEmployee.getTaskID());
+                } catch (Exception e1) {
                     e1.printStackTrace();
-                    JOptionPane.showMessageDialog(null,"You have registered too many hours today");
+                    JOptionPane.showMessageDialog(null,e1.getMessage());
                 }
                 textHoursRegistration.setText("");
             }
@@ -791,6 +813,46 @@ public class Screen {
         });
 
 
+
+        btnDeleteEmployees.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                btnBecomeProjectLeader.setVisible(false);
+                btnRegisterTime.setVisible(false);
+                btnSeekAssistance.setVisible(false);
+                btnYourProjects.setVisible(false);
+                btnDeleteEmployees.setVisible(false);
+                lblListExplainer.setText("All employees;");
+                lblChooseAnEmployee.setVisible(true);
+                btnDeleteEmployee2.setVisible(true);
+                DefaultListModel employees = new DefaultListModel();
+                for (Employee employee : system.getEmployees()) {
+                    if (!system.getCurrentEmployee().equals(employee)) {
+                        employees.addElement(employee.getEmployeeID());
+                    }
+                }
+                list.setModel(employees);
+            }
+        });
+
+        btnDeleteEmployee2.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                try {
+                    system.removeEmployee((String) list.getModel().getElementAt(list.getSelectedIndex()));
+                } catch (WrongInputException e1) {
+                    e1.printStackTrace();
+                    JOptionPane.showMessageDialog(null,e1.getMessage());
+                }
+                DefaultListModel employees = new DefaultListModel();
+                for (Employee employee : system.getEmployees()) {
+                    if (!system.getCurrentEmployee().equals(employee)) {
+                        employees.addElement(employee.getEmployeeID());
+                    }
+                }
+                list.setModel(employees);
+            }
+        });
 
         /** MENU button **/
         btnMenu.addActionListener(new ActionListener() {
@@ -847,6 +909,9 @@ public class Screen {
                 lblYearNumber.setVisible(false);
                 textHoursRegistration.setVisible(false);
                 lblHours.setVisible(false);
+                btnDeleteEmployees.setVisible(true);
+                lblChooseAnEmployee.setVisible(false);
+                btnDeleteEmployee2.setVisible(false);
 
             }
         });
@@ -913,6 +978,9 @@ public class Screen {
                 lblYearNumber.setVisible(false);
                 textHoursRegistration.setVisible(false);
                 lblHours.setVisible(false);
+                btnDeleteEmployees.setVisible(false);
+                lblChooseAnEmployee.setVisible(false);
+                btnDeleteEmployee2.setVisible(false);
             }
         });
 
