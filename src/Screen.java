@@ -510,12 +510,8 @@ public class Screen {
             public void actionPerformed(ActionEvent e) {
                 lblListExplainer.setText("AvailableProjects:");
                 lblTypeProjectID.setVisible(true);
-                btnBecomeProjectLeader.setVisible(false);
-                btnRegisterTime.setVisible(false);
-                btnSeekAssistance.setVisible(false);
-                btnYourProjects.setVisible(false);
                 btnLeadProject.setVisible(true);
-                btnDeleteEmployees.setVisible(false);
+                frontScreenRemoving(btnBecomeProjectLeader,btnRegisterTime,btnSeekAssistance,btnYourProjects,btnDeleteEmployees);
                 DefaultListModel projects = new DefaultListModel();
                 for (Project project : system.getDatabase().getAvailableProjects()) {
                     String name = "Name:  " + project.getName() + "   ID:   " + project.getProjectID();
@@ -555,11 +551,7 @@ public class Screen {
                 lblListExplainer.setText("Your projects:");
                 lblChooseProject.setVisible(true);
                 btnChoose.setVisible(true);
-                btnBecomeProjectLeader.setVisible(false);
-                btnRegisterTime.setVisible(false);
-                btnSeekAssistance.setVisible(false);
-                btnYourProjects.setVisible(false);
-                btnDeleteEmployees.setVisible(false);
+                frontScreenRemoving(btnBecomeProjectLeader, btnRegisterTime, btnSeekAssistance, btnYourProjects, btnDeleteEmployees);
                 DefaultListModel projects = new DefaultListModel();
                 for (Project project : system.getDatabase().getProjectLeaderList(system.getCurrentEmployee())) {
                     String name = "Name:  " + project.getName() + "   ID:   " + project.getProjectID();
@@ -738,10 +730,7 @@ public class Screen {
         btnRegisterTime.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                btnBecomeProjectLeader.setVisible(false);
-                btnRegisterTime.setVisible(false);
-                btnSeekAssistance.setVisible(false);
-                btnYourProjects.setVisible(false);
+                frontScreenRemoving(btnBecomeProjectLeader,btnRegisterTime,btnSeekAssistance,btnYourProjects,btnDeleteEmployees);
                 lblListExplainer.setText("Your assignments:");
                 btnRegisterTime2.setVisible(true);
                 btnToday.setVisible(true);
@@ -750,7 +739,6 @@ public class Screen {
                 textYearNumber.setVisible(true);
                 lblYearNumber.setVisible(true);
                 textHoursRegistration.setVisible(true);
-                btnDeleteEmployees.setVisible(false);
                 lblHours.setVisible(true);
                 DefaultListModel assignments = new DefaultListModel();
                 for (AssignmentEmployee assignment : system.getDatabase().getAssignmentEmployeeList(system.getCurrentEmployee().getEmployeeID())) {
@@ -773,7 +761,7 @@ public class Screen {
                 DayCalendar dayCalendar = new DayCalendar(weekCalendar,Integer.parseInt(textDayNumber.getText()));
                 AssignmentEmployee currentAssignmentEmployee = system.getDatabase().getAssignmentEmployeeByNameAndEmployee(assignmentName,system.getCurrentEmployee());
                 try {
-                    system.registerTime(dayCalendar,system.convertToHalfHours(Double.parseDouble(textHoursRegistration.getText())),currentAssignmentEmployee.getTaskID());
+                    currentAssignmentEmployee.registerTime(dayCalendar,system.convertToHalfHours(Double.parseDouble(textHoursRegistration.getText())));
                 } catch (Exception e1) {
                     e1.printStackTrace();
                     JOptionPane.showMessageDialog(null,e1.getMessage());
@@ -817,11 +805,7 @@ public class Screen {
         btnDeleteEmployees.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                btnBecomeProjectLeader.setVisible(false);
-                btnRegisterTime.setVisible(false);
-                btnSeekAssistance.setVisible(false);
-                btnYourProjects.setVisible(false);
-                btnDeleteEmployees.setVisible(false);
+                frontScreenRemoving(btnBecomeProjectLeader, btnRegisterTime, btnSeekAssistance, btnYourProjects, btnDeleteEmployees);
                 lblListExplainer.setText("All employees;");
                 lblChooseAnEmployee.setVisible(true);
                 btnDeleteEmployee2.setVisible(true);
@@ -984,5 +968,13 @@ public class Screen {
             }
         });
 
+    }
+
+    private void frontScreenRemoving(JButton btnBecomeProjectLeader, JButton btnRegisterTime, JButton btnSeekAssistance, JButton btnYourProjects, JButton btnDeleteEmployees) {
+        btnBecomeProjectLeader.setVisible(false);
+        btnRegisterTime.setVisible(false);
+        btnSeekAssistance.setVisible(false);
+        btnYourProjects.setVisible(false);
+        btnDeleteEmployees.setVisible(false);
     }
 }
