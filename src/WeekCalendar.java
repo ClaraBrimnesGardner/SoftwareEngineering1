@@ -63,7 +63,15 @@ public class WeekCalendar {
         }
         return false;
     }
-    
+
+    // Calculates the difference in weeks
+    public int weeksTo(WeekCalendar weekCalendar) {
+        int weeks = weekCalendar.getWeekNumber()-weekNumber;
+        int years = weekCalendar.getYear()-year;
+        weeks += years*52;
+        return weeks;
+
+    }
 
 
 }

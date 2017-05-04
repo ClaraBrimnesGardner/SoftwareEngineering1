@@ -203,6 +203,16 @@ public class Screen {
         frame.getContentPane().add(lblDeleteProject);
         lblDeleteProject.setVisible(false);
 
+        JLabel lblDeleteAssignmentFrom = new JLabel("Delete assignment from list:");
+        lblDeleteAssignmentFrom.setBounds(129, 325, 216, 16);
+        frame.getContentPane().add(lblDeleteAssignmentFrom);
+        lblDeleteAssignmentFrom.setVisible(false);
+
+        JLabel lblChooseAnAssignmentSeekAssistance = new JLabel("Choose an assignment in the list:");
+        lblChooseAnAssignmentSeekAssistance.setBounds(132, 220, 235, 16);
+        frame.getContentPane().add(lblChooseAnAssignmentSeekAssistance);
+        lblChooseAnAssignmentSeekAssistance.setVisible(false);
+
 
         /**    BUTTONS     **/
 
@@ -317,6 +327,26 @@ public class Screen {
         btnDeleteProject.setBounds(194, 255, 117, 29);
         frame.getContentPane().add(btnDeleteProject);
         btnDeleteProject.setVisible(false);
+
+        JButton btnDeleteAssignment = new JButton("Delete");
+        btnDeleteAssignment.setBounds(167, 353, 117, 29);
+        frame.getContentPane().add(btnDeleteAssignment);
+        btnDeleteAssignment.setVisible(false);
+
+        JButton btnChooseAssignmentSeekAssistance = new JButton("Choose");
+        btnChooseAssignmentSeekAssistance.setBounds(176, 248, 117, 29);
+        frame.getContentPane().add(btnChooseAssignmentSeekAssistance);
+        btnChooseAssignmentSeekAssistance.setVisible(false);
+
+        JButton btnGetAvailableEmployees2 = new JButton("Get available employees");
+        btnGetAvailableEmployees2.setBounds(360, 135, 176, 29);
+        frame.getContentPane().add(btnGetAvailableEmployees2);
+        btnGetAvailableEmployees2.setVisible(false);
+
+        JButton btnSeekAssistance2 = new JButton("Seek assistance");
+        btnSeekAssistance2.setBounds(360, 168, 176, 29);
+        frame.getContentPane().add(btnSeekAssistance2);
+        btnSeekAssistance2.setVisible(false);
 
 
         /**     TEXTFIELDS:     **/
@@ -594,6 +624,8 @@ public class Screen {
                 lblChooseAssignmentFrom.setVisible(true);
                 btnChooseAssignment.setVisible(true);
                 btnCreateAssignment.setVisible(true);
+                btnDeleteAssignment.setVisible(true);
+                lblDeleteAssignmentFrom.setVisible(true);
                 lblListExplainer.setText("Assignments in " + system.getDatabase().getProject(currentProjectID).getProjectName() + ":");
                 DefaultListModel assignmentList = new DefaultListModel();
                 for (Assignment assignment : system.getDatabase().getProject(currentProjectID).getAssignmentList()) {
@@ -647,6 +679,24 @@ public class Screen {
             }
         });
 
+        btnDeleteAssignment.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                try {
+                    system.removeAssignment((String) list.getModel().getElementAt(list.getSelectedIndex()));
+                } catch (WrongInputException e1) {
+                    e1.printStackTrace();
+                    JOptionPane.showMessageDialog(null,e1.getMessage());
+                }
+                DefaultListModel assignmentList = new DefaultListModel();
+                for (Assignment assignment : system.getDatabase().getProject(currentProjectID).getAssignmentList()) {
+                    assignmentList.addElement(assignment.getName());
+                }
+                list.setModel(assignmentList);
+
+            }
+        });
+
         btnCreateAssignment.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -688,9 +738,15 @@ public class Screen {
                 btnSetBudgettedTime.setVisible(true);
                 textStartWeek.setVisible(true);
                 textDuration.setVisible(true);
+                textDuration.setText("");
                 textHours.setVisible(true);
+                textHours.setText("");
                 textYear.setVisible(true);
                 lblYear.setVisible(true);
+                textYear.setText("" + system.getThisDay().weekCalendar.getYear());
+                textStartWeek.setText("" + system.getThisDay().weekCalendar.getWeekNumber());
+                btnDeleteAssignment.setVisible(false);
+                lblDeleteAssignmentFrom.setVisible(false);
                 btnGetAvailableEmployees.setVisible(true);
                 lblBudgettedTime.setText("Budgetted time:  " + system.getDatabase().getProject(currentProjectID).getAssignmentByName(currentAssignmentName).getBudgetedTime() + " hours");
 
@@ -829,12 +885,87 @@ public class Screen {
                 DefaultListModel oldRegistrations = new DefaultListModel();
                 for (AssignmentEmployee assignmentEmployee : system.getDatabase().getAssignmentEmployeeList(system.getCurrentEmployee().employeeID)) {
                     for (DayRegistration dayRegistration : assignmentEmployee.getDayRegistrationList()) {
-                        oldRegistrations.addElement(assignmentEmployee.getAssignment().getName() + " on " + dayRegistration.getDayCalendar().weekCalendar.getYear() + "/" + dayRegistration.getDayCalendar().weekCalendar.getWeekNumber() + "/" + dayRegistration.getDayCalendar().dayNumber + "  Hours: " + ((double) dayRegistration.getRegisteredHalfHours()) / 2);
+                        oldRegistrations.addElement(assignmentEmployee.getAssignment().getName() + " on " +
+                                dayRegistration.getDayCalendar().weekCalendar.getYear() + "/" + dayRegistration.getDayCalendar().weekCalendar.getWeekNumber() +
+                                "/" + dayRegistration.getDayCalendar().dayNumber + "  Hours: " + ((double) dayRegistration.getRegisteredHalfHours()) / 2);
                     }
                 }
                 list.setModel(oldRegistrations);
             }
         });
+
+        btnSeekAssistance.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                frontScreenRemoving(btnBecomeProjectLeader,btnRegisterTime,btnSeekAssistance,btnYourProjects,btnDeleteEmployees);
+                DefaultListModel assignments = new DefaultListModel();
+                for (AssignmentEmployee assignment : system.getDatabase().getAssignmentEmployeeList(system.getCurrentEmployee().getEmployeeID())) {
+                    assignments.addElement(assignment.getAssignment().getName());
+                }
+                list.setModel(assignments);
+                lblListExplainer.setText("Your assignments:");
+                btnChooseAssignmentSeekAssistance.setVisible(true);
+                lblChooseAnAssignmentSeekAssistance.setVisible(true);
+            }
+        });
+
+        btnChooseAssignmentSeekAssistance.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                currentAssignmentName = (String) list.getModel().getElementAt(list.getSelectedIndex());
+                btnChooseAssignmentSeekAssistance.setVisible(false);
+                lblChooseAnAssignmentSeekAssistance.setVisible(false);
+                textHours.setVisible(true);
+                textHours.setText("");
+                textDuration.setVisible(true);
+                textDuration.setText("");
+                textYear.setVisible(true);
+                textStartWeek.setVisible(true);
+                textYear.setText("" + system.getThisDay().weekCalendar.getYear());
+                textStartWeek.setText("" + system.getThisDay().weekCalendar.getWeekNumber());
+                lblNumberOfHours.setVisible(true);
+                lblYear.setVisible(true);
+                lblStartWeek.setVisible(true);
+                lblDuration.setVisible(true);
+                btnGetAvailableEmployees2.setVisible(true);
+                lblListExplainer.setText("");
+                setListEmpty(list);
+            }
+        });
+
+        btnGetAvailableEmployees2.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                WeekCalendar startWeek = new WeekCalendar(Integer.parseInt(textYear.getText()), Integer.parseInt(textStartWeek.getText()));
+                DefaultListModel employees = new DefaultListModel();
+                for (Employee employee : system.getDatabase().getAvailableEmployees(startWeek, Integer.parseInt(textDuration.getText()),
+                        system.convertToHalfHours(Double.parseDouble(textHours.getText())))) {
+                    employees.addElement(employee.getEmployeeID());
+                }
+                list.setModel(employees);
+                lblListExplainer.setText("Available employees:");
+                lblChooseAvailableEmployee.setVisible(true);
+                btnSeekAssistance2.setVisible(true);
+            }
+        });
+
+        btnSeekAssistance2.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                try {
+                    system.seekAssistance((String)list.getModel().getElementAt(list.getSelectedIndex()),currentAssignmentName,
+                            Integer.parseInt(textYear.getText()),Integer.parseInt(textStartWeek.getText()),
+                            system.convertToHalfHours(Double.parseDouble(textHours.getText())));
+                } catch (WrongInputException e1) {
+                    e1.printStackTrace();
+                    JOptionPane.showMessageDialog(null,e1.getMessage());
+                }
+            }
+        });
+
+
+
+
 
 
         btnDeleteEmployees.addActionListener(new ActionListener() {
@@ -882,11 +1013,13 @@ public class Screen {
                 btnSeekAssistance.setVisible(true);
                 btnMenu.setVisible(true);
                 btnYourProjects.setVisible(true);
-                lblListExplainer.setText("");
+                btnDeleteEmployees.setVisible(true);
+
+
                 lblTypeProjectID.setVisible(false);
                 btnLeadProject.setVisible(false);
-                DefaultListModel emptymodel = new DefaultListModel();
-                list.setModel(emptymodel);
+                lblListExplainer.setText("");
+                setListEmpty(list);
                 lblChooseProject.setVisible(false);
                 btnChoose.setVisible(false);
                 lblWorkingWith.setVisible(false);
@@ -928,11 +1061,16 @@ public class Screen {
                 lblYearNumber.setVisible(false);
                 textHoursRegistration.setVisible(false);
                 lblHours.setVisible(false);
-                btnDeleteEmployees.setVisible(true);
                 lblChooseAnEmployee.setVisible(false);
                 btnDeleteEmployee2.setVisible(false);
                 lblDeleteProject.setVisible(false);
                 btnDeleteProject.setVisible(false);
+                btnDeleteAssignment.setVisible(false);
+                lblDeleteAssignmentFrom.setVisible(false);
+                btnChooseAssignmentSeekAssistance.setVisible(false);
+                lblChooseAnAssignmentSeekAssistance.setVisible(false);
+                btnGetAvailableEmployees2.setVisible(false);
+                btnSeekAssistance2.setVisible(false);
 
             }
         });
@@ -945,13 +1083,16 @@ public class Screen {
                 btnLogin.setVisible(true);
                 textFieldLogIn.setVisible(true);
                 btnLogOff.setVisible(false);
-                lblLoggedInAs2.setText("");
                 frontScreenRemoving(btnBecomeProjectLeader, btnRegisterTime, btnSeekAssistance, btnYourProjects, btnDeleteEmployees);
+                lblLoggedInAs2.setText("");
                 btnMenu.setVisible(false);
+                lblSoftwarehuset.setVisible(true);
+                lblAs.setVisible(true);
+
                 lblTypeProjectID.setVisible(false);
                 btnLeadProject.setVisible(false);
-                setListEmpty(list);
                 lblListExplainer.setText("");
+                setListEmpty(list);
                 lblChooseProject.setVisible(false);
                 btnChoose.setVisible(false);
                 lblWorkingWith.setVisible(false);
@@ -962,8 +1103,6 @@ public class Screen {
                 lblChooseAssignmentFrom.setVisible(false);
                 btnChooseAssignment.setVisible(false);
                 btnCreateAssignment.setVisible(false);
-                lblSoftwarehuset.setVisible(true);
-                lblAs.setVisible(true);
                 lblStartWeek.setVisible(false);
                 lblDuration.setVisible(false);
                 lblNumberOfHours.setVisible(false);
@@ -999,6 +1138,12 @@ public class Screen {
                 btnDeleteEmployee2.setVisible(false);
                 lblDeleteProject.setVisible(false);
                 btnDeleteProject.setVisible(false);
+                btnDeleteAssignment.setVisible(false);
+                lblDeleteAssignmentFrom.setVisible(false);
+                btnChooseAssignmentSeekAssistance.setVisible(false);
+                lblChooseAnAssignmentSeekAssistance.setVisible(false);
+                btnGetAvailableEmployees2.setVisible(false);
+                btnSeekAssistance2.setVisible(false);
             }
         });
 
