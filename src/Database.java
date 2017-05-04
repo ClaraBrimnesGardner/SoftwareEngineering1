@@ -178,18 +178,23 @@ public class Database {
     public void deleteProject(Project project1) throws WrongInputException {
         if (project1==null) throw new WrongInputException("Project doesn't exist");
         if (!projectList.remove(project1)) throw new WrongInputException("Project doesn't exist");
-        deleteAssignment(project1);
+        deleteProjectAssignment(project1);
     }
 
-    private void deleteAssignment(Project project1) throws WrongInputException {
+    private void deleteProjectAssignment(Project project1) throws WrongInputException {
         for (Assignment assignment1: assignmentList) {
             if (assignment1.getProject().equals(project1)) {
-                if (assignment1 == null) throw new WrongInputException("Assignement doesn't exist");
-                if (!assignmentList.remove(assignment1)) throw new WrongInputException("Assignment doesn't exsist");
-                deleteAssignmentEmployee(assignment1);
+                deleteAssignment(assignment1);
             }
         }
     }
+
+    public void deleteAssignment(Assignment assignment1) throws WrongInputException{
+        if (assignment1 == null) throw new WrongInputException("Assignement doesn't exist");
+        if (!assignmentList.remove(assignment1)) throw new WrongInputException("Assignment doesn't exsist");
+        deleteAssignmentEmployee(assignment1);
+    }
+
 
     private void deleteAssignmentEmployee(Assignment assignment1) {
         for (AssignmentEmployee assignmentEmployee: assignmentEmployeeList) {
