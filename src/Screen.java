@@ -789,7 +789,7 @@ public class Screen {
             }
         });
 
-        /*btnRegisterTime2.addActionListener(new ActionListener() {
+        btnRegisterTime2.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 String assignmentName = (String) list.getModel().getElementAt(list.getSelectedIndex());
@@ -804,7 +804,7 @@ public class Screen {
                 }
                 textHoursRegistration.setText("");
             }
-        });*/
+        });
 
         btnOldRegistrations.addActionListener(new ActionListener() {
             @Override

@@ -33,7 +33,7 @@ public class BlackBoxTestRegisterHours {
      */
 
     @Test
-    public void testRegisterLessThanAllowedTimeOneDayOneProject()throws Exception{
+    public void testRegisterLessThanAllowedTimeOneDayOneProject() throws Exception{
         // Step 1
         System SoftwareHouse = new System();
 
@@ -74,6 +74,9 @@ public class BlackBoxTestRegisterHours {
         AssignmentEmployee currentAssignmentEmployee = SoftwareHouse.getDatabase().getAssignmentEmployeeByNameAndEmployee(AID01,currentEmployee);
         currentAssignmentEmployee.registerTime(day1,8);
         assertEquals(8,SoftwareHouse.getCurrentEmployee().getRegisteredHalfHours(day1));
+        DayCalendar day2= new DayCalendar(week1, 1);
+        currentAssignmentEmployee.registerTime(day2,9);
+        assertEquals(17, SoftwareHouse.getCurrentEmployee().getRegisteredHalfHours(day1));
     }
 
      /*
