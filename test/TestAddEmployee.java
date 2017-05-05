@@ -13,10 +13,10 @@ public class TestAddEmployee {
     @Test
     public void testAddEmployee() throws Exception {
         System SoftwareHouse = new System();
-        String ID = "Employee1";
+        String ID = "CBG";
         SoftwareHouse.createEmployee(ID);
         assertEquals(SoftwareHouse.getEmployees().size(),1);
-        assertEquals(SoftwareHouse.getEmployees().get(0).getEmployeeID(), "Employee1");
+        assertEquals(SoftwareHouse.getEmployees().get(0).getEmployeeID(), "CBG");
     }
 
     /*
@@ -26,10 +26,10 @@ public class TestAddEmployee {
     @Test
     public void testAddExistingEmployee() throws Exception{
         System SoftwareHouse = new System();
-        String ID = "Employee1";
+        String ID = "CBG";
         SoftwareHouse.createEmployee(ID);
         assertEquals(SoftwareHouse.getEmployees().size(),1);
-        assertEquals(SoftwareHouse.getEmployees().get(0).getEmployeeID(), "Employee1");
+        assertEquals(SoftwareHouse.getEmployees().get(0).getEmployeeID(), "CBG");
         try{
             SoftwareHouse.createEmployee(ID);
         } catch (WrongInputException e){
@@ -40,9 +40,9 @@ public class TestAddEmployee {
     @Test
     public void testAddTwoEmployees() throws Exception{
         System SoftwareHouse = new System();
-        String ID1 = "Employee1";
+        String ID1 = "CBG";
         SoftwareHouse.createEmployee(ID1);
-        String ID2 = "Employee2";
+        String ID2 = "SDN";
         SoftwareHouse.createEmployee(ID2);
         assertEquals(SoftwareHouse.getEmployees().size(),2);
     }

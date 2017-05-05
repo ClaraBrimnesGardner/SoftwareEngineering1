@@ -12,9 +12,9 @@ public class testLogIn {
         // Creates a system
         System SoftwareHouse = new System();
         assertEquals(SoftwareHouse.getCurrentEmployee(),null);
-        SoftwareHouse.createEmployee("Employee1");
-        SoftwareHouse.logIn("Employee1");
-        assertEquals(SoftwareHouse.getCurrentEmployee().getEmployeeID(),"Employee1");
+        SoftwareHouse.createEmployee("CBG");
+        SoftwareHouse.logIn("CBG");
+        assertEquals(SoftwareHouse.getCurrentEmployee().getEmployeeID(),"CBG");
         assertEquals(SoftwareHouse.getEmployees().get(0),SoftwareHouse.getCurrentEmployee());
         SoftwareHouse.logOff();
         assertEquals(SoftwareHouse.getCurrentEmployee(),null);

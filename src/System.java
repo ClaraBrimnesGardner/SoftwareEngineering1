@@ -37,6 +37,9 @@ public class System {
     }
 
     public void createEmployee (String ID) throws WrongInputException {
+        if(ID.length()>4){
+            throw new WrongInputException("ID is to long");
+        }
         for (Employee employee:database.employeeList){
             if(employee.getEmployeeID().equals((ID))) throw new WrongInputException("Employee ID is used");
         }

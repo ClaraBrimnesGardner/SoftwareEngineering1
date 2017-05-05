@@ -14,9 +14,9 @@ public class TestRemoveEmployee {
         // Creates a system
         System SoftwareHouse = new System();
         // create two employees
-        String ID1 = "Employee1";
+        String ID1 = "CBG";
         SoftwareHouse.createEmployee(ID1);
-        String ID2 = "Employee2";
+        String ID2 = "SDN";
         SoftwareHouse.createEmployee(ID2);
         // check size of employee list
         assertEquals(SoftwareHouse.getEmployees().size(), 2);
@@ -27,16 +27,16 @@ public class TestRemoveEmployee {
             assertEquals("Employee doesn't exist", e.getMessage());
 
         }
-        SoftwareHouse.logIn("Employee1");
+        SoftwareHouse.logIn("CBG");
 
         // try to remove logged in employee
         try{
-            SoftwareHouse.removeEmployee("Employee1");
+            SoftwareHouse.removeEmployee("CBG");
         } catch(WrongInputException e){
             assertEquals("You can't delete yourself", e.getMessage());
         }
-        // remove employee2
-        SoftwareHouse.removeEmployee("Employee2");
+        // remove SDN
+        SoftwareHouse.removeEmployee("SDN");
         // check size of employee list
         assertEquals(SoftwareHouse.getEmployees().size(), 1);
     }
@@ -50,12 +50,12 @@ public class TestRemoveEmployee {
         System SoftwareHouse = new System();
 
         // Adds two employees
-        String ID01="Employee01";
+        String ID01="CBG";
         SoftwareHouse.createEmployee(ID01);
-        Employee Employee1 = SoftwareHouse.getEmployees().get(0);
-        String ID02="Employee02";
+        Employee CBG = SoftwareHouse.getEmployees().get(0);
+        String ID02="SDN";
         SoftwareHouse.createEmployee(ID02);
-        Employee Employee2 = SoftwareHouse.getEmployees().get(1);
+        Employee SDN = SoftwareHouse.getEmployees().get(1);
 
         // Adds a project
         String projectID="Project";
@@ -96,7 +96,7 @@ public class TestRemoveEmployee {
         // Man assignment to create an AssignmentEmployee
         WeekCalendar week1 = new WeekCalendar(2017,9);
         SoftwareHouse.getDatabase().getAssignment(assignmentID02).setBudgetedTime(170);
-        SoftwareHouse.getDatabase().getAssignment(assignmentID02).manAssignment(Employee1,week1,2,170);
+        SoftwareHouse.getDatabase().getAssignment(assignmentID02).manAssignment(CBG,week1,2,170);
         assertEquals(SoftwareHouse.getDatabase().getAssignmentEmployeeListWork(ID01).size(),1);
         assertEquals(SoftwareHouse.getDatabase().getAssignmentEmployeeListWork(ID01).get(0).getTaskID(),2);
         // Remove assignment1

@@ -10,7 +10,7 @@ public class testBecomeProjectleader {
     public void testBecomeProjectLeader() throws Exception{
         System SoftwareHouse = new System();
         // Adds an employee
-        String ID="Employee1";
+        String ID="CBG";
         SoftwareHouse.createEmployee(ID);
         assertEquals(SoftwareHouse.getEmployees().size(),1);
 
@@ -37,7 +37,7 @@ public class testBecomeProjectleader {
     public void testOnlyOneProjectLeader() throws Exception{
         System SoftwareHouse = new System();
         // Adds an employee
-        String ID="Employee1";
+        String ID="CBG";
         SoftwareHouse.createEmployee(ID);
         assertEquals(SoftwareHouse.getEmployees().size(),1);
 
@@ -56,7 +56,7 @@ public class testBecomeProjectleader {
         SoftwareHouse.logOff();
 
         // Creates a new employee
-        String ID2="Employee2";
+        String ID2="SDN";
         SoftwareHouse.createEmployee(ID2);
         SoftwareHouse.logIn(ID2);
         //assertEquals(SoftwareHouse.getCurrentEmployee().getProjectLeaderList().size(),0);
@@ -68,7 +68,7 @@ public class testBecomeProjectleader {
     public void testBecomeProjectLeaderOfTwoProjects() throws Exception{
         System SoftwareHouse = new System();
         // Adds an employee
-        String ID="Employee1";
+        String ID="CBG";
         SoftwareHouse.createEmployee(ID);
         assertEquals(SoftwareHouse.getEmployees().size(),1);
 

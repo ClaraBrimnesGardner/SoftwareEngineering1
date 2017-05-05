@@ -12,7 +12,7 @@ public class TestManAssignment {
         // Creates a system
         System SoftwareHouse = new System();
         // Adds an employee
-        String ID="Employee1";
+        String ID="CBG";
         SoftwareHouse.createEmployee(ID);
         assertEquals(SoftwareHouse.getEmployees().size(),1);
 
@@ -59,7 +59,7 @@ public class TestManAssignment {
     public void testManTwoWeekAssignment() throws Exception {
         System SoftwareHouse = new System();
         // Adds an employee
-        String ID = "Employee1";
+        String ID = "CBG";
         SoftwareHouse.createEmployee(ID);
         assertEquals(SoftwareHouse.getEmployees().size(), 1);
 
@@ -106,15 +106,15 @@ public class TestManAssignment {
     public void manTwoPeopleToAssignment() throws Exception{
         System SoftwareHouse = new System();
         // Adds an employee
-        String ID = "Employee1";
+        String ID = "CBG";
         SoftwareHouse.createEmployee(ID);
-        Employee employee1= SoftwareHouse.getEmployees().get(0);
+        Employee CBG= SoftwareHouse.getEmployees().get(0);
         assertEquals(SoftwareHouse.getEmployees().size(), 1);
 
         // Adds another employee
-        String ID2 = "Employee2";
+        String ID2 = "SDN";
         SoftwareHouse.createEmployee(ID2);
-        Employee employee2 = SoftwareHouse.getEmployees().get(1);
+        Employee SDN = SoftwareHouse.getEmployees().get(1);
         assertEquals(SoftwareHouse.getEmployees().size(),2);
 
 
@@ -145,16 +145,16 @@ public class TestManAssignment {
         WeekCalendar week2 = new WeekCalendar(2017, 2);
 
         // ManAssignment
-        currentAssignment.manAssignment(employee1, week1,1,20);
-        currentAssignment.manAssignment(employee2,week1,2,100);
+        currentAssignment.manAssignment(CBG, week1,1,20);
+        currentAssignment.manAssignment(SDN,week1,2,100);
 
         assertEquals(SoftwareHouse.getDatabase().getAssignmentEmployeeList(ID).size(), 2);
         assertEquals(SoftwareHouse.getDatabase().getAssignmentEmployeeList(ID2).size(), 2);
 
-        assertEquals(employee1.getAvailableHours(week1,1),60);
-        assertEquals(employee2.getAvailableHours(week1,2),60);
-        assertEquals(employee2.getAvailableHours(week1,1),0);
-        assertEquals(employee2.getAvailableHours(week2,1),60);
+        assertEquals(CBG.getAvailableHours(week1,1),60);
+        assertEquals(SDN.getAvailableHours(week1,2),60);
+        assertEquals(SDN.getAvailableHours(week1,1),0);
+        assertEquals(SDN.getAvailableHours(week2,1),60);
 
         assertEquals(SoftwareHouse.getProjects().get(1).getAssignmentList().get(0).getBookedTime(),120);
         assertEquals(currentAssignment.getBudgetedTime(),120);

@@ -14,7 +14,7 @@ public class TestAdditionalTests {
         System SoftwareHouse = new System();
 
         // Adds two employees
-        String ID01 = "Employee01";
+        String ID01 = "CBG";
         SoftwareHouse.createEmployee(ID01);
         Employee Employee1 = SoftwareHouse.getEmployees().get(0);
 
@@ -54,7 +54,7 @@ public class TestAdditionalTests {
         assertFalse(day2.equals(week2));
 
         // Adds two employees
-        String ID01 = "Employee01";
+        String ID01 = "CBG";
         SoftwareHouse.createEmployee(ID01);
         Employee Employee1 = SoftwareHouse.getEmployees().get(0);
 

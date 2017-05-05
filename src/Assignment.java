@@ -47,9 +47,8 @@ public class Assignment {
             throw new TooManyHoursException("The hours you want to book exceeds the budgetted time");
         }
         AssignmentEmployee assignmentEmployee = new AssignmentEmployee(employee, this);
-        if(database!=null){
-            database.addAssignmentEmployee(assignmentEmployee);
-        }
+        database.addAssignmentEmployee(assignmentEmployee);
+
         WeekCalendar endWeek = new WeekCalendar(week.getYear(),week.getWeekNumber());
         endWeek=endWeek.increaseWeek(duration-1);
 

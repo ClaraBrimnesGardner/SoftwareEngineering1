@@ -11,7 +11,7 @@ public class TestCreateAssignment {
     public void testCreateAssignment() throws Exception {
         // Creates a system
         System SoftwareHouse = new System();
-        String ID = "Employee1";
+        String ID = "CBG";
         SoftwareHouse.createEmployee(ID);
         assertEquals(SoftwareHouse.getEmployees().size(), 1);
 
@@ -42,7 +42,7 @@ public class TestCreateAssignment {
     public void testCreateAlreadyExistingProject() throws Exception{
         // Creates a system
         System SoftwareHouse = new System();
-        String ID = "Employee1";
+        String ID = "CBG";
         SoftwareHouse.createEmployee(ID);
         assertEquals(SoftwareHouse.getEmployees().size(), 1);
 
@@ -84,7 +84,7 @@ public class TestCreateAssignment {
     public void testTwoProjectAndAssignments() throws Exception{
         // Creates a system
         System SoftwareHouse = new System();
-        String ID = "Employee1";
+        String ID = "CBG";
         SoftwareHouse.createEmployee(ID);
         assertEquals(SoftwareHouse.getEmployees().size(), 1);
 

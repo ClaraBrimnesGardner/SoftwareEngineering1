@@ -17,10 +17,10 @@ public class TestSeekAssistance {
         System SoftwareHouse = new System();
 
         // Adds two employees
-        String ID01="Employee01";
+        String ID01="CBG";
         SoftwareHouse.createEmployee(ID01);
         Employee Employee1 = SoftwareHouse.getEmployees().get(0);
-        String ID02="Employee02";
+        String ID02="SDN";
         SoftwareHouse.createEmployee(ID02);
         Employee Employee2 = SoftwareHouse.getEmployees().get(1);
 
@@ -41,7 +41,7 @@ public class TestSeekAssistance {
         currentAssignment.setBudgetedTime(80);
 
         // Mans the assignment
-        SoftwareHouse.seekAssistance("Employee02", "Assignment1", 2017, 4, 6);
+        SoftwareHouse.seekAssistance("SDN", "Assignment1", 2017, 4, 6);
 
         // Test that the booking is created
         SoftwareHouse.logIn(ID02);
@@ -62,7 +62,7 @@ public class TestSeekAssistance {
         System SoftwareHouse = new System();
 
         // Adds an employee
-        String ID01="Employee01";
+        String ID01="CBG";
         SoftwareHouse.createEmployee(ID01);
         Employee Employee1 = SoftwareHouse.getEmployees().get(0);
 
@@ -83,7 +83,7 @@ public class TestSeekAssistance {
 
         // Try to man the assignment
         try{
-            SoftwareHouse.seekAssistance("Employee02", "Assignment1", 2017, 4, 6);
+            SoftwareHouse.seekAssistance("SDN", "Assignment1", 2017, 4, 6);
         } catch(WrongInputException e){
             assertEquals("Wrong employee name", e.getMessage());
 
@@ -100,9 +100,9 @@ public class TestSeekAssistance {
         System SoftwareHouse = new System();
 
         // Adds two employees
-        String ID01="Employee01";
+        String ID01="CBG";
         SoftwareHouse.createEmployee(ID01);
-        Employee employee1 = SoftwareHouse.getEmployees().get(0);String ID02="Employee02";
+        Employee employee1 = SoftwareHouse.getEmployees().get(0);String ID02="SDN";
         SoftwareHouse.createEmployee(ID02);
         Employee employee2 = SoftwareHouse.getEmployees().get(1);
 
@@ -131,7 +131,7 @@ public class TestSeekAssistance {
         assertFalse(employee2.isAvailable(week1, 1,8));
         // Try to man the assignment
         try{
-            SoftwareHouse.seekAssistance("Employee02", "Assignment1", 2017, 4, 8);
+            SoftwareHouse.seekAssistance("SDN", "Assignment1", 2017, 4, 8);
         } catch(WrongInputException e){
             assertEquals("Employee is not available", e.getMessage());
 

@@ -16,10 +16,10 @@ public class TestGetAvailableEmployess {
     public void testGetTwoEmployess() throws Exception {
         System SoftwareHouse = new System();
         // Adds an employee
-        String ID="Employee1";
+        String ID="CBG";
         SoftwareHouse.createEmployee(ID);
         // Adds another employee
-        String ID2 = "Employee2";
+        String ID2 = "SDN";
         SoftwareHouse.createEmployee(ID2);
         SoftwareHouse.createProject("test");
 
@@ -45,7 +45,7 @@ public class TestGetAvailableEmployess {
         System SoftwareHouse = new System();
 
         // Adds an employee
-        String ID01="Employee01";
+        String ID01="CBG";
         SoftwareHouse.createEmployee(ID01);
         assertEquals(SoftwareHouse.getEmployees().size(),1);
 
