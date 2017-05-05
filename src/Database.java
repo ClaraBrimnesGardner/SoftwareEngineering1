@@ -170,9 +170,7 @@ public class Database {
 
     public void deleteEmployee(Employee employee1) throws WrongInputException {
         if (employee1==null) throw new WrongInputException ("Employee doesn't exist");
-        if (!employeeList.remove(employee1)){
-            throw new WrongInputException ("Employee doesn't exist");
-        }
+        if (!employeeList.remove(employee1)) throw new WrongInputException ("Employee doesn't exist");
     }
 
     public void deleteProject(Project project1) throws WrongInputException {
@@ -182,24 +180,23 @@ public class Database {
     }
 
     private void deleteProjectAssignment(Project project1) throws WrongInputException {
-        for (Assignment assignment1: assignmentList) {
-            if (assignment1.getProject().equals(project1)) {
-                deleteAssignment(assignment1);
+        for (int i=assignmentList.size()-1; i>=0; i--) {
+            if (assignmentList.get(i).getProject().equals(project1)) {
+                deleteAssignment(assignmentList.get(i));
             }
         }
     }
 
     public void deleteAssignment(Assignment assignment1) throws WrongInputException{
-        if (assignment1 == null) throw new WrongInputException("Assignement doesn't exist");
+        if (assignment1 == null) throw new WrongInputException("Assignment doesn't exist");
         if (!assignmentList.remove(assignment1)) throw new WrongInputException("Assignment doesn't exsist");
         deleteAssignmentEmployee(assignment1);
     }
 
-
     private void deleteAssignmentEmployee(Assignment assignment1) {
-        for (AssignmentEmployee assignmentEmployee: assignmentEmployeeList) {
-            if (assignmentEmployee.getAssignment().equals(assignment1)) {
-                assignmentEmployeeList.remove(assignmentEmployee);
+        for (int i=assignmentEmployeeList.size()-1; i>=0; i--) {
+            if (assignmentEmployeeList.get(i).getAssignment().equals(assignment1)) {
+                assignmentEmployeeList.remove(i);
             }
         }
     }

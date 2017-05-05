@@ -21,7 +21,7 @@ public class System {
     public String[] logIn(String ID) throws WrongInputException {
         Employee employee = database.getEmployee(ID);
         if (employee == null) {
-            throw new WrongInputException ("Employee doesn't excist");
+            throw new WrongInputException ("Employee doesn't exist");
         }
         this.employee = employee;
         return new String[] {
@@ -96,7 +96,7 @@ public class System {
     }
 
     public void removeAssignment (String assignmentName) throws WrongInputException {
-        database.deleteAssignment(database.getAssignment("assigmentName"));
+        database.deleteAssignment(database.getAssignment(assignmentName));
     }
 
     // Getter methods
