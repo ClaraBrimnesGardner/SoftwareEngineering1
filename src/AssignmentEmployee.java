@@ -14,10 +14,6 @@ public class AssignmentEmployee {
     private List<DayRegistration> dayRegistrationList = new ArrayList<>();
     private Assignment assignment;
 
-    public Assignment getAssignment() {
-        return assignment;
-    }
-
     public AssignmentEmployee(Employee employee, Assignment assignment) {
         this.taskID = taskID;
         this.employee = employee;
@@ -25,6 +21,10 @@ public class AssignmentEmployee {
     }
 
     //Getter methods
+    public Assignment getAssignment() {
+        return assignment;
+    }
+
     public List<WeekBooking> getWeekBookings() {
         return weekBookings;
     }
@@ -75,7 +75,6 @@ public class AssignmentEmployee {
         }
         DayRegistration newDayRegistration = new DayRegistration(dayCalendar, halfHours);
         dayRegistrationList.add(newDayRegistration);
-
     }
 
 

@@ -76,7 +76,12 @@ public class Employee {
         int bookedHalfHours = 0;
         // Setting the endWeek
 
-        WeekCalendar endWeek=new WeekCalendar(week.getYear(),week.getWeekNumber());
+        WeekCalendar endWeek= null;
+        try {
+            endWeek = new WeekCalendar(week.getYear(),week.getWeekNumber());
+        } catch (WrongInputException e) {
+            e.printStackTrace();
+        }
         endWeek=endWeek.increaseWeek(duration-1);
 
         // Retrieving a list of all assignments with the current employee

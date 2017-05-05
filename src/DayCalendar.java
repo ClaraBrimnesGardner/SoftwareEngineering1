@@ -6,9 +6,11 @@ public class DayCalendar {
     int dayNumber;
 
     // Constructor
-    public DayCalendar(WeekCalendar weekCalendar, int dayNumber) {
+    public DayCalendar(WeekCalendar weekCalendar, int dayNumber) throws WrongInputException {
         this.weekCalendar=weekCalendar;
         this.dayNumber=dayNumber;
+
+        if (dayNumber<1 || dayNumber>7) throw new WrongInputException("Day has to be a number between 1 and 7");
     }
 
     // Getter methods

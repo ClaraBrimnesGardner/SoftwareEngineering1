@@ -145,7 +145,6 @@ public class Database {
             assignmentEmployeeList.add(task);
             return true;
         }
-
         return false;
     }
 

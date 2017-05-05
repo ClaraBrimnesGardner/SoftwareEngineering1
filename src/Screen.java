@@ -757,7 +757,12 @@ public class Screen {
         btnGetAvailableEmployees.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                WeekCalendar startWeek = new WeekCalendar(Integer.parseInt(textYear.getText()), Integer.parseInt(textStartWeek.getText()));
+                WeekCalendar startWeek = null;
+                try {
+                    startWeek = new WeekCalendar(Integer.parseInt(textYear.getText()), Integer.parseInt(textStartWeek.getText()));
+                } catch (WrongInputException e1) {
+                    e1.printStackTrace();
+                }
                 DefaultListModel employees = new DefaultListModel();
                 for (Employee employee : system.getDatabase().getAvailableEmployees(startWeek, Integer.parseInt(textDuration.getText()), system.convertToHalfHours(Double.parseDouble(textHours.getText())))) {
                     employees.addElement(employee.getEmployeeID());
@@ -791,7 +796,12 @@ public class Screen {
             @Override
             public void actionPerformed(ActionEvent e) {
                 String name = (String) list.getModel().getElementAt(list.getSelectedIndex());
-                WeekCalendar weekCalendar = new WeekCalendar(Integer.parseInt(textYear.getText()), Integer.parseInt(textStartWeek.getText()));
+                WeekCalendar weekCalendar = null;
+                try {
+                    weekCalendar = new WeekCalendar(Integer.parseInt(textYear.getText()), Integer.parseInt(textStartWeek.getText()));
+                } catch (WrongInputException e1) {
+                    e1.printStackTrace();
+                }
                 int duration = Integer.parseInt(textDuration.getText());
                 int hours = system.convertToHalfHours(Double.parseDouble(textHours.getText()));
                 try {
@@ -849,8 +859,18 @@ public class Screen {
             @Override
             public void actionPerformed(ActionEvent e) {
                 String assignmentName = (String) list.getModel().getElementAt(list.getSelectedIndex());
-                WeekCalendar weekCalendar = new WeekCalendar(Integer.parseInt(textYearNumber.getText()),Integer.parseInt(textWeekNumber.getText()));
-                DayCalendar dayCalendar = new DayCalendar(weekCalendar,Integer.parseInt(textDayNumber.getText()));
+                WeekCalendar weekCalendar = null;
+                try {
+                    weekCalendar = new WeekCalendar(Integer.parseInt(textYearNumber.getText()),Integer.parseInt(textWeekNumber.getText()));
+                } catch (WrongInputException e1) {
+                    e1.printStackTrace();
+                }
+                DayCalendar dayCalendar = null;
+                try {
+                    dayCalendar = new DayCalendar(weekCalendar,Integer.parseInt(textDayNumber.getText()));
+                } catch (WrongInputException e1) {
+                    e1.printStackTrace();
+                }
                 AssignmentEmployee currentAssignmentEmployee = system.getDatabase().getAssignmentEmployeeByNameAndEmployee(assignmentName,system.getCurrentEmployee());
                 try {
                     currentAssignmentEmployee.registerTime(dayCalendar,system.convertToHalfHours(Double.parseDouble(textHoursRegistration.getText())));
@@ -936,7 +956,12 @@ public class Screen {
         btnGetAvailableEmployees2.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                WeekCalendar startWeek = new WeekCalendar(Integer.parseInt(textYear.getText()), Integer.parseInt(textStartWeek.getText()));
+                WeekCalendar startWeek = null;
+                try {
+                    startWeek = new WeekCalendar(Integer.parseInt(textYear.getText()), Integer.parseInt(textStartWeek.getText()));
+                } catch (WrongInputException e1) {
+                    e1.printStackTrace();
+                }
                 DefaultListModel employees = new DefaultListModel();
                 for (Employee employee : system.getDatabase().getAvailableEmployees(startWeek, Integer.parseInt(textDuration.getText()),
                         system.convertToHalfHours(Double.parseDouble(textHours.getText())))) {
