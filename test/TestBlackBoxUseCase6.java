@@ -82,6 +82,10 @@ public class TestBlackBoxUseCase6 {
         DayCalendar day1 = new DayCalendar(week1, 1);
         currentAssignmentEmployee.registerTime(day1, 8);
         assertEquals(8, currentEmployee.getRegisteredHalfHours(day1));
+
+        currentAssignmentEmployee.changeRegistration(day1,7);
+        assertEquals(7, currentEmployee.getRegisteredHalfHours(day1));
+
     }
     /*
     Test 2

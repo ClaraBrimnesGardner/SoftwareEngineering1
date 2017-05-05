@@ -167,7 +167,7 @@ public class Database {
 
     public AssignmentEmployee getAssignmentEmployeeByNameAndEmployee(String name, Employee employee) {
         for (AssignmentEmployee assignmentEmployee : assignmentEmployeeList) {
-            if ((assignmentEmployee.getAssignment().getName() == name) && (assignmentEmployee.employee.equals(employee))) {
+            if ((assignmentEmployee.getAssignment().getName().equals(name)) && (assignmentEmployee.employee.equals(employee))) {
                 return assignmentEmployee;
             }
         }

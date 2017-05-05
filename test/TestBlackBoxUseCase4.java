@@ -207,6 +207,9 @@ public class TestBlackBoxUseCase4 {
         currentAssignment.manAssignment(availableEmployee, week1, 1, 50);
         assertEquals(0,availableEmployee.getAvailableHours(week1,1));
         assertEquals(80,availableEmployee.getBookedHours(week1,1));
+
+
+
     }
 
 
