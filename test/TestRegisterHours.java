@@ -22,7 +22,7 @@ public class TestRegisterHours {
         String projectID="Project";
         SoftwareHouse.createProject(projectID);
         assertEquals(SoftwareHouse.getProjects().size(),1);
-        Project currentProject = SoftwareHouse.getProjects().get(0);
+        Project currentProject = SoftwareHouse.getProjects().get(1);
 
 
         // Become projectLeader

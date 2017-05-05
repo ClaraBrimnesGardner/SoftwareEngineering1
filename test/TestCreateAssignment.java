@@ -98,7 +98,7 @@ public class TestCreateAssignment {
         // Become projectLeader
 
         //assertEquals(SoftwareHouse.getCurrentEmployee().getProjectLeaderList().size(), 0);
-        SoftwareHouse.getCurrentEmployee().becomeProjectLeader(0);
+        SoftwareHouse.getCurrentEmployee().becomeProjectLeader(1);
         assertEquals(SoftwareHouse.getCurrentEmployee().getProjectLeaderList().size(), 1);
 
 

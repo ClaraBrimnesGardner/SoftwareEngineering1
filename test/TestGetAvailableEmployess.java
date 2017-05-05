@@ -52,8 +52,8 @@ public class TestGetAvailableEmployess {
         // Adds a project
         String projectID="Project";
         SoftwareHouse.createProject(projectID);
-        assertEquals(SoftwareHouse.getProjects().size(),1);
-        Project currentProject = SoftwareHouse.getProjects().get(0);
+        assertEquals(SoftwareHouse.getProjects().size(),2);
+        Project currentProject = SoftwareHouse.getProjects().get(1);
 
 
         // Become projectLeader

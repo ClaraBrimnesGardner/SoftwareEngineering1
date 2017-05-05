@@ -127,4 +127,10 @@ public class Employee {
 
     }
 
+    public void bookSeminar(WeekCalendar week, int duration, int hours) throws Exception{
+        String ID = database.getSeminars();
+        Assignment Seminars = database.getAssignment(ID);
+        Seminars.manAssignment(this, week, duration, hours);
+    }
+
 }
