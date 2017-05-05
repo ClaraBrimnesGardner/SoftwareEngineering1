@@ -7,7 +7,6 @@ import java.util.*;
 import java.lang.System;
 
 public class Employee {
-    private static final int MAX_REGISTERED_HALF_HOURS= 16;
     protected String employeeID;
     protected Database database;
 
@@ -63,7 +62,7 @@ public class Employee {
     }
 
     public int getAvailableHours(WeekCalendar weekCalendar, int duration) {
-        int halfHours = 80*(duration);
+        int halfHours = database.getMaxBookedHalfHours()*(duration);
         return (halfHours - getBookedHours(weekCalendar,duration));
     }
 

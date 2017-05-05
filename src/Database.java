@@ -10,6 +10,7 @@ public class Database {
     private static final String VACATION = "Vacation";
     private static final String ILLNESS = "Illness";
     private static final String SEMINARS = "Seminars";
+    private static final int MAX_BOOKED_HALF_HOURS=80;
     private static final int MAX_REGISTERED_HALF_HOURS= 16;
     public List<Employee> employeeList;
     public List<Project> projectList;
@@ -76,7 +77,7 @@ public class Database {
     public List<Project> getAvailableProjects(){
         List<Project> freeProjectList = new ArrayList<>();
         for(Project project: projectList){
-            if(project.getProjectLeader()==null && project.getProjectName().equals(RESERVED_NAME)) {
+            if(project.getProjectLeader()==null && !project.getProjectName().equals(RESERVED_NAME)) {
                 freeProjectList.add(project);
             }
         }
@@ -108,7 +109,7 @@ public class Database {
         return null;
     }
 
-    public Assignment getAssignment(String ID) {
+    public Assignment getAssignment(String ID){
         for(Assignment assignment: assignmentList) {
             if(assignment.name.equals(ID)) return assignment;
         }
@@ -187,6 +188,7 @@ public class Database {
     public int getMAX_REGISTERED_HALF_HOURS(){
         return MAX_REGISTERED_HALF_HOURS;
     }
+    public int getMaxBookedHalfHours(){return MAX_BOOKED_HALF_HOURS;}
 
 
     public void deleteEmployee(Employee employee1) throws WrongInputException {

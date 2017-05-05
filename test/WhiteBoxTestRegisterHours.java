@@ -29,7 +29,7 @@ public class WhiteBoxTestRegisterHours {
     Add an assignment
 
     Step 6:
-    Register less than the allowed 8 hours
+    Register more than the allowed 8 hours
      */
 
     @Test
@@ -104,7 +104,7 @@ public class WhiteBoxTestRegisterHours {
     Step 6:
     Man yourself to assignment in one week
 
-    //
+    Step 7
     Register less than the allowed 8 hours to the assignment in another week
      */
 

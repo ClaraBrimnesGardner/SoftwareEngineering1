@@ -45,13 +45,13 @@ public class Project {
         return projectLeader;}
 
 
-    public Assignment getAssignmentByName(String name){
+    public Assignment getAssignmentByName(String name) throws WrongInputException{
         for(Assignment assignment:database.getProjectAssignmentList(this)){
             if(assignment.getName().equals((name))){
                 return assignment;
             }
         }
-        return null;
+        throw new WrongInputException("Assignment doesn't exist");
     }
 
     // Setter methods
