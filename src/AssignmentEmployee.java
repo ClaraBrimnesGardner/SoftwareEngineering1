@@ -63,7 +63,7 @@ public class AssignmentEmployee {
 
     // Method to register time
     public void registerTime(DayCalendar dayCalendar, int halfHours) throws Exception{
-        if(employee.getRegisteredHalfHours(dayCalendar)+halfHours>MAX_REGISTERED_HALF_HOURS){
+        if(employee.getRegisteredHalfHours(dayCalendar)+halfHours>employee.database.getMAX_REGISTERED_HALF_HOURS()){
             throw new TooManyHoursException("You have registered too many hours today");
         }
         if(!getBookedWeeks().contains(dayCalendar.getWeekCalendar())){

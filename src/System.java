@@ -14,7 +14,7 @@ public class System {
     // Constructor
     public System() throws Exception{
         this.database = new Database();
-        createProject("Other business");
+        createProject(database.getReservedName());
         Project OB = database.getProject(0);
         OB.createAssignment("Illness");
         OB.createAssignment("Vacation");

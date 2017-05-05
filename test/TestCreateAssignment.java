@@ -24,7 +24,7 @@ public class TestCreateAssignment {
 
         // Become projectLeader
         assertEquals(SoftwareHouse.getCurrentEmployee().getProjectLeaderList().size(), 0);
-        SoftwareHouse.getCurrentEmployee().becomeProjectLeader(0);
+        SoftwareHouse.getCurrentEmployee().becomeProjectLeader(1);
 
         // Add an activity
         Project currentProject = SoftwareHouse.getCurrentEmployee().getProjectLeaderList().get(0);
@@ -56,7 +56,7 @@ public class TestCreateAssignment {
         // Become projectLeader
 
         //assertEquals(SoftwareHouse.getCurrentEmployee().getProjectLeaderList().size(), 0);
-        SoftwareHouse.getCurrentEmployee().becomeProjectLeader(0);
+        SoftwareHouse.getCurrentEmployee().becomeProjectLeader(1);
 
 
         // Add an activity

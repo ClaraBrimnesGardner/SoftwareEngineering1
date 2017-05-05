@@ -6,6 +6,11 @@ import java.util.*;
 import java.lang.System;
 
 public class Database {
+    private static final String RESERVED_NAME= "Other Business";
+    private static final String VACATION = "Vacation";
+    private static final String ILLNESS = "Illness";
+    private static final String SEMINARS = "Seminars";
+    private static final int MAX_REGISTERED_HALF_HOURS= 16;
     public List<Employee> employeeList;
     public List<Project> projectList;
     private List<Assignment> assignmentList;
@@ -71,7 +76,7 @@ public class Database {
     public List<Project> getAvailableProjects(){
         List<Project> freeProjectList = new ArrayList<>();
         for(Project project: projectList){
-            if(project.getProjectLeader()==null) {
+            if(project.getProjectLeader()==null && project.getProjectName().equals(RESERVED_NAME)) {
                 freeProjectList.add(project);
             }
         }
@@ -166,6 +171,22 @@ public class Database {
 
     public int getNumberOfEmployees () {
         return this.employeeList.size();
+    }
+
+    public String getReservedName(){
+        return RESERVED_NAME;
+    }
+    public String getVacation(){
+        return VACATION;
+    }
+    public String getIllness(){
+        return ILLNESS;
+    }
+    public String getSeminars(){
+        return SEMINARS;
+    }
+    public int getMAX_REGISTERED_HALF_HOURS(){
+        return MAX_REGISTERED_HALF_HOURS;
     }
 
 

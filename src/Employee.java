@@ -110,13 +110,20 @@ public class Employee {
     }
 
     public void registerIllness(DayCalendar dayCalendar,int  halfHours) throws TooManyHoursException{
-        if(getRegisteredHalfHours(dayCalendar)+halfHours>MAX_REGISTERED_HALF_HOURS){
+        if(getRegisteredHalfHours(dayCalendar)+halfHours>database.getMAX_REGISTERED_HALF_HOURS()){
             throw new TooManyHoursException("You have registered too many hours today");
         }
         AssignmentEmployee Illness = database.getAssignmentEmployeeByNameAndEmployee("Illness", this);
         DayRegistration newDayRegistration = new DayRegistration(dayCalendar, halfHours);
         List<DayRegistration> dayRegistrationList = Illness.getDayRegistrationList();
         dayRegistrationList.add(newDayRegistration);
+
+    }
+
+    public void bookVacation(WeekCalendar week, int duration, int hours) throws Exception{
+        String ID = database.getVacation();
+        Assignment Vacation = database.getAssignment(ID);
+        Vacation.manAssignment(this, week, duration, hours);
 
     }
 
