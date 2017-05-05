@@ -67,6 +67,7 @@ public class Employee {
     }
 
     public boolean isAvailable (WeekCalendar startWeek, int duration, int hours) {
+        System.out.println();
         if (getAvailableHours(startWeek, duration) >= hours) {
             return true;
         }

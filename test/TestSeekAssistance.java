@@ -4,6 +4,7 @@
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
 public class TestSeekAssistance {
 
@@ -46,9 +47,9 @@ public class TestSeekAssistance {
         SoftwareHouse.logIn(ID02);
         assertEquals(Employee2.getAssignmentEmployeeList().size(),2);
         // Test  that the taskID's are the same
-        assertEquals(Employee2.getAssignmentEmployeeList().get(Employee2.getAssignmentEmployeeList().size()-1).taskID,SoftwareHouse.getDatabase().assignmentEmployeeList.get(1).taskID);
+        assertEquals(Employee2.getAssignmentEmployeeList().get(Employee2.getAssignmentEmployeeList().size()-1).taskID,SoftwareHouse.getDatabase().assignmentEmployeeList.get(0).taskID);
         // Test that the employeeID's are different (to make sure that it's not just a copy of the other assignment)
-        assertEquals(Employee2.getAssignmentEmployeeList().get(Employee2.getAssignmentEmployeeList().size()-1).employee.employeeID,SoftwareHouse.getDatabase().assignmentEmployeeList.get(0).employee.employeeID);
+        assertNotEquals(Employee2.getAssignmentEmployeeList().get(Employee2.getAssignmentEmployeeList().size()-1).employee.employeeID,SoftwareHouse.getDatabase().assignmentEmployeeList.get(0).employee.employeeID);
     }
 
     /*
@@ -126,7 +127,6 @@ public class TestSeekAssistance {
         assignment1.manAssignment(employee2,week1,1,78);
         // Test that employee2 isn't available for 4 hours
         assertFalse(employee2.isAvailable(week1, 1,8));
-
         // Try to man the assignment
         try{
             SoftwareHouse.seekAssistance("Employee02", "Assignment1", 2017, 4, 8);
