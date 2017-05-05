@@ -214,6 +214,11 @@ public class Screen{
         frame.getContentPane().add(lblChooseAnAssignmentSeekAssistance);
         lblChooseAnAssignmentSeekAssistance.setVisible(false);
 
+        JLabel lblChooseARegistration = new JLabel("Choose a registration in the list to change the hours");
+        lblChooseARegistration.setBounds(94, 233, 393, 16);
+        frame.getContentPane().add(lblChooseARegistration);
+        lblChooseARegistration.setVisible(false);
+
 
         /**    BUTTONS     **/
 
@@ -368,6 +373,11 @@ public class Screen{
         btnRegisterIllness.setBounds(277, 367, 201, 29);
         frame.getContentPane().add(btnRegisterIllness);
         btnRegisterIllness.setVisible(false);
+
+        JButton btnChangeHours = new JButton("Change");
+        btnChangeHours.setBounds(277, 305, 117, 29);
+        frame.getContentPane().add(btnChangeHours);
+        btnChangeHours.setVisible(false);
 
 
         /**     TEXTFIELDS:     **/
@@ -908,7 +918,7 @@ public class Screen{
                 textHoursRegistration.setVisible(true);
                 lblHours.setVisible(true);
                 DefaultListModel assignments = new DefaultListModel();
-                for (AssignmentEmployee assignment : system.getDatabase().getAssignmentEmployeeList(system.getCurrentEmployee().getEmployeeID())) {
+                for (AssignmentEmployee assignment : system.getDatabase().getAssignmentEmployeeListWork(system.getCurrentEmployee().getEmployeeID())) {
                     assignments.addElement(assignment.getAssignment().getName());
                 }
                 list.setModel(assignments);
@@ -980,6 +990,41 @@ public class Screen{
                     }
                 }
                 list.setModel(oldRegistrations);
+                textHoursRegistration.setVisible(true);
+                textHoursRegistration.setText("");
+                btnChangeHours.setVisible(true);
+                lblHours.setVisible(true);
+                lblChooseARegistration.setVisible(true);
+            }
+        });
+
+        btnChangeHours.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String registration = (String) list.getModel().getElementAt(list.getSelectedIndex());
+                int index = registration.indexOf("  Hours: ");
+                int day = Integer.parseInt(registration.substring(index-1,index));
+                String newString = registration.substring(0,index-2);
+                int lastIndex = newString.lastIndexOf('/');
+                int week = Integer.parseInt(newString.substring(lastIndex+1));
+                int year = Integer.parseInt(newString.substring(lastIndex-4,lastIndex));
+                String assignmentName = newString.substring(0,lastIndex-8);
+                JOptionPane.showMessageDialog(null,"" + assignmentName);
+                AssignmentEmployee assignmentEmployee = system.getDatabase().getAssignmentEmployeeByNameAndEmployee(assignmentName,system.getCurrentEmployee());
+                if (assignmentEmployee == null) {
+                    JOptionPane.showMessageDialog(null,assignmentName + " " + system.getCurrentEmployee().getEmployeeID());
+                }
+                try {
+                    WeekCalendar weekCalendar = new WeekCalendar(year,week);
+                    DayCalendar dayCalendar = new DayCalendar(weekCalendar,day);
+                    assignmentEmployee.changeRegistration(dayCalendar,system.convertToHalfHours(Double.parseDouble(textHoursRegistration.getText())));
+                } catch (WrongInputException e1) {
+                    e1.printStackTrace();
+                    JOptionPane.showMessageDialog(null,e1.getMessage());
+                } catch (TooManyHoursException e1) {
+                    e1.printStackTrace();
+                    JOptionPane.showMessageDialog(null,e1.getMessage());
+                }
             }
         });
 
@@ -1007,6 +1052,8 @@ public class Screen{
                 try {
                     WeekCalendar weekCalendar = new WeekCalendar(Integer.parseInt(textYear.getText()),Integer.parseInt(textStartWeek.getText()));
                     system.getCurrentEmployee().bookSeminar(weekCalendar,Integer.parseInt(textDuration.getText()),system.convertToHalfHours(Double.parseDouble(textHours.getText())));
+                    textDuration.setText("");
+                    textHours.setText("");
                 } catch (WrongInputException e1) {
                     e1.printStackTrace();
                     JOptionPane.showMessageDialog(null,e1.getMessage());
@@ -1015,6 +1062,25 @@ public class Screen{
                     JOptionPane.showMessageDialog(null,e1.getMessage());
                 }
 
+            }
+        });
+
+        btnBookVacation.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                WeekCalendar weekCalendar = null;
+                try {
+                    weekCalendar = new WeekCalendar(Integer.parseInt(textYear.getText()),Integer.parseInt(textStartWeek.getText()));
+                    system.getCurrentEmployee().bookVacation(weekCalendar,Integer.parseInt(textDuration.getText()),system.convertToHalfHours(Double.parseDouble(textHours.getText())));
+                    textDuration.setText("");
+                    textHours.setText("");
+                } catch (WrongInputException e1) {
+                    e1.printStackTrace();
+                    JOptionPane.showMessageDialog(null,e1.getMessage());
+                } catch (Exception e1) {
+                    e1.printStackTrace();
+                    JOptionPane.showMessageDialog(null,e1.getMessage());
+                }
             }
         });
 
@@ -1091,11 +1157,6 @@ public class Screen{
                 }
             }
         });
-
-
-
-
-
 
         btnDeleteEmployees.addActionListener(new ActionListener() {
             @Override
@@ -1204,6 +1265,8 @@ public class Screen{
                 btnBookVacation.setVisible(false);
                 btnBookSeminar.setVisible(false);
                 btnSeminarVacation.setVisible(true);
+                btnChangeHours.setVisible(false);
+                lblChooseARegistration.setVisible(false);
 
             }
         });
@@ -1280,6 +1343,8 @@ public class Screen{
                 btnRegisterIllness.setVisible(false);
                 btnBookVacation.setVisible(false);
                 btnBookSeminar.setVisible(false);
+                btnChangeHours.setVisible(false);
+                lblChooseARegistration.setVisible(false);
             }
         });
 
