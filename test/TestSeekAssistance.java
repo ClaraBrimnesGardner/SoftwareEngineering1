@@ -124,6 +124,8 @@ public class TestSeekAssistance {
         WeekCalendar week1 = new WeekCalendar(2017,4);
 
         // Man the assignment
+        assignment1.setBudgetedTime(80);
+
         assignment1.manAssignment(employee2,week1,1,78);
         // Test that employee2 isn't available for 4 hours
         assertFalse(employee2.isAvailable(week1, 1,8));
