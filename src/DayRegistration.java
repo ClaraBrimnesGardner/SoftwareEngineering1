@@ -21,6 +21,8 @@ public class DayRegistration {
     }
 
     public void addHours(int halfHours){
-        registeredHalfHours+=registeredHalfHours;
+        registeredHalfHours+=halfHours;
     }
+
+    public void setRegisteredHalfHours(int halfHours){registeredHalfHours=halfHours;}
 }

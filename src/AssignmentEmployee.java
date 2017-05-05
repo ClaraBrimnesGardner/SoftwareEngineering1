@@ -77,6 +77,18 @@ public class AssignmentEmployee {
         dayRegistrationList.add(newDayRegistration);
     }
 
+    public void changeRegistration(DayCalendar dayCalendar, int halfHours) throws TooManyHoursException {
+        if(halfHours>MAX_REGISTERED_HALF_HOURS){
+            throw new TooManyHoursException("You have registered too many hours today");
+        }
+        for(DayRegistration dayRegistration : dayRegistrationList){
+            if(dayRegistration.getDayCalendar().equals(dayCalendar)){
+                System.out.println(dayRegistration.getDayCalendar().getDayNumber());
+                dayRegistration.setRegisteredHalfHours(halfHours);
+            }
+        }
+    }
+
 
 
 
