@@ -44,6 +44,16 @@ public class Database {
         return assignments;
     }
 
+    public List<AssignmentEmployee> getAssignmentEmployeeListWork(String employeeID) {
+        List<AssignmentEmployee> assignmentList = new ArrayList<>();
+        for (AssignmentEmployee assignment : assignmentEmployeeList){
+            if(assignment.getEmployee().getEmployeeID()==employeeID && !assignment.getAssignment().getName().equals(VACATION) && !assignment.getAssignment().getName().equals(ILLNESS) && !assignment.getAssignment().getName().equals(SEMINARS)){
+                assignmentList.add(assignment);
+            }
+        }
+        return assignmentList;
+    }
+
 
     public List<Employee> getAvailableEmployees(WeekCalendar startWeek, int duration, int hours) {
         List<Employee> available = new ArrayList<Employee>();
