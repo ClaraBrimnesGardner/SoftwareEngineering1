@@ -70,7 +70,7 @@ public class TestBlackBoxUseCase1 {
         try{
             SoftwareHouse.createProject(PID01);
         } catch(WrongInputException e){
-            assertEquals("Projectname is used", e.getMessage());
+            assertEquals("Project name is used", e.getMessage());
         }
         assertEquals(2,SoftwareHouse.getDatabase().getNumberOfProjects());
 
