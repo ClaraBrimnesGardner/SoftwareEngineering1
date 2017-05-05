@@ -10,7 +10,7 @@ public class TestRemoveEmployee {
    Test that deleteEmployee deletes an employee
     */
     @Test
-    public void testDeleteEmployee() throws WrongInputException {
+    public void testDeleteEmployee() throws Exception {
         // Creates a system
         System SoftwareHouse = new System();
         // create two employees
@@ -45,7 +45,7 @@ public class TestRemoveEmployee {
     Test that deleteProject deletes a project
    */
     @Test
-    public void testDeleteProject() throws WrongInputException {
+    public void testDeleteProject() throws Exception {
         // Creates a system
         System SoftwareHouse = new System();
 
