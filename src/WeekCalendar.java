@@ -7,9 +7,11 @@ public class WeekCalendar {
     private int year;
 
     // Constructor
-    public WeekCalendar(int year, int weekNumber) {
+    public WeekCalendar(int year, int weekNumber) throws WrongInputException {
         this.weekNumber = weekNumber;
         this.year = year;
+
+        if (weekNumber<1 || weekNumber>52) throw new WrongInputException("Week number must be between 1 and 52");
     }
 
     // Getter methods
@@ -49,7 +51,12 @@ public class WeekCalendar {
             newWeekNumber -= 52;
             newYear++;
         }
-        WeekCalendar newWeek= new WeekCalendar(newYear, newWeekNumber);
+        WeekCalendar newWeek= null;
+        try {
+            newWeek = new WeekCalendar(newYear, newWeekNumber);
+        } catch (WrongInputException e) {
+            e.printStackTrace();
+        }
         return newWeek;
     }
 

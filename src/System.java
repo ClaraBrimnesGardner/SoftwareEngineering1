@@ -64,8 +64,6 @@ public class System {
         employee.becomeProjectLeader(ProjectID);
     }
 
-
-
     public boolean seekAssistance(String employeeID, String assignmentID, int year, int weekNumber, int bookedHours) throws WrongInputException {
         WeekCalendar weekCalendar = new WeekCalendar(year, weekNumber);
         WeekBooking booking = new WeekBooking(weekCalendar,bookedHours);
@@ -85,8 +83,17 @@ public class System {
         int year=calendar.get(Calendar.YEAR);
         int week=calendar.get(Calendar.WEEK_OF_YEAR);
         int day=calendar.get(Calendar.DAY_OF_WEEK);
-        if (day==1) return new DayCalendar(new WeekCalendar(year,week),7);
-        return new DayCalendar(new WeekCalendar(year,week),day-1);
+        if (day==1) try {
+            return new DayCalendar(new WeekCalendar(year,week),7);
+        } catch (WrongInputException e) {
+            e.printStackTrace();
+        }
+        try {
+            return new DayCalendar(new WeekCalendar(year,week),day-1);
+        } catch (WrongInputException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 
     public void removeEmployee (String employeeID) throws WrongInputException {

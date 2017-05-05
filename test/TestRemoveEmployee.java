@@ -97,6 +97,7 @@ public class TestRemoveEmployee {
         WeekCalendar week1 = new WeekCalendar(2017,9);
         SoftwareHouse.getDatabase().getAssignment(assignmentID02).manAssignment(Employee1,week1,2,170);
         assertEquals(SoftwareHouse.getDatabase().getAssignmentEmployeeList(ID01).size(),1);
+        assertEquals(SoftwareHouse.getDatabase().getAssignmentEmployeeList(ID01).get(0).getTaskID(),0);
         // Remove assignment1
         SoftwareHouse.removeAssignment("Assignment1");
         assertEquals(SoftwareHouse.getDatabase().getAssignmentList().size(),1);
