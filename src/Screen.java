@@ -748,7 +748,11 @@ public class Screen{
                 btnDeleteAssignment.setVisible(false);
                 lblDeleteAssignmentFrom.setVisible(false);
                 btnGetAvailableEmployees.setVisible(true);
-                lblBudgettedTime.setText("Budgetted time:  " + system.getDatabase().getProject(currentProjectID).getAssignmentByName(currentAssignmentName).getBudgetedTime() + " hours");
+                try {
+                    lblBudgettedTime.setText("Budgetted time:  " + system.getDatabase().getProject(currentProjectID).getAssignmentByName(currentAssignmentName).getBudgetedTime() + " hours");
+                } catch (WrongInputException e1) {
+                    e1.printStackTrace();
+                }
 
 
             }
@@ -772,18 +776,34 @@ public class Screen{
         btnSetBudgettedTime.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                system.getDatabase().getProject(currentProjectID).getAssignmentByName(currentAssignmentName).setBudgetedTime(Integer.parseInt(textSetBudgettedTime.getText()));
+                try {
+                    system.getDatabase().getProject(currentProjectID).getAssignmentByName(currentAssignmentName).setBudgetedTime(Integer.parseInt(textSetBudgettedTime.getText()));
+                } catch (WrongInputException e1) {
+                    e1.printStackTrace();
+                }
                 textSetBudgettedTime.setText("");
-                lblBudgettedTime.setText("Budgetted time:  " + system.getDatabase().getProject(currentProjectID).getAssignmentByName(currentAssignmentName).getBudgetedTime() + " hours");
+                try {
+                    lblBudgettedTime.setText("Budgetted time:  " + system.getDatabase().getProject(currentProjectID).getAssignmentByName(currentAssignmentName).getBudgetedTime() + " hours");
+                } catch (WrongInputException e1) {
+                    e1.printStackTrace();
+                }
             }
         });
 
         textSetBudgettedTime.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                system.getDatabase().getProject(currentProjectID).getAssignmentByName(currentAssignmentName).setBudgetedTime(Integer.parseInt(textSetBudgettedTime.getText()));
+                try {
+                    system.getDatabase().getProject(currentProjectID).getAssignmentByName(currentAssignmentName).setBudgetedTime(Integer.parseInt(textSetBudgettedTime.getText()));
+                } catch (WrongInputException e1) {
+                    e1.printStackTrace();
+                }
                 textSetBudgettedTime.setText("");
-                lblBudgettedTime.setText("Budgetted time:  " + system.getDatabase().getProject(currentProjectID).getAssignmentByName(currentAssignmentName).getBudgetedTime() + " hours");
+                try {
+                    lblBudgettedTime.setText("Budgetted time:  " + system.getDatabase().getProject(currentProjectID).getAssignmentByName(currentAssignmentName).getBudgetedTime() + " hours");
+                } catch (WrongInputException e1) {
+                    e1.printStackTrace();
+                }
             }
         });
 
