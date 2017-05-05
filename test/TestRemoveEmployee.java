@@ -93,12 +93,16 @@ public class TestRemoveEmployee {
         currentProject01.createAssignment(assignmentID02);
         Assignment assignment2 = currentProject01.getAssignmentByName(assignmentID02);
         assertEquals(SoftwareHouse.getDatabase().getAssignmentList().size(),2);
+        // Man assignment to create an AssignmentEmployee
+        WeekCalendar week1 = new WeekCalendar(2017,9);
+        SoftwareHouse.getDatabase().getAssignment(assignmentID02).manAssignment(Employee1,week1,2,170);
+        assertEquals(SoftwareHouse.getDatabase().getAssignmentEmployeeList(ID01).size(),1);
         // Remove assignment1
         SoftwareHouse.removeAssignment("Assignment1");
         assertEquals(SoftwareHouse.getDatabase().getAssignmentList().size(),1);
         assertEquals(SoftwareHouse.getDatabase().getProjectList().size(),1);
-        // Remove assignment2
+        // Remove project and thereby assignment2 og the assignmentEmployee
         SoftwareHouse.removeProject(currentProject01.getProjectID());
-        //assertEquals(SoftwareHouse.getDatabase().getProjectList().size(),0);
+        assertEquals(SoftwareHouse.getDatabase().getProjectList().size(),0);
     }
 }
