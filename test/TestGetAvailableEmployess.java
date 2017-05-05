@@ -13,7 +13,7 @@ public class TestGetAvailableEmployess {
     Test that getAvailableEmployees returns the correct number of employees when no employees are booked
      */
     @Test
-    public void testGetTwoEmployess() throws WrongInputException {
+    public void testGetTwoEmployess() throws Exception {
         System SoftwareHouse = new System();
         // Adds an employee
         String ID="Employee1";
@@ -40,7 +40,7 @@ public class TestGetAvailableEmployess {
     Test that getAvailable employees returns a employee before any booking, and not after the booking, when to much time is demanded
      */
     @Test
-    public void testGetAvailableEmployeesBooking() throws WrongInputException{
+    public void testGetAvailableEmployeesBooking() throws Exception{
         // Creates a system
         System SoftwareHouse = new System();
 

@@ -4,7 +4,7 @@ import javax.swing.*;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
-public class Screen {
+public class Screen{
 
     private JFrame frame;
     private JTextField textFieldLogIn;
@@ -31,7 +31,7 @@ public class Screen {
     /**
      * Create the application.
      */
-    public Screen() {
+    public Screen() throws Exception {
         initialize();
     }
 

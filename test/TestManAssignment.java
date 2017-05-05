@@ -8,7 +8,7 @@ public class TestManAssignment {
     Tests that the method manAssignment books an employee for the desired number of hours in the correct week
      */
     @Test
-    public void testManAssignment() throws WrongInputException{
+    public void testManAssignment() throws Exception{
         // Creates a system
         System SoftwareHouse = new System();
         // Adds an employee
@@ -55,7 +55,7 @@ public class TestManAssignment {
 
     }
     @Test
-    public void testManTwoWeekAssignment() throws WrongInputException {
+    public void testManTwoWeekAssignment() throws Exception {
         System SoftwareHouse = new System();
         // Adds an employee
         String ID = "Employee1";
@@ -102,7 +102,7 @@ public class TestManAssignment {
     }
 
     @Test
-    public void manTwoPeopleToAssignment() throws WrongInputException{
+    public void manTwoPeopleToAssignment() throws Exception{
         System SoftwareHouse = new System();
         // Adds an employee
         String ID = "Employee1";

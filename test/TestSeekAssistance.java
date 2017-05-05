@@ -11,7 +11,7 @@ public class TestSeekAssistance {
     Tests that the method seekAssistance adds an AssignmentEmployee
      */
     @Test
-    public void testSeekAssistenceFromCoworker() throws WrongInputException {
+    public void testSeekAssistenceFromCoworker() throws Exception {
         // Creates a system
         System SoftwareHouse = new System();
 
@@ -54,7 +54,7 @@ public class TestSeekAssistance {
     Tests Alternative scenario 1: coworker does not exist
      */
     @Test
-    public void testSeekAssistenceFromCoworkerA1() throws WrongInputException {
+    public void testSeekAssistenceFromCoworkerA1() throws Exception {
 
         // Creates a system
         System SoftwareHouse = new System();
@@ -92,7 +92,7 @@ public class TestSeekAssistance {
     Tests Alternative scenario 2: coworker is not available
      */
     @Test
-    public void testSeekAssistenceFromCoworkerA2() throws WrongInputException {
+    public void testSeekAssistenceFromCoworkerA2() throws Exception {
 
         // Creates a system
         System SoftwareHouse = new System();

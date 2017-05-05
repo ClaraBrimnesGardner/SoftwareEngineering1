@@ -12,10 +12,13 @@ public class System {
     private Database database;
 
     // Constructor
-    public System(){
+    public System() throws Exception{
         this.database = new Database();
-
-
+        createProject("Other business");
+        Project OB = database.getProject(0);
+        OB.createAssignment("Illness");
+        OB.createAssignment("Vacation");
+        OB.createAssignment("Seminars");
     }
 
     public String[] logIn(String ID) throws WrongInputException {
@@ -39,6 +42,10 @@ public class System {
         }
         Employee employee = new Employee(ID);
         database.addEmployee(employee);
+        Project OB = database.getProject(0);
+        Assignment Illness = OB.getAssignmentByName("Illness");
+        Illness.manAssignmentWithoutEndTime(employee);
+
     }
 
     public void createProject (String name) throws WrongInputException {

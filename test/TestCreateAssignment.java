@@ -8,7 +8,7 @@ public class TestCreateAssignment {
     Test that createAssignment creates and assignment with
      */
     @Test
-    public void testCreateAssignment() throws WrongInputException {
+    public void testCreateAssignment() throws Exception {
         // Creates a system
         System SoftwareHouse = new System();
         String ID = "Employee1";
@@ -39,7 +39,7 @@ public class TestCreateAssignment {
     Tests that two assignments with the same name cannot be created
      */
     @ Test
-    public void testCreateAlreadyExistingProject() throws WrongInputException{
+    public void testCreateAlreadyExistingProject() throws Exception{
         // Creates a system
         System SoftwareHouse = new System();
         String ID = "Employee1";
@@ -81,7 +81,7 @@ public class TestCreateAssignment {
     Test that two assignments can be added
      */
     @Test
-    public void testTwoProjectAndAssignments() throws WrongInputException{
+    public void testTwoProjectAndAssignments() throws Exception{
         // Creates a system
         System SoftwareHouse = new System();
         String ID = "Employee1";
