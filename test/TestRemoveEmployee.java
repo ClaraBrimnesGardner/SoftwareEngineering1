@@ -60,8 +60,8 @@ public class TestRemoveEmployee {
         // Adds a project
         String projectID="Project";
         SoftwareHouse.createProject(projectID);
-        Project currentProject = SoftwareHouse.getProjects().get(0);
-        assertEquals(SoftwareHouse.getDatabase().getProjectList().size(),1);
+        Project currentProject = SoftwareHouse.getProjects().get(1);
+        assertEquals(SoftwareHouse.getDatabase().getProjectList().size(),2);
 
         // Become projectLeader
         SoftwareHouse.logIn(ID01);
@@ -78,12 +78,12 @@ public class TestRemoveEmployee {
         // Remove project as project leader
         SoftwareHouse.logIn(ID01);
         SoftwareHouse.removeProject(currentProject.projectID);
-        assertEquals(SoftwareHouse.getDatabase().getProjectList().size(),0);
+        assertEquals(SoftwareHouse.getDatabase().getProjectList().size(),1);
 
         // Adds project again
         String projectID01="Project";
         SoftwareHouse.createProject(projectID01);
-        Project currentProject01 = SoftwareHouse.getProjects().get(0);
+        Project currentProject01 = SoftwareHouse.getProjects().get(1);
         SoftwareHouse.getCurrentEmployee().becomeProjectLeader(currentProject01.getProjectID());
         // Add two assignments
         String assignmentID01 = "Assignment1";
@@ -92,18 +92,19 @@ public class TestRemoveEmployee {
         String assignmentID02 = "Assignment2";
         currentProject01.createAssignment(assignmentID02);
         Assignment assignment2 = currentProject01.getAssignmentByName(assignmentID02);
-        assertEquals(SoftwareHouse.getDatabase().getAssignmentList().size(),2);
+        assertEquals(SoftwareHouse.getDatabase().getAssignmentList().size(),5);
         // Man assignment to create an AssignmentEmployee
         WeekCalendar week1 = new WeekCalendar(2017,9);
+        SoftwareHouse.getDatabase().getAssignment(assignmentID02).setBudgetedTime(170);
         SoftwareHouse.getDatabase().getAssignment(assignmentID02).manAssignment(Employee1,week1,2,170);
-        assertEquals(SoftwareHouse.getDatabase().getAssignmentEmployeeList(ID01).size(),1);
-        assertEquals(SoftwareHouse.getDatabase().getAssignmentEmployeeList(ID01).get(0).getTaskID(),0);
+        assertEquals(SoftwareHouse.getDatabase().getAssignmentEmployeeListWork(ID01).size(),1);
+        assertEquals(SoftwareHouse.getDatabase().getAssignmentEmployeeListWork(ID01).get(0).getTaskID(),2);
         // Remove assignment1
         SoftwareHouse.removeAssignment("Assignment1");
-        assertEquals(SoftwareHouse.getDatabase().getAssignmentList().size(),1);
-        assertEquals(SoftwareHouse.getDatabase().getProjectList().size(),1);
+        assertEquals(SoftwareHouse.getDatabase().getAssignmentList().size(),4);
+        assertEquals(SoftwareHouse.getDatabase().getProjectList().size(),2);
         // Remove project and thereby assignment2 og the assignmentEmployee
         SoftwareHouse.removeProject(currentProject01.getProjectID());
-        assertEquals(SoftwareHouse.getDatabase().getProjectList().size(),0);
+        assertEquals(SoftwareHouse.getDatabase().getProjectList().size(),1);
     }
 }

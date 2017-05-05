@@ -72,6 +72,7 @@ public class TestAdditionalTests {
         assertNull(Employee1.getProjectByName(fakeProject));
 
         // Man assignment to create assignmentEmployee
+        SoftwareHouse.getDatabase().getAssignment(assignmentID01).setBudgetedTime(170);
         SoftwareHouse.getDatabase().getAssignment(assignmentID01).manAssignment(Employee1,week2,2,170);
         // Test getAssignmentEmployeeByID in Employee
         //assertNull(Employee1.getAssignmentEmployeeByID(1));

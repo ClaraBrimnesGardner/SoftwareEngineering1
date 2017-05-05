@@ -16,6 +16,7 @@ public class Assignment {
         this.name=name;
         this.project=project;
         bookedTime=0;
+        budgetedTime=0;
     }
 
     // Getter methods
@@ -41,7 +42,10 @@ public class Assignment {
     }
 
     // Method to man an assignment
-    public void manAssignment(Employee employee, WeekCalendar week, int duration, int hours) throws WrongInputException{
+    public void manAssignment(Employee employee, WeekCalendar week, int duration, int hours) throws Exception{
+        if(hours>budgetedTime){
+            throw new TooManyHoursException("The hours you want to book exceeds the budgetted time");
+        }
         AssignmentEmployee assignmentEmployee = new AssignmentEmployee(employee, this);
         if(database!=null){
             database.addAssignmentEmployee(assignmentEmployee);

@@ -16,9 +16,9 @@ public class System {
         this.database = new Database();
         createProject(database.getReservedName());
         Project OB = database.getProject(0);
-        OB.createAssignment("Illness");
-        OB.createAssignment("Vacation");
-        OB.createAssignment("Seminars");
+        OB.createAssignment(database.getIllness());
+        OB.createAssignment(database.getVacation());
+        OB.createAssignment(database.getSeminars());
     }
 
     public String[] logIn(String ID) throws WrongInputException {

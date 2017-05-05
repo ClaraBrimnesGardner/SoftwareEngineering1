@@ -27,7 +27,7 @@ public class TestSeekAssistance {
         // Adds a project
         String projectID="Project";
         SoftwareHouse.createProject(projectID);
-        Project currentProject = SoftwareHouse.getProjects().get(0);
+        Project currentProject = SoftwareHouse.getProjects().get(1);
 
         // Become projectLeader
         SoftwareHouse.logIn(ID01);
@@ -37,15 +37,16 @@ public class TestSeekAssistance {
         String assignmentID="Assignment1";
         currentProject.createAssignment(assignmentID);
         Assignment currentAssignment = currentProject.getAssignmentByName(assignmentID);
+        currentAssignment.setBudgetedTime(80);
 
         // Mans the assignment
         SoftwareHouse.seekAssistance("Employee02", "Assignment1", 2017, 4, 6);
 
         // Test that the booking is created
         SoftwareHouse.logIn(ID02);
-        assertEquals(Employee2.getAssignmentEmployeeList().size(),1);
+        assertEquals(Employee2.getAssignmentEmployeeList().size(),2);
         // Test  that the taskID's are the same
-        assertEquals(Employee2.getAssignmentEmployeeList().get(Employee2.getAssignmentEmployeeList().size()-1).taskID,SoftwareHouse.getDatabase().assignmentEmployeeList.get(0).taskID);
+        assertEquals(Employee2.getAssignmentEmployeeList().get(Employee2.getAssignmentEmployeeList().size()-1).taskID,SoftwareHouse.getDatabase().assignmentEmployeeList.get(1).taskID);
         // Test that the employeeID's are different (to make sure that it's not just a copy of the other assignment)
         assertEquals(Employee2.getAssignmentEmployeeList().get(Employee2.getAssignmentEmployeeList().size()-1).employee.employeeID,SoftwareHouse.getDatabase().assignmentEmployeeList.get(0).employee.employeeID);
     }

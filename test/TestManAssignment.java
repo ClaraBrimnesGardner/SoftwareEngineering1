@@ -44,6 +44,7 @@ public class TestManAssignment {
         // manAssignment
         Assignment currentAssignment = currentProject.getAssignmentByName("test");
         assertEquals(SoftwareHouse.getCurrentEmployee().getAvailableHours(week1,1),80);
+        currentAssignment.setBudgetedTime(80);
 
         currentAssignment.manAssignment(SoftwareHouse.getEmployees().get(0),  week1,  1,  2);
 
@@ -90,7 +91,7 @@ public class TestManAssignment {
         Assignment currentAssignment = currentProject.getAssignmentByName("test");
         assertEquals(SoftwareHouse.getCurrentEmployee().getAvailableHours(week1, 1), 80);
         assertEquals(SoftwareHouse.getCurrentEmployee().getAvailableHours(week2,1),80);
-
+        currentAssignment.setBudgetedTime(82);
         currentAssignment.manAssignment(SoftwareHouse.getEmployees().get(0), week1, 2, 82);
         assertEquals(SoftwareHouse.getDatabase().getAssignmentEmployeeList(ID).size(), 2);
         assertEquals(SoftwareHouse.getEmployees().get(0).getAvailableHours(week1, 1), 0);

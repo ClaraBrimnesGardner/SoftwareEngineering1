@@ -72,6 +72,7 @@ public class TestBlackBoxUseCase6 {
         // Step 6
         WeekCalendar week1 = new WeekCalendar(2017, 1);
         assertEquals(1, currentEmployee.getAssignmentEmployeeList().size());
+        currentAssignment.setBudgetedTime(80);
         currentAssignment.manAssignment(currentEmployee, week1, 1, 80);
         assertEquals(2, currentEmployee.getAssignmentEmployeeList().size());
         AssignmentEmployee currentAssignmentEmployee = SoftwareHouse.getDatabase().getAssignmentEmployeeByNameAndEmployee(AID01, currentEmployee);
@@ -145,6 +146,7 @@ public class TestBlackBoxUseCase6 {
         // Step 6
         WeekCalendar week1 = new WeekCalendar(2017, 1);
         assertEquals(1, currentEmployee.getAssignmentEmployeeList().size());
+        currentAssignment.setBudgetedTime(20);
         currentAssignment.manAssignment(currentEmployee, week1, 1, 20);
         assertEquals(2, currentEmployee.getAssignmentEmployeeList().size());
 
@@ -217,6 +219,7 @@ public class TestBlackBoxUseCase6 {
         // Step 6
         WeekCalendar week1 = new WeekCalendar(2017,1);
         assertEquals(1,currentEmployee.getAssignmentEmployeeList().size());
+        currentAssignment.setBudgetedTime(20);
         currentAssignment.manAssignment(currentEmployee,week1,1,20);
         assertEquals(2,currentEmployee.getAssignmentEmployeeList().size());
 

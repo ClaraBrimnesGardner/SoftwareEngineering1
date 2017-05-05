@@ -80,6 +80,7 @@ public class TestBlackBoxUseCase4 {
         Employee availableEmployee = availableEmployees.get(0);
 
         // Step 7
+        currentAssignment.setBudgetedTime(20);
         currentAssignment.manAssignment(availableEmployee, week1, 1, 20);
         assertEquals(60,availableEmployee.getAvailableHours(week1,1));
         assertEquals(20,availableEmployee.getBookedHours(week1,1));
@@ -197,6 +198,7 @@ public class TestBlackBoxUseCase4 {
         Employee availableEmployee = availableEmployees.get(0);
 
         // Step 7
+        currentAssignment.setBudgetedTime(90);
         currentAssignment.manAssignment(availableEmployee, week1, 1, 40);
         assertEquals(40,availableEmployee.getAvailableHours(week1,1));
         assertEquals(40,availableEmployee.getBookedHours(week1,1));
