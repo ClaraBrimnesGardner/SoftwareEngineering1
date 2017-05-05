@@ -76,7 +76,7 @@ public class Employee {
         int bookedHalfHours = 0;
         // Setting the endWeek
 
-        WeekCalendar endWeek= null;
+        WeekCalendar endWeek = null;
         try {
             endWeek = new WeekCalendar(week.getYear(),week.getWeekNumber());
         } catch (WrongInputException e) {
