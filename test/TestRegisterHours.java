@@ -21,7 +21,7 @@ public class TestRegisterHours {
         // Adds a project
         String projectID="Project";
         SoftwareHouse.createProject(projectID);
-        assertEquals(SoftwareHouse.getProjects().size(),1);
+        assertEquals(SoftwareHouse.getProjects().size(),2);
         Project currentProject = SoftwareHouse.getProjects().get(1);
 
 
@@ -50,7 +50,7 @@ public class TestRegisterHours {
         DayCalendar day1 = new DayCalendar(week1,1);
         // Registers hours
         assertEquals(currentEmployee.getRegisteredHalfHours(day1),0);
-        currentEmployee.getAssignmentEmployeeList().get(0).registerTime(day1,8);
+        currentEmployee.getAssignmentEmployeeList().get(1).registerTime(day1,8);
         assertEquals(currentEmployee.getRegisteredHalfHours(day1),8);
     }
 
@@ -67,8 +67,8 @@ public class TestRegisterHours {
         // Adds a project
         String projectID="Project";
         SoftwareHouse.createProject(projectID);
-        assertEquals(SoftwareHouse.getProjects().size(),1);
-        Project currentProject = SoftwareHouse.getProjects().get(0);
+        assertEquals(SoftwareHouse.getProjects().size(),2);
+        Project currentProject = SoftwareHouse.getProjects().get(1);
 
         // Become projectLeader
         SoftwareHouse.logIn(ID01);
@@ -95,17 +95,17 @@ public class TestRegisterHours {
         DayCalendar day1 = new DayCalendar(week1,1);
         // Registers hours
         assertEquals(currentEmployee.getRegisteredHalfHours(day1),0);
-        currentEmployee.getAssignmentEmployeeList().get(0).registerTime(day1,8);
+        currentEmployee.getAssignmentEmployeeList().get(1).registerTime(day1,8);
         assertEquals(currentEmployee.getRegisteredHalfHours(day1),8);
 
         // Adds another dayCalendar
         DayCalendar day2 = new DayCalendar(week1, 2);
         // Registers hours
         assertEquals(currentEmployee.getRegisteredHalfHours(day2),0);
-        currentEmployee.getAssignmentEmployeeList().get(0).registerTime(day2,4);
+        currentEmployee.getAssignmentEmployeeList().get(1).registerTime(day2,4);
         assertEquals(currentEmployee.getRegisteredHalfHours(day2),4);
 
-        assertEquals(currentEmployee.getAssignmentEmployeeList().get(0).getDayRegistrationList().size(),2);
+        assertEquals(currentEmployee.getAssignmentEmployeeList().get(1).getDayRegistrationList().size(),2);
     }
 
     @Test
@@ -121,8 +121,8 @@ public class TestRegisterHours {
         // Adds a project
         String projectID="Project";
         SoftwareHouse.createProject(projectID);
-        assertEquals(SoftwareHouse.getProjects().size(),1);
-        Project currentProject = SoftwareHouse.getProjects().get(0);
+        assertEquals(SoftwareHouse.getProjects().size(),2);
+        Project currentProject = SoftwareHouse.getProjects().get(1);
 
         // Become projectLeader
         SoftwareHouse.logIn(ID01);
@@ -149,11 +149,11 @@ public class TestRegisterHours {
         DayCalendar day1 = new DayCalendar(week1,1);
         // Registers hours
         assertEquals(currentEmployee.getRegisteredHalfHours(day1),0);
-        currentEmployee.getAssignmentEmployeeList().get(0).registerTime(day1,4);
+        currentEmployee.getAssignmentEmployeeList().get(1).registerTime(day1,4);
         assertEquals(currentEmployee.getRegisteredHalfHours(day1),4);
 
         // Registers hours
-        currentEmployee.getAssignmentEmployeeList().get(0).registerTime(day1,4);
+        currentEmployee.getAssignmentEmployeeList().get(1).registerTime(day1,4);
         assertEquals(currentEmployee.getRegisteredHalfHours(day1),8);
     }
 
