@@ -7,7 +7,7 @@ import java.util.*;
 import java.io.*;
 public class testBecomeProjectleader {
     @Test
-    public void testBecomeProjectLeader() throws WrongInputException{
+    public void testBecomeProjectLeader() throws Exception{
         System SoftwareHouse = new System();
         // Adds an employee
         String ID="Employee1";
@@ -34,7 +34,7 @@ public class testBecomeProjectleader {
      */
 
     @Test
-    public void testOnlyOneProjectLeader() throws WrongInputException{
+    public void testOnlyOneProjectLeader() throws Exception{
         System SoftwareHouse = new System();
         // Adds an employee
         String ID="Employee1";
@@ -65,7 +65,7 @@ public class testBecomeProjectleader {
 
     }
     @Test
-    public void testBecomeProjectLeaderOfTwoProjects() throws WrongInputException{
+    public void testBecomeProjectLeaderOfTwoProjects() throws Exception{
         System SoftwareHouse = new System();
         // Adds an employee
         String ID="Employee1";

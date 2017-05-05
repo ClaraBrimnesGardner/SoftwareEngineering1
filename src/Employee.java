@@ -1,10 +1,13 @@
 /**
  * Created by clarabrimnesgardner on 27/03/2017.
  */
+import com.sun.tools.doclets.formats.html.SourceToHTMLConverter;
+
 import java.util.*;
 import java.lang.System;
 
 public class Employee {
+    private static final int MAX_REGISTERED_HALF_HOURS= 16;
     protected String employeeID;
     protected Database database;
 
@@ -104,6 +107,17 @@ public class Employee {
             }
         }
         return registeredHalfHours;
+    }
+
+    public void registerIllness(DayCalendar dayCalendar,int  halfHours) throws TooManyHoursException{
+        if(getRegisteredHalfHours(dayCalendar)+halfHours>MAX_REGISTERED_HALF_HOURS){
+            throw new TooManyHoursException("You have registered too many hours today");
+        }
+        AssignmentEmployee Illness = database.getAssignmentEmployeeByNameAndEmployee("Illness", this);
+        DayRegistration newDayRegistration = new DayRegistration(dayCalendar, halfHours);
+        List<DayRegistration> dayRegistrationList = Illness.getDayRegistrationList();
+        dayRegistrationList.add(newDayRegistration);
+
     }
 
 }

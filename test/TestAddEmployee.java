@@ -11,7 +11,7 @@ public class TestAddEmployee {
     Tests that the method addEmployee adds one Employee with the correct ID
      */
     @Test
-    public void testAddEmployee() throws WrongInputException {
+    public void testAddEmployee() throws Exception {
         System SoftwareHouse = new System();
         String ID = "Employee1";
         SoftwareHouse.createEmployee(ID);
@@ -24,7 +24,7 @@ public class TestAddEmployee {
      */
 
     @Test
-    public void testAddExistingEmployee() throws WrongInputException{
+    public void testAddExistingEmployee() throws Exception{
         System SoftwareHouse = new System();
         String ID = "Employee1";
         SoftwareHouse.createEmployee(ID);
@@ -38,7 +38,7 @@ public class TestAddEmployee {
     }
 
     @Test
-    public void testAddTwoEmployees() throws WrongInputException{
+    public void testAddTwoEmployees() throws Exception{
         System SoftwareHouse = new System();
         String ID1 = "Employee1";
         SoftwareHouse.createEmployee(ID1);

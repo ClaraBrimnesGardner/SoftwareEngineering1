@@ -38,6 +38,7 @@ public class Database {
         return assignments;
     }
 
+
     public List<Employee> getAvailableEmployees(WeekCalendar startWeek, int duration, int hours) {
         List<Employee> available = new ArrayList<Employee>();
         for (Employee employee : employeeList) {

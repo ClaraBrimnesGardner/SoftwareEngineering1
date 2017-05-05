@@ -14,9 +14,6 @@ public class AssignmentEmployee {
     private List<DayRegistration> dayRegistrationList = new ArrayList<>();
     private Assignment assignment;
 
-    public Assignment getAssignment() {
-        return assignment;
-    }
 
     public AssignmentEmployee(Employee employee, Assignment assignment) {
         this.taskID = taskID;
@@ -28,6 +25,11 @@ public class AssignmentEmployee {
     public List<WeekBooking> getWeekBookings() {
         return weekBookings;
     }
+
+    public Assignment getAssignment() {
+        return assignment;
+    }
+
 
     public List<WeekCalendar> getBookedWeeks(){
         List<WeekCalendar> bookedWeeks = new ArrayList<>();

@@ -70,6 +70,13 @@ public class Assignment {
         }
     }
 
+    public void manAssignmentWithoutEndTime(Employee employee) throws WrongInputException{
+        AssignmentEmployee assignmentEmployee = new AssignmentEmployee(employee, this);
+        if(database!=null){
+            database.addAssignmentEmployee(assignmentEmployee);
+        }
+    }
+
 
 
 
