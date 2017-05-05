@@ -15,6 +15,7 @@ public class Screen{
     /**
      * Launch the application.
      */
+
     public static void main(String[] args) {
         EventQueue.invokeLater(new Runnable() {
             public void run() {
@@ -70,7 +71,7 @@ public class Screen{
         JLabel lblLogin = new JLabel("Type your employment ID:");
         lblLogin.setBounds(217, 18, 177, 16);
         frame.getContentPane().add(lblLogin);
-
+        
         // Helping label
         JLabel lblLoggedInAs = new JLabel("Logged in as:");
         lblLoggedInAs.setFont(new Font("Lucida Grande", Font.PLAIN, 9));
@@ -254,9 +255,14 @@ public class Screen{
         btnYourProjects.setVisible(false);
 
         JButton btnDeleteEmployees = new JButton("Delete employees");
-        btnDeleteEmployees.setBounds(163, 339, 203, 29);
+        btnDeleteEmployees.setBounds(55, 345, 203, 29);
         frame.getContentPane().add(btnDeleteEmployees);
         btnDeleteEmployees.setVisible(false);
+
+        JButton btnSeminarVacation = new JButton("Seminar / Vacation");
+        btnSeminarVacation.setBounds(276, 345, 202, 29);
+        frame.getContentPane().add(btnSeminarVacation);
+        btnSeminarVacation.setVisible(false);
 
         JButton btnMenu = new JButton("Menu");
         btnMenu.setBounds(265, 13, 117, 29);
@@ -347,6 +353,21 @@ public class Screen{
         btnSeekAssistance2.setBounds(360, 168, 176, 29);
         frame.getContentPane().add(btnSeekAssistance2);
         btnSeekAssistance2.setVisible(false);
+
+        JButton btnBookVacation = new JButton("Book vacation");
+        btnBookVacation.setBounds(192, 230, 129, 29);
+        frame.getContentPane().add(btnBookVacation);
+        btnBookVacation.setVisible(false);
+
+        JButton btnBookSeminar = new JButton("Book seminar");
+        btnBookSeminar.setBounds(42, 230, 129, 29);
+        frame.getContentPane().add(btnBookSeminar);
+        btnBookSeminar.setVisible(false);
+
+        JButton btnRegisterIllness = new JButton("Register illness");
+        btnRegisterIllness.setBounds(277, 367, 201, 29);
+        frame.getContentPane().add(btnRegisterIllness);
+        btnRegisterIllness.setVisible(false);
 
 
         /**     TEXTFIELDS:     **/
@@ -460,6 +481,7 @@ public class Screen{
                     btnDeleteEmployees.setVisible(true);
                     lblSoftwarehuset.setVisible(false);
                     lblAs.setVisible(false);
+                    btnSeminarVacation.setVisible(true);
                 } catch (WrongInputException e1) {
                     e1.printStackTrace();
                     JOptionPane.showMessageDialog(null, e1.getMessage());
@@ -484,6 +506,7 @@ public class Screen{
                     btnYourProjects.setVisible(true);
                     lblSoftwarehuset.setVisible(false);
                     lblAs.setVisible(false);
+                    btnSeminarVacation.setVisible(true);
                 } catch (WrongInputException e1) {
                     e1.printStackTrace();
                     JOptionPane.showMessageDialog(null, e1.getMessage());
@@ -550,13 +573,35 @@ public class Screen{
                 lblListExplainer.setText("Available Projects:");
                 lblTypeProjectID.setVisible(true);
                 btnLeadProject.setVisible(true);
-                frontScreenRemoving(btnBecomeProjectLeader, btnRegisterTime, btnSeekAssistance, btnYourProjects, btnDeleteEmployees);
+                frontScreenRemoving(btnBecomeProjectLeader, btnRegisterTime, btnSeekAssistance, btnYourProjects, btnDeleteEmployees,btnSeminarVacation);
                 DefaultListModel projects = new DefaultListModel();
                 for (Project project : system.getDatabase().getAvailableProjects()) {
                     String name = "Name:  " + project.getName() + "   ID:   " + project.getProjectID();
                     projects.addElement(name);
                 }
                 list.setModel(projects);
+            }
+        });
+
+        btnSeminarVacation.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                frontScreenRemoving(btnBecomeProjectLeader, btnRegisterTime, btnSeekAssistance, btnYourProjects, btnDeleteEmployees,btnSeminarVacation);
+                textHours.setVisible(true);
+                textHours.setText("");
+                textYear.setVisible(true);
+                textYear.setText(String.valueOf(system.getThisDay().weekCalendar.getYear()));
+                textDuration.setVisible(true);
+                textDuration.setText("");
+                textStartWeek.setVisible(true);
+                textStartWeek.setText(String.valueOf(system.getThisDay().weekCalendar.getWeekNumber()));
+                lblYear.setVisible(true);
+                lblNumberOfHours.setVisible(true);
+                lblDuration.setVisible(true);
+                lblStartWeek.setVisible(true);
+                btnBookVacation.setVisible(true);
+                btnBookSeminar.setVisible(true);
+
             }
         });
 
@@ -592,7 +637,7 @@ public class Screen{
                 btnChoose.setVisible(true);
                 lblDeleteProject.setVisible(true);
                 btnDeleteProject.setVisible(true);
-                frontScreenRemoving(btnBecomeProjectLeader, btnRegisterTime, btnSeekAssistance, btnYourProjects, btnDeleteEmployees);
+                frontScreenRemoving(btnBecomeProjectLeader, btnRegisterTime, btnSeekAssistance, btnYourProjects, btnDeleteEmployees,btnSeminarVacation);
                 DefaultListModel projects = new DefaultListModel();
                 for (Project project : system.getDatabase().getProjectLeaderList(system.getCurrentEmployee())) {
                     String name = "Name:  " + project.getName() + "   ID:   " + project.getProjectID();
@@ -852,7 +897,7 @@ public class Screen{
         btnRegisterTime.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                frontScreenRemoving(btnBecomeProjectLeader, btnRegisterTime, btnSeekAssistance, btnYourProjects, btnDeleteEmployees);
+                frontScreenRemoving(btnBecomeProjectLeader, btnRegisterTime, btnSeekAssistance, btnYourProjects, btnDeleteEmployees,btnSeminarVacation);
                 lblListExplainer.setText("Your assignments:");
                 btnRegisterTime2.setVisible(true);
                 btnToday.setVisible(true);
@@ -872,6 +917,7 @@ public class Screen{
                 lblDayNumber.setVisible(true);
                 lblWeekNumber.setVisible(true);
                 lblTypeWeekNumber.setVisible(true);
+                btnRegisterIllness.setVisible(true);
             }
         });
 
@@ -921,6 +967,9 @@ public class Screen{
                 lblYearNumber.setVisible(false);
                 textHoursRegistration.setVisible(false);
                 lblHours.setVisible(false);
+                btnRegisterIllness.setVisible(false);
+                btnBookVacation.setVisible(false);
+                btnBookSeminar.setVisible(false);
                 lblListExplainer.setText("Your time registrations:");
                 DefaultListModel oldRegistrations = new DefaultListModel();
                 for (AssignmentEmployee assignmentEmployee : system.getDatabase().getAssignmentEmployeeList(system.getCurrentEmployee().employeeID)) {
@@ -934,10 +983,45 @@ public class Screen{
             }
         });
 
+        btnRegisterIllness.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                try {
+                    WeekCalendar weekCalendar = new WeekCalendar(Integer.parseInt(textYearNumber.getText()),Integer.parseInt(textWeekNumber.getText()));
+                    DayCalendar dayCalendar = new DayCalendar(weekCalendar,Integer.parseInt(textDayNumber.getText()));
+                    system.getCurrentEmployee().registerIllness(dayCalendar,system.convertToHalfHours(Double.parseDouble(textHoursRegistration.getText())));
+                    textHoursRegistration.setText("");
+                } catch (WrongInputException e1) {
+                    e1.printStackTrace();
+                    JOptionPane.showMessageDialog(null,e1.getMessage());
+                } catch (TooManyHoursException e1) {
+                    e1.printStackTrace();
+                    JOptionPane.showMessageDialog(null,e1.getMessage());
+                }
+            }
+        });
+
+        btnBookSeminar.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                try {
+                    WeekCalendar weekCalendar = new WeekCalendar(Integer.parseInt(textYear.getText()),Integer.parseInt(textStartWeek.getText()));
+                    system.getCurrentEmployee().bookSeminar(weekCalendar,Integer.parseInt(textDuration.getText()),system.convertToHalfHours(Double.parseDouble(textHours.getText())));
+                } catch (WrongInputException e1) {
+                    e1.printStackTrace();
+                    JOptionPane.showMessageDialog(null,e1.getMessage());
+                } catch (Exception e1) {
+                    e1.printStackTrace();
+                    JOptionPane.showMessageDialog(null,e1.getMessage());
+                }
+
+            }
+        });
+
         btnSeekAssistance.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                frontScreenRemoving(btnBecomeProjectLeader,btnRegisterTime,btnSeekAssistance,btnYourProjects,btnDeleteEmployees);
+                frontScreenRemoving(btnBecomeProjectLeader,btnRegisterTime,btnSeekAssistance,btnYourProjects,btnDeleteEmployees,btnSeminarVacation);
                 DefaultListModel assignments = new DefaultListModel();
                 for (AssignmentEmployee assignment : system.getDatabase().getAssignmentEmployeeList(system.getCurrentEmployee().getEmployeeID())) {
                     assignments.addElement(assignment.getAssignment().getName());
@@ -1016,7 +1100,7 @@ public class Screen{
         btnDeleteEmployees.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                frontScreenRemoving(btnBecomeProjectLeader, btnRegisterTime, btnSeekAssistance, btnYourProjects, btnDeleteEmployees);
+                frontScreenRemoving(btnBecomeProjectLeader, btnRegisterTime, btnSeekAssistance, btnYourProjects, btnDeleteEmployees,btnSeminarVacation);
                 lblListExplainer.setText("All employees;");
                 lblChooseAnEmployee.setVisible(true);
                 btnDeleteEmployee2.setVisible(true);
@@ -1116,6 +1200,10 @@ public class Screen{
                 lblChooseAnAssignmentSeekAssistance.setVisible(false);
                 btnGetAvailableEmployees2.setVisible(false);
                 btnSeekAssistance2.setVisible(false);
+                btnRegisterIllness.setVisible(false);
+                btnBookVacation.setVisible(false);
+                btnBookSeminar.setVisible(false);
+                btnSeminarVacation.setVisible(true);
 
             }
         });
@@ -1128,7 +1216,7 @@ public class Screen{
                 btnLogin.setVisible(true);
                 textFieldLogIn.setVisible(true);
                 btnLogOff.setVisible(false);
-                frontScreenRemoving(btnBecomeProjectLeader, btnRegisterTime, btnSeekAssistance, btnYourProjects, btnDeleteEmployees);
+                frontScreenRemoving(btnBecomeProjectLeader, btnRegisterTime, btnSeekAssistance, btnYourProjects, btnDeleteEmployees,btnSeminarVacation);
                 lblLoggedInAs2.setText("");
                 btnMenu.setVisible(false);
                 lblSoftwarehuset.setVisible(true);
@@ -1189,6 +1277,9 @@ public class Screen{
                 lblChooseAnAssignmentSeekAssistance.setVisible(false);
                 btnGetAvailableEmployees2.setVisible(false);
                 btnSeekAssistance2.setVisible(false);
+                btnRegisterIllness.setVisible(false);
+                btnBookVacation.setVisible(false);
+                btnBookSeminar.setVisible(false);
             }
         });
 
@@ -1199,11 +1290,12 @@ public class Screen{
         list.setModel(emptymodel);
     }
 
-    private void frontScreenRemoving(JButton btnBecomeProjectLeader, JButton btnRegisterTime, JButton btnSeekAssistance, JButton btnYourProjects, JButton btnDeleteEmployees) {
+    private void frontScreenRemoving(JButton btnBecomeProjectLeader, JButton btnRegisterTime, JButton btnSeekAssistance, JButton btnYourProjects, JButton btnDeleteEmployees,JButton btnSeminarVacation) {
         btnBecomeProjectLeader.setVisible(false);
         btnRegisterTime.setVisible(false);
         btnSeekAssistance.setVisible(false);
         btnYourProjects.setVisible(false);
+        btnSeminarVacation.setVisible(false);
         btnDeleteEmployees.setVisible(false);
     }
 }
