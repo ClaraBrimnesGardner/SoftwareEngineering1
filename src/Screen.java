@@ -871,7 +871,7 @@ public class Screen{
                 int hours = system.convertToHalfHours(Double.parseDouble(textHours.getText()));
                 try {
                     system.getDatabase().getProject(currentProjectID).getAssignmentByName(currentAssignmentName).manAssignment(system.getDatabase().getEmployee(name), weekCalendar, duration, hours);
-                } catch (WrongInputException e1) {
+                } catch (Exception e1) {
                     e1.printStackTrace();
                     JOptionPane.showMessageDialog(null, e1.getMessage());
 

@@ -63,6 +63,7 @@ public class TestRegisterIllness {
 
 
         WeekCalendar week1 = new WeekCalendar(2017,1);
+        currentAssignment.setBudgetedTime(20);
         currentAssignment.manAssignment(currentEmployee, week1,1,20);
 
         DayCalendar day1 = new DayCalendar(week1,1);
@@ -134,6 +135,7 @@ public class TestRegisterIllness {
 
 
         WeekCalendar week1 = new WeekCalendar(2017,1);
+        currentAssignment.setBudgetedTime(20);
         currentAssignment.manAssignment(currentEmployee, week1,1,20);
 
         DayCalendar day1 = new DayCalendar(week1,1);
@@ -184,6 +186,7 @@ public class TestRegisterIllness {
 
 
         WeekCalendar week1 = new WeekCalendar(2017,1);
+        currentAssignment.setBudgetedTime(20);
         currentAssignment.manAssignment(currentEmployee, week1,1,20);
 
         DayCalendar day1 = new DayCalendar(week1,1);

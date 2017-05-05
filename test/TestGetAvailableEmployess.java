@@ -74,6 +74,7 @@ public class TestGetAvailableEmployess {
         assertEquals(availableEmployees.size(),1);
 
         // manAssignment
+        currentAssignment.setBudgetedTime(20);
         currentAssignment.manAssignment(currentEmployee,week1,1,20);
         assertEquals(currentEmployee.getAvailableHours(week1,1),60);
 
