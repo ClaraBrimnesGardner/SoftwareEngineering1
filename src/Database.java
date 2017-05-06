@@ -12,6 +12,8 @@ public class Database {
     private static final String SEMINARS = "Seminars";
     private static final int MAX_BOOKED_HALF_HOURS=80;
     private static final int MAX_REGISTERED_HALF_HOURS= 16;
+    private static final int MIN_REGISTERED_HALF_HOURS=0;
+    private static final int MIN_BOOKED_HALF_HOURS=0;
     public List<Employee> employeeList;
     public List<Project> projectList;
     private List<Assignment> assignmentList;
@@ -195,10 +197,12 @@ public class Database {
     public String getSeminars(){
         return SEMINARS;
     }
-    public int getMAX_REGISTERED_HALF_HOURS(){
+    public int getMaxRegisteredHalfHours(){
         return MAX_REGISTERED_HALF_HOURS;
     }
     public int getMaxBookedHalfHours(){return MAX_BOOKED_HALF_HOURS;}
+    public int getMinRegisteredHalfHours(){return MIN_REGISTERED_HALF_HOURS;}
+    public int getMinBookedHalfHours(){return MIN_BOOKED_HALF_HOURS;}
 
 
     public void deleteEmployee(Employee employee1) throws WrongInputException {
