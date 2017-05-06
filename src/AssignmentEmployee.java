@@ -7,7 +7,6 @@ import java.lang.System;
 
 
 public class AssignmentEmployee {
-    private static final int MAX_REGISTERED_HALF_HOURS= 16;
     public int taskID;
     public Employee employee;
     private List<WeekBooking> weekBookings = new ArrayList<>();
@@ -61,8 +60,11 @@ public class AssignmentEmployee {
 
     // Method to register time
     public void registerTime(DayCalendar dayCalendar, int halfHours) throws Exception{
-        if(employee.getRegisteredHalfHours(dayCalendar)+halfHours>MAX_REGISTERED_HALF_HOURS){
+        if(employee.getRegisteredHalfHours(dayCalendar)+halfHours>employee.database.getMaxRegisteredHalfHours()){
             throw new TooManyHoursException("You have registered too many hours today");
+        }
+        if(halfHours<employee.database.getMinRegisteredHalfHours()){
+            throw new TooManyHoursException("You can't register less than 0 hours");
         }
         if(!getBookedWeeks().contains(dayCalendar.getWeekCalendar())){
          throw new OperationNotAllowedException("You are not booked to this assignment in this week");
@@ -78,7 +80,7 @@ public class AssignmentEmployee {
     }
 
     public void changeRegistration(DayCalendar dayCalendar, int halfHours) throws TooManyHoursException {
-        if(halfHours>MAX_REGISTERED_HALF_HOURS){
+        if(halfHours>employee.database.getMaxRegisteredHalfHours()){
             throw new TooManyHoursException("You have registered too many hours today");
         }
         for(DayRegistration dayRegistration : dayRegistrationList){

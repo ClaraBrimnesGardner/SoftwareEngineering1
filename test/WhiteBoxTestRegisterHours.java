@@ -86,6 +86,84 @@ public class WhiteBoxTestRegisterHours {
     Test 2
     Input data set W.2
     This test tests the method registerTime with the properties: "Employee has not registered too many hours" and
+    "Employee tries to register less than zero hours"
+    Step 1:
+    Create a system
+
+    Step 2:
+    Add an employee
+
+    Step 3:
+    Add a project
+
+    Step 4:
+    Log in and Become project leader
+
+    Step 5:
+    Add an assignment
+
+    Step 6:
+    Man yourself to assignment
+
+    Step 7
+    Register less than the 0 hours to the assignment
+     */
+
+    @Test
+    public void testRegisterLessThanZeroHours() throws Exception {
+        // Step 1
+        System SoftwareHouse = new System();
+
+        // Step 2
+        assertEquals(0, SoftwareHouse.getDatabase().getNumberOfEmployees());
+        String EID01 = "CBG";
+        SoftwareHouse.createEmployee(EID01);
+        assertEquals(1, SoftwareHouse.getDatabase().getNumberOfEmployees());
+
+        // Step 3
+        assertEquals(1, SoftwareHouse.getDatabase().getNumberOfProjects());
+        String PID01 = "Project01";
+        SoftwareHouse.createProject(PID01);
+        Project currentProject = SoftwareHouse.getProjects().get(1);
+        assertEquals(2, SoftwareHouse.getDatabase().getNumberOfProjects());
+
+        // Step 4
+        SoftwareHouse.logIn(EID01);
+        assertEquals("CBG", SoftwareHouse.getCurrentEmployee().getEmployeeID());
+        Employee currentEmployee = SoftwareHouse.getCurrentEmployee();
+        assertEquals(0, currentEmployee.getProjectLeaderList().size());
+        SoftwareHouse.becomeProjectLeader(currentProject.getProjectID());
+        assertEquals(1, currentEmployee.getProjectLeaderList().size());
+
+        // Step 5
+        String AID01 = "Assignment01";
+        assertEquals(0, currentProject.getAssignmentList().size());
+        currentProject.createAssignment(AID01);
+        assertEquals(1, currentProject.getAssignmentList().size());
+        Assignment currentAssignment = currentProject.getAssignmentByName(AID01);
+
+        // Step 6
+        WeekCalendar week1 = new WeekCalendar(2017, 1);
+        assertEquals(1, currentEmployee.getAssignmentEmployeeList().size());
+        currentAssignment.setBudgetedTime(20);
+        currentAssignment.manAssignment(currentEmployee, week1, 1, 20);
+        assertEquals(2, currentEmployee.getAssignmentEmployeeList().size());
+
+        // Step 7
+        DayCalendar day1 = new DayCalendar(week1, 1);
+        AssignmentEmployee currentAssignmentEmployee = SoftwareHouse.getDatabase().getAssignmentEmployeeByNameAndEmployee(AID01, currentEmployee);
+        try {
+            currentAssignmentEmployee.registerTime(day1, 0);
+        } catch (TooManyHoursException e) {
+            assertEquals("You can't register less than 0 hours", e.getMessage());
+        }
+    }
+
+
+    /*
+    Test 3
+    Input data set W.3
+    This test tests the method registerTime with the properties: "Employee has not registered too many hours" and
     "Employee is not booked to the assignment in this week"
     Step 1:
     Create a system
@@ -162,9 +240,12 @@ public class WhiteBoxTestRegisterHours {
         assertEquals(0,currentEmployee.getRegisteredHalfHours(day1));
     }
 
+
+
+
     /*
-    Test 3
-    Data input set W.3
+    Test 4
+    Data input set W.4
     This test tests the method registerTime with the properties: "Employee has not registered too many hours",
     "Employee is booked to the assignment in the current week" and "Employee has not registered anything yet"
     Step 1:
@@ -239,8 +320,8 @@ public class WhiteBoxTestRegisterHours {
     }
 
     /*
-    Test 4
-    Data input set W.4
+    Test 5
+    Data input set W.5
     This test tests the method registerTime with the properties: "Employee has not registered too many hours",
     "Employee is booked to chosen assignment in chosen week", "Employee has performed one registration before" and
     "Employee has registered time the same day"
@@ -324,8 +405,8 @@ public class WhiteBoxTestRegisterHours {
     }
 
     /*
-    Test 5
-    Data input set W.5
+    Test 6
+    Data input set W.6
     This test tests the method registerTime with the properties: "Employee has not registered too many hours",
     "Employee is booked to chosen assignment in chosen week", "Employee has performed multiple registrations" and
     "Employee has not performed any registrations the chosen day"
