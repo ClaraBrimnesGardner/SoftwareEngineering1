@@ -1074,7 +1074,7 @@ public class Screen{
             public void actionPerformed(ActionEvent e) {
                 frontScreenRemoving(btnBecomeProjectLeader,btnRegisterTime,btnSeekAssistance,btnYourProjects,btnDeleteEmployees,btnSeminarVacation);
                 DefaultListModel assignments = new DefaultListModel();
-                for (AssignmentEmployee assignment : system.getDatabase().getAssignmentEmployeeList(system.getCurrentEmployee().getEmployeeID())) {
+                for (AssignmentEmployee assignment : system.getDatabase().getAssignmentEmployeeListWork(system.getCurrentEmployee().getEmployeeID())) {
                     assignments.addElement(assignment.getAssignment().getName());
                 }
                 list.setModel(assignments);
