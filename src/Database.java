@@ -14,6 +14,7 @@ public class Database {
     private static final int MAX_REGISTERED_HALF_HOURS= 16;
     private static final int MIN_REGISTERED_HALF_HOURS=0;
     private static final int MIN_BOOKED_HALF_HOURS=0;
+    private static final int MAX_CHARACTERS_IN_EMPLOYEE_ID=4;
     public List<Employee> employeeList;
     public List<Project> projectList;
     private List<Assignment> assignmentList;
@@ -203,6 +204,7 @@ public class Database {
     public int getMaxBookedHalfHours(){return MAX_BOOKED_HALF_HOURS;}
     public int getMinRegisteredHalfHours(){return MIN_REGISTERED_HALF_HOURS;}
     public int getMinBookedHalfHours(){return MIN_BOOKED_HALF_HOURS;}
+    public int getMaxCharactersInEmployeeId(){return MAX_CHARACTERS_IN_EMPLOYEE_ID;}
 
 
     public void deleteEmployee(Employee employee1) throws WrongInputException {
