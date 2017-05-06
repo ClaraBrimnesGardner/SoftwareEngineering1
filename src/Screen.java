@@ -493,7 +493,6 @@ public class Screen{
                     lblAs.setVisible(false);
                     btnSeminarVacation.setVisible(true);
                 } catch (WrongInputException e1) {
-                    e1.printStackTrace();
                     JOptionPane.showMessageDialog(null, e1.getMessage());
                 }
             }
@@ -518,7 +517,6 @@ public class Screen{
                     lblAs.setVisible(false);
                     btnSeminarVacation.setVisible(true);
                 } catch (WrongInputException e1) {
-                    e1.printStackTrace();
                     JOptionPane.showMessageDialog(null, e1.getMessage());
                 }
             }
@@ -531,7 +529,6 @@ public class Screen{
                     system.createEmployee(textAddEmployee.getText());
                     textAddEmployee.setText("");
                 } catch (WrongInputException e1) {
-                    e1.printStackTrace();
                     JOptionPane.showMessageDialog(null, e1.getMessage());
                 }
             }
@@ -544,7 +541,6 @@ public class Screen{
                     system.createEmployee(textAddEmployee.getText());
                     textAddEmployee.setText("");
                 } catch (WrongInputException e1) {
-                    e1.printStackTrace();
                     JOptionPane.showMessageDialog(null, e1.getMessage());
                 }
             }
@@ -558,7 +554,6 @@ public class Screen{
                     system.createProject(textAddProject.getText());
                     textAddProject.setText("");
                 } catch (WrongInputException e1) {
-                    e1.printStackTrace();
                     JOptionPane.showMessageDialog(null, e1.getMessage());
                 }
             }
@@ -570,7 +565,6 @@ public class Screen{
                     system.createProject(textAddProject.getText());
                     textAddProject.setText("");
                 } catch (WrongInputException e1) {
-                    e1.printStackTrace();
                     JOptionPane.showMessageDialog(null, e1.getMessage());
                 }
             }
@@ -593,28 +587,6 @@ public class Screen{
             }
         });
 
-        btnSeminarVacation.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                frontScreenRemoving(btnBecomeProjectLeader, btnRegisterTime, btnSeekAssistance, btnYourProjects, btnDeleteEmployees,btnSeminarVacation);
-                textHours.setVisible(true);
-                textHours.setText("");
-                textYear.setVisible(true);
-                textYear.setText(String.valueOf(system.getThisDay().weekCalendar.getYear()));
-                textDuration.setVisible(true);
-                textDuration.setText("");
-                textStartWeek.setVisible(true);
-                textStartWeek.setText(String.valueOf(system.getThisDay().weekCalendar.getWeekNumber()));
-                lblYear.setVisible(true);
-                lblNumberOfHours.setVisible(true);
-                lblDuration.setVisible(true);
-                lblStartWeek.setVisible(true);
-                btnBookVacation.setVisible(true);
-                btnBookSeminar.setVisible(true);
-
-            }
-        });
-
         btnLeadProject.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -626,7 +598,6 @@ public class Screen{
                 try {
                     system.becomeProjectLeader(ID);
                 } catch (OperationNotAllowedException e1) {
-                    e1.printStackTrace();
                     JOptionPane.showMessageDialog(null, e1.getMessage());
                 }
                 DefaultListModel projects = new DefaultListModel();
@@ -702,7 +673,6 @@ public class Screen{
                 try {
                     system.removeProject(deletedProjectID);
                 } catch (WrongInputException e1) {
-                    e1.printStackTrace();
                     JOptionPane.showMessageDialog(null,e1.getMessage());
                 }
                 DefaultListModel projects = new DefaultListModel();
@@ -721,7 +691,6 @@ public class Screen{
                 try {
                     system.getDatabase().getProject(currentProjectID).createAssignment(textCreateAssignment.getText());
                 } catch (WrongInputException e1) {
-                    e1.printStackTrace();
                     JOptionPane.showMessageDialog(null, e1.getMessage());
                 }
                 DefaultListModel assignmentList = new DefaultListModel();
@@ -740,7 +709,6 @@ public class Screen{
                 try {
                     system.removeAssignment((String) list.getModel().getElementAt(list.getSelectedIndex()));
                 } catch (WrongInputException e1) {
-                    e1.printStackTrace();
                     JOptionPane.showMessageDialog(null,e1.getMessage());
                 }
                 DefaultListModel assignmentList = new DefaultListModel();
@@ -758,7 +726,6 @@ public class Screen{
                 try {
                     system.getDatabase().getProject(currentProjectID).createAssignment(textCreateAssignment.getText());
                 } catch (WrongInputException e1) {
-                    e1.printStackTrace();
                     JOptionPane.showMessageDialog(null, e1.getMessage());
                 }
                 DefaultListModel assignmentList = new DefaultListModel();
@@ -806,7 +773,7 @@ public class Screen{
                 try {
                     lblBudgettedTime.setText("Budgetted time:  " + system.getDatabase().getProject(currentProjectID).getAssignmentByName(currentAssignmentName).getBudgetedTime() + " hours");
                 } catch (WrongInputException e1) {
-                    e1.printStackTrace();
+                    JOptionPane.showMessageDialog(null,e1.getMessage());
                 }
 
 
@@ -820,7 +787,6 @@ public class Screen{
                 try {
                     startWeek = new WeekCalendar(Integer.parseInt(textYear.getText()), Integer.parseInt(textStartWeek.getText()));
                 } catch (WrongInputException e1) {
-                    e1.printStackTrace();
                 }
                 DefaultListModel employees = new DefaultListModel();
                 for (Employee employee : system.getDatabase().getAvailableEmployees(startWeek, Integer.parseInt(textDuration.getText()), system.convertToHalfHours(Double.parseDouble(textHours.getText())))) {
@@ -839,13 +805,11 @@ public class Screen{
                 try {
                     system.getDatabase().getProject(currentProjectID).getAssignmentByName(currentAssignmentName).setBudgetedTime(system.convertToHalfHours(Double.parseDouble(textSetBudgettedTime.getText())));
                 } catch (WrongInputException e1) {
-                    e1.printStackTrace();
                 }
                 textSetBudgettedTime.setText("");
                 try {
                     lblBudgettedTime.setText("Budgetted time:  " + ((double) system.getDatabase().getProject(currentProjectID).getAssignmentByName(currentAssignmentName).getBudgetedTime()) / 2.0 + " hours");
                 } catch (WrongInputException e1) {
-                    e1.printStackTrace();
                     JOptionPane.showMessageDialog(null,e1.getMessage());
                 }
             }
@@ -857,13 +821,11 @@ public class Screen{
                 try {
                     system.getDatabase().getProject(currentProjectID).getAssignmentByName(currentAssignmentName).setBudgetedTime(system.convertToHalfHours(Double.parseDouble(textSetBudgettedTime.getText())));
                 } catch (WrongInputException e1) {
-                    e1.printStackTrace();
                 }
                 textSetBudgettedTime.setText("");
                 try {
                     lblBudgettedTime.setText("Budgetted time:  " + ((double) system.getDatabase().getProject(currentProjectID).getAssignmentByName(currentAssignmentName).getBudgetedTime()) / 2.0 + " hours");
                 } catch (WrongInputException e1) {
-                    e1.printStackTrace();
                     JOptionPane.showMessageDialog(null,e1.getMessage());
                 }
             }
@@ -877,14 +839,12 @@ public class Screen{
                 try {
                     weekCalendar = new WeekCalendar(Integer.parseInt(textYear.getText()), Integer.parseInt(textStartWeek.getText()));
                 } catch (WrongInputException e1) {
-                    e1.printStackTrace();
                 }
                 int duration = Integer.parseInt(textDuration.getText());
                 int hours = system.convertToHalfHours(Double.parseDouble(textHours.getText()));
                 try {
                     system.getDatabase().getProject(currentProjectID).getAssignmentByName(currentAssignmentName).manAssignment(system.getDatabase().getEmployee(name), weekCalendar, duration, hours);
                 } catch (Exception e1) {
-                    e1.printStackTrace();
                     JOptionPane.showMessageDialog(null, e1.getMessage());
 
                 }
@@ -896,16 +856,8 @@ public class Screen{
             }
         });
 
-        btnToday.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                DayCalendar dayCalendar = system.getThisDay();
-                textWeekNumber.setText("" + dayCalendar.weekCalendar.getWeekNumber());
-                textDayNumber.setText("" + dayCalendar.dayNumber);
-                textYearNumber.setText("" + dayCalendar.weekCalendar.getYear());
-            }
-        });
 
+        /** The register time function **/
         btnRegisterTime.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -933,6 +885,16 @@ public class Screen{
             }
         });
 
+        btnToday.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                DayCalendar dayCalendar = system.getThisDay();
+                textWeekNumber.setText("" + dayCalendar.weekCalendar.getWeekNumber());
+                textDayNumber.setText("" + dayCalendar.dayNumber);
+                textYearNumber.setText("" + dayCalendar.weekCalendar.getYear());
+            }
+        });
+
         btnRegisterTime2.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -941,22 +903,37 @@ public class Screen{
                 try {
                     weekCalendar = new WeekCalendar(Integer.parseInt(textYearNumber.getText()),Integer.parseInt(textWeekNumber.getText()));
                 } catch (WrongInputException e1) {
-                    e1.printStackTrace();
+                    JOptionPane.showMessageDialog(null,e1.getMessage());
                 }
                 DayCalendar dayCalendar = null;
                 try {
                     dayCalendar = new DayCalendar(weekCalendar,Integer.parseInt(textDayNumber.getText()));
                 } catch (WrongInputException e1) {
-                    e1.printStackTrace();
+                    JOptionPane.showMessageDialog(null,e1.getMessage());
                 }
                 AssignmentEmployee currentAssignmentEmployee = system.getDatabase().getAssignmentEmployeeByNameAndEmployee(assignmentName,system.getCurrentEmployee());
                 try {
                     currentAssignmentEmployee.registerTime(dayCalendar,system.convertToHalfHours(Double.parseDouble(textHoursRegistration.getText())));
                 } catch (Exception e1) {
-                    e1.printStackTrace();
                     JOptionPane.showMessageDialog(null,e1.getMessage());
                 }
                 textHoursRegistration.setText("");
+            }
+        });
+
+        btnRegisterIllness.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                try {
+                    WeekCalendar weekCalendar = new WeekCalendar(Integer.parseInt(textYearNumber.getText()),Integer.parseInt(textWeekNumber.getText()));
+                    DayCalendar dayCalendar = new DayCalendar(weekCalendar,Integer.parseInt(textDayNumber.getText()));
+                    system.getCurrentEmployee().registerIllness(dayCalendar,system.convertToHalfHours(Double.parseDouble(textHoursRegistration.getText())));
+                    textHoursRegistration.setText("");
+                } catch (WrongInputException e1) {
+                    JOptionPane.showMessageDialog(null,e1.getMessage());
+                } catch (TooManyHoursException e1) {
+                    JOptionPane.showMessageDialog(null,e1.getMessage());
+                }
             }
         });
 
@@ -1018,10 +995,8 @@ public class Screen{
                     DayCalendar dayCalendar = new DayCalendar(weekCalendar,day);
                     assignmentEmployee.changeRegistration(dayCalendar,system.convertToHalfHours(Double.parseDouble(textHoursRegistration.getText())));
                 } catch (WrongInputException e1) {
-                    e1.printStackTrace();
                     JOptionPane.showMessageDialog(null,e1.getMessage());
                 } catch (TooManyHoursException e1) {
-                    e1.printStackTrace();
                     JOptionPane.showMessageDialog(null,e1.getMessage());
                 }
                 DefaultListModel oldRegistrations = new DefaultListModel();
@@ -1036,21 +1011,26 @@ public class Screen{
             }
         });
 
-        btnRegisterIllness.addActionListener(new ActionListener() {
+        /** The booking seminar or vacation function **/
+        btnSeminarVacation.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                try {
-                    WeekCalendar weekCalendar = new WeekCalendar(Integer.parseInt(textYearNumber.getText()),Integer.parseInt(textWeekNumber.getText()));
-                    DayCalendar dayCalendar = new DayCalendar(weekCalendar,Integer.parseInt(textDayNumber.getText()));
-                    system.getCurrentEmployee().registerIllness(dayCalendar,system.convertToHalfHours(Double.parseDouble(textHoursRegistration.getText())));
-                    textHoursRegistration.setText("");
-                } catch (WrongInputException e1) {
-                    e1.printStackTrace();
-                    JOptionPane.showMessageDialog(null,e1.getMessage());
-                } catch (TooManyHoursException e1) {
-                    e1.printStackTrace();
-                    JOptionPane.showMessageDialog(null,e1.getMessage());
-                }
+                frontScreenRemoving(btnBecomeProjectLeader, btnRegisterTime, btnSeekAssistance, btnYourProjects, btnDeleteEmployees,btnSeminarVacation);
+                textHours.setVisible(true);
+                textHours.setText("");
+                textYear.setVisible(true);
+                textYear.setText(String.valueOf(system.getThisDay().weekCalendar.getYear()));
+                textDuration.setVisible(true);
+                textDuration.setText("");
+                textStartWeek.setVisible(true);
+                textStartWeek.setText(String.valueOf(system.getThisDay().weekCalendar.getWeekNumber()));
+                lblYear.setVisible(true);
+                lblNumberOfHours.setVisible(true);
+                lblDuration.setVisible(true);
+                lblStartWeek.setVisible(true);
+                btnBookVacation.setVisible(true);
+                btnBookSeminar.setVisible(true);
+
             }
         });
 
@@ -1063,10 +1043,8 @@ public class Screen{
                     textDuration.setText("");
                     textHours.setText("");
                 } catch (WrongInputException e1) {
-                    e1.printStackTrace();
                     JOptionPane.showMessageDialog(null,e1.getMessage());
                 } catch (Exception e1) {
-                    e1.printStackTrace();
                     JOptionPane.showMessageDialog(null,e1.getMessage());
                 }
 
@@ -1083,15 +1061,14 @@ public class Screen{
                     textDuration.setText("");
                     textHours.setText("");
                 } catch (WrongInputException e1) {
-                    e1.printStackTrace();
                     JOptionPane.showMessageDialog(null,e1.getMessage());
                 } catch (Exception e1) {
-                    e1.printStackTrace();
                     JOptionPane.showMessageDialog(null,e1.getMessage());
                 }
             }
         });
 
+        /** The seek assistance function **/
         btnSeekAssistance.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -1138,7 +1115,6 @@ public class Screen{
                 try {
                     startWeek = new WeekCalendar(Integer.parseInt(textYear.getText()), Integer.parseInt(textStartWeek.getText()));
                 } catch (WrongInputException e1) {
-                    e1.printStackTrace();
                 }
                 DefaultListModel employees = new DefaultListModel();
                 for (Employee employee : system.getDatabase().getAvailableEmployees(startWeek, Integer.parseInt(textDuration.getText()),
@@ -1160,12 +1136,12 @@ public class Screen{
                             Integer.parseInt(textYear.getText()),Integer.parseInt(textStartWeek.getText()),
                             system.convertToHalfHours(Double.parseDouble(textHours.getText())));
                 } catch (WrongInputException e1) {
-                    e1.printStackTrace();
                     JOptionPane.showMessageDialog(null,e1.getMessage());
                 }
             }
         });
 
+        /** The delete employees function **/
         btnDeleteEmployees.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -1189,7 +1165,6 @@ public class Screen{
                 try {
                     system.removeEmployee((String) list.getModel().getElementAt(list.getSelectedIndex()));
                 } catch (WrongInputException e1) {
-                    e1.printStackTrace();
                     JOptionPane.showMessageDialog(null, e1.getMessage());
                 }
                 DefaultListModel employees = new DefaultListModel();
