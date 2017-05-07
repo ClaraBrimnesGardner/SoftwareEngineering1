@@ -123,7 +123,7 @@ public class TestAdditionalTests {
 
         // Test getThisDay in System
         Calendar calendarTest = new GregorianCalendar();
-        assertEquals(Calendar.DAY_OF_WEEK,SoftwareHouse.getThisDay().dayNumber);
+        assertEquals(Calendar.DAY_OF_WEEK,SoftwareHouse.getThisDay().getDayNumber());
 
         // Tests convertToHalfHours in System
         int hours = 4;
