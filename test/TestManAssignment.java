@@ -16,10 +16,9 @@ public class TestManAssignment {
         SoftwareHouse.createEmployee(ID);
         assertEquals(SoftwareHouse.getEmployees().size(),1);
 
-
         // Adds a project
-
         SoftwareHouse.createProject("test");
+
         // Login as employee
         SoftwareHouse.logIn(ID);
         assertEquals(SoftwareHouse.getCurrentEmployee().getEmployeeID(),ID);
@@ -34,7 +33,6 @@ public class TestManAssignment {
         Project currentProject = SoftwareHouse.getCurrentEmployee().getProjectLeaderList().get(0);
         currentProject.createAssignment("test");
         assertEquals(SoftwareHouse.getCurrentEmployee().getProjectByName("test").getAssignmentList().size(), 1);
-
 
         // Create WeekCalendar
         WeekCalendar week1 = new WeekCalendar(2017,1);
@@ -70,15 +68,14 @@ public class TestManAssignment {
         assertEquals(SoftwareHouse.getEmployees().size(), 1);
 
         // Adds a project
-
         SoftwareHouse.createProject("test");
+
         // Login as employee
         SoftwareHouse.logIn(ID);
         assertEquals(SoftwareHouse.getCurrentEmployee().getEmployeeID(), ID);
         assertEquals(SoftwareHouse.getCurrentEmployee(), SoftwareHouse.getEmployees().get(0));
 
         // Become projectLeader
-
         assertEquals(SoftwareHouse.getCurrentEmployee().getProjectLeaderList().size(), 0);
         SoftwareHouse.getCurrentEmployee().becomeProjectLeader(1);
         assertEquals(SoftwareHouse.getCurrentEmployee().getProjectLeaderList().size(), 1);
@@ -87,7 +84,6 @@ public class TestManAssignment {
         Project currentProject = SoftwareHouse.getCurrentEmployee().getProjectLeaderList().get(0);
         currentProject.createAssignment("test");
         assertEquals(SoftwareHouse.getCurrentEmployee().getProjectByName("test").getAssignmentList().size(), 1);
-
 
         // Create WeekCalendar
         WeekCalendar week1 = new WeekCalendar(2017, 1);
@@ -123,20 +119,19 @@ public class TestManAssignment {
         Employee SDN = SoftwareHouse.getEmployees().get(1);
         assertEquals(SoftwareHouse.getEmployees().size(),2);
 
-
         // Adds a project
-
         SoftwareHouse.createProject("test");
+
         // Login as employee
         SoftwareHouse.logIn(ID);
         assertEquals(SoftwareHouse.getCurrentEmployee().getEmployeeID(), ID);
         assertEquals(SoftwareHouse.getCurrentEmployee(), SoftwareHouse.getEmployees().get(0));
 
         // Become projectLeader
-
         assertEquals(SoftwareHouse.getCurrentEmployee().getProjectLeaderList().size(), 0);
         SoftwareHouse.getCurrentEmployee().becomeProjectLeader(1);
         assertEquals(SoftwareHouse.getCurrentEmployee().getProjectLeaderList().size(), 1);
+
         // Create an assignment
         Project currentProject = SoftwareHouse.getCurrentEmployee().getProjectLeaderList().get(0);
         currentProject.createAssignment("test");
@@ -164,9 +159,5 @@ public class TestManAssignment {
 
         assertEquals(SoftwareHouse.getProjects().get(1).getAssignmentList().get(0).getBookedTime(),120);
         assertEquals(currentAssignment.getBudgetedTime(),120);
-
-
     }
-
-
 }
