@@ -53,7 +53,7 @@ public class Assignment {
         database.addAssignmentEmployee(assignmentEmployee);
 
         WeekCalendar endWeek = new WeekCalendar(week.getYear(),week.getWeekNumber());
-        endWeek=endWeek.increaseWeek(duration-1);
+        endWeek = endWeek.increaseWeek(duration-1);
 
         int availableHours;
         while(hours>0 && week.before(endWeek)){
@@ -67,10 +67,10 @@ public class Assignment {
                 hours=hours-availableHours;
             }
             else {
-                bookedTime+=hours;
+                bookedTime += hours;
                 WeekBooking newBooking = new WeekBooking(newWeek, hours);
                 assignmentEmployee.addBooking(newBooking);
-                hours=0;
+                hours = 0;
             }
             week=week.increaseWeek(1);
         }
