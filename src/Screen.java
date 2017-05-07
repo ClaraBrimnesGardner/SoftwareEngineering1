@@ -157,10 +157,15 @@ public class Screen{
         lblChooseAvailableEmployee.setVisible(false);
 
         JLabel lblBudgettedTime = new JLabel("BudgettedTime");
-        lblBudgettedTime.setHorizontalAlignment(SwingConstants.CENTER);
-        lblBudgettedTime.setBounds(105, 334, 326, 16);
+        lblBudgettedTime.setHorizontalAlignment(SwingConstants.LEFT);
+        lblBudgettedTime.setBounds(212, 339, 326, 16);
         frame.getContentPane().add(lblBudgettedTime);
         lblBudgettedTime.setText("");
+
+        JLabel lblBookedTime = new JLabel("BookedTime");
+        lblBookedTime.setBounds(212, 367, 324, 16);
+        frame.getContentPane().add(lblBookedTime);
+        lblBookedTime.setText("");
 
         JLabel lblWeekNumber = new JLabel("Week number");
         lblWeekNumber.setHorizontalAlignment(SwingConstants.CENTER);
@@ -771,7 +776,12 @@ public class Screen{
                 lblDeleteAssignmentFrom.setVisible(false);
                 btnGetAvailableEmployees.setVisible(true);
                 try {
-                    lblBudgettedTime.setText("Budgetted time:  " + system.getDatabase().getProject(currentProjectID).getAssignmentByName(currentAssignmentName).getBudgetedTime() + " hours");
+                    lblBudgettedTime.setText("Budgetted time:  " + ((double) system.getDatabase().getProject(currentProjectID).getAssignmentByName(currentAssignmentName).getBudgetedTime()) / 2.0 + " hours");
+                } catch (WrongInputException e1) {
+                    JOptionPane.showMessageDialog(null,e1.getMessage());
+                }
+                try {
+                    lblBookedTime.setText("Booked time:      " + ((double)system.getDatabase().getProject(currentProjectID).getAssignmentByName(currentAssignmentName).getBookedTime())/2.0 + " hours");
                 } catch (WrongInputException e1) {
                     JOptionPane.showMessageDialog(null,e1.getMessage());
                 }
@@ -805,6 +815,7 @@ public class Screen{
                 try {
                     system.getDatabase().getProject(currentProjectID).getAssignmentByName(currentAssignmentName).setBudgetedTime(system.convertToHalfHours(Double.parseDouble(textSetBudgettedTime.getText())));
                 } catch (WrongInputException e1) {
+                    JOptionPane.showMessageDialog(null,e1.getMessage());
                 }
                 textSetBudgettedTime.setText("");
                 try {
@@ -843,7 +854,7 @@ public class Screen{
                 int duration = Integer.parseInt(textDuration.getText());
                 int hours = system.convertToHalfHours(Double.parseDouble(textHours.getText()));
                 try {
-                    system.getDatabase().getProject(currentProjectID).getAssignmentByName(currentAssignmentName).manAssignment(system.getDatabase().getEmployee(name), weekCalendar, duration, hours);
+                    system.getDatabase().getProject(currentProjectID).getAssignmentByName(currentAssignmentName).manAssignment(system.getDatabase().getEmployee(name), weekCalendar, duration,hours);
                 } catch (Exception e1) {
                     JOptionPane.showMessageDialog(null, e1.getMessage());
 
@@ -853,6 +864,11 @@ public class Screen{
                     employees.addElement(employee.getEmployeeID());
                 }
                 list.setModel(employees);
+                try {
+                    lblBookedTime.setText("Booked time:      " + ((double)system.getDatabase().getProject(currentProjectID).getAssignmentByName(currentAssignmentName).getBookedTime())/2.0 + " hours");
+                } catch (WrongInputException e1) {
+                    JOptionPane.showMessageDialog(null,e1.getMessage());
+                }
             }
         });
 
@@ -1188,7 +1204,7 @@ public class Screen{
                 btnYourProjects.setVisible(true);
                 btnDeleteEmployees.setVisible(true);
                 btnSeminarVacation.setVisible(true);
-                settingInvisible(lblTypeProjectID, btnLeadProject, lblListExplainer, list, lblChooseProject, btnChoose, lblWorkingWith, lblProjectName, textCreateAssignment, lblCreateAssignment, lblChooseAssignmentFrom, btnChooseAssignment, btnCreateAssignment, lblStartWeek, lblDuration, lblNumberOfHours, lblSetBudgettedTime, textSetBudgettedTime, btnSetBudgettedTime, textStartWeek, textDuration, textHours, btnGetAvailableEmployees, textYear, lblYear, lblChooseAvailableEmployee, btnManAssignment, lblBudgettedTime, textDayNumber, textWeekNumber, btnRegisterTime2, btnToday, lblDayNumber, lblWeekNumber, lblTypeWeekNumber, textYearNumber, lblNewRegistration, btnOldRegistrations, lblYearNumber, textHoursRegistration, lblHours, lblChooseAnEmployee, btnDeleteEmployee2, lblDeleteProject, btnDeleteProject, btnDeleteAssignment, lblDeleteAssignmentFrom, btnChooseAssignmentSeekAssistance, lblChooseAnAssignmentSeekAssistance, btnGetAvailableEmployees2, btnSeekAssistance2, btnRegisterIllness, btnBookVacation, btnBookSeminar, btnChangeHours, lblChooseARegistration);
+                settingInvisible(lblTypeProjectID, btnLeadProject, lblListExplainer, list, lblChooseProject, btnChoose, lblWorkingWith, lblProjectName, textCreateAssignment, lblCreateAssignment, lblChooseAssignmentFrom, btnChooseAssignment, btnCreateAssignment, lblStartWeek, lblDuration, lblNumberOfHours, lblSetBudgettedTime, textSetBudgettedTime, btnSetBudgettedTime, textStartWeek, textDuration, textHours, btnGetAvailableEmployees, textYear, lblYear, lblChooseAvailableEmployee, btnManAssignment, lblBudgettedTime, textDayNumber, textWeekNumber, btnRegisterTime2, btnToday, lblDayNumber, lblWeekNumber, lblTypeWeekNumber, textYearNumber, lblNewRegistration, btnOldRegistrations, lblYearNumber, textHoursRegistration, lblHours, lblChooseAnEmployee, btnDeleteEmployee2, lblDeleteProject, btnDeleteProject, btnDeleteAssignment, lblDeleteAssignmentFrom, btnChooseAssignmentSeekAssistance, lblChooseAnAssignmentSeekAssistance, btnGetAvailableEmployees2, btnSeekAssistance2, btnRegisterIllness, btnBookVacation, btnBookSeminar, btnChangeHours, lblChooseARegistration,lblBookedTime);
 
             }
         });
@@ -1206,13 +1222,13 @@ public class Screen{
                 btnMenu.setVisible(false);
                 lblSoftwarehuset.setVisible(true);
                 lblAs.setVisible(true);
-                settingInvisible(lblTypeProjectID, btnLeadProject, lblListExplainer, list, lblChooseProject, btnChoose, lblWorkingWith, lblProjectName, textCreateAssignment, lblCreateAssignment, lblChooseAssignmentFrom, btnChooseAssignment, btnCreateAssignment, lblStartWeek, lblDuration, lblNumberOfHours, lblSetBudgettedTime, textSetBudgettedTime, btnSetBudgettedTime, textStartWeek, textDuration, textHours, btnGetAvailableEmployees, textYear, lblYear, lblChooseAvailableEmployee, btnManAssignment, lblBudgettedTime, textDayNumber, textWeekNumber, btnRegisterTime2, btnToday, lblDayNumber, lblWeekNumber, lblTypeWeekNumber, textYearNumber, lblNewRegistration, btnOldRegistrations, lblYearNumber, textHoursRegistration, lblHours, lblChooseAnEmployee, btnDeleteEmployee2, lblDeleteProject, btnDeleteProject, btnDeleteAssignment, lblDeleteAssignmentFrom, btnChooseAssignmentSeekAssistance, lblChooseAnAssignmentSeekAssistance, btnGetAvailableEmployees2, btnSeekAssistance2, btnRegisterIllness, btnBookVacation, btnBookSeminar, btnChangeHours, lblChooseARegistration);
+                settingInvisible(lblTypeProjectID, btnLeadProject, lblListExplainer, list, lblChooseProject, btnChoose, lblWorkingWith, lblProjectName, textCreateAssignment, lblCreateAssignment, lblChooseAssignmentFrom, btnChooseAssignment, btnCreateAssignment, lblStartWeek, lblDuration, lblNumberOfHours, lblSetBudgettedTime, textSetBudgettedTime, btnSetBudgettedTime, textStartWeek, textDuration, textHours, btnGetAvailableEmployees, textYear, lblYear, lblChooseAvailableEmployee, btnManAssignment, lblBudgettedTime, textDayNumber, textWeekNumber, btnRegisterTime2, btnToday, lblDayNumber, lblWeekNumber, lblTypeWeekNumber, textYearNumber, lblNewRegistration, btnOldRegistrations, lblYearNumber, textHoursRegistration, lblHours, lblChooseAnEmployee, btnDeleteEmployee2, lblDeleteProject, btnDeleteProject, btnDeleteAssignment, lblDeleteAssignmentFrom, btnChooseAssignmentSeekAssistance, lblChooseAnAssignmentSeekAssistance, btnGetAvailableEmployees2, btnSeekAssistance2, btnRegisterIllness, btnBookVacation, btnBookSeminar, btnChangeHours, lblChooseARegistration,lblBookedTime);
             }
         });
 
     }
 
-    private void settingInvisible(JLabel lblTypeProjectID, JButton btnLeadProject, JLabel lblListExplainer, JList list, JLabel lblChooseProject, JButton btnChoose, JLabel lblWorkingWith, JLabel lblProjectName, JTextField textCreateAssignment, JLabel lblCreateAssignment, JLabel lblChooseAssignmentFrom, JButton btnChooseAssignment, JButton btnCreateAssignment, JLabel lblStartWeek, JLabel lblDuration, JLabel lblNumberOfHours, JLabel lblSetBudgettedTime, JTextField textSetBudgettedTime, JButton btnSetBudgettedTime, JTextField textStartWeek, JTextField textDuration, JTextField textHours, JButton btnGetAvailableEmployees, JTextField textYear, JLabel lblYear, JLabel lblChooseAvailableEmployee, JButton btnManAssignment, JLabel lblBudgettedTime, JTextField textDayNumber, JTextField textWeekNumber, JButton btnRegisterTime2, JButton btnToday, JLabel lblDayNumber, JLabel lblWeekNumber, JLabel lblTypeWeekNumber, JTextField textYearNumber, JLabel lblNewRegistration, JButton btnOldRegistrations, JLabel lblYearNumber, JTextField textHoursRegistration, JLabel lblHours, JLabel lblChooseAnEmployee, JButton btnDeleteEmployee2, JLabel lblDeleteProject, JButton btnDeleteProject, JButton btnDeleteAssignment, JLabel lblDeleteAssignmentFrom, JButton btnChooseAssignmentSeekAssistance, JLabel lblChooseAnAssignmentSeekAssistance, JButton btnGetAvailableEmployees2, JButton btnSeekAssistance2, JButton btnRegisterIllness, JButton btnBookVacation, JButton btnBookSeminar, JButton btnChangeHours, JLabel lblChooseARegistration) {
+    private void settingInvisible(JLabel lblTypeProjectID, JButton btnLeadProject, JLabel lblListExplainer, JList list, JLabel lblChooseProject, JButton btnChoose, JLabel lblWorkingWith, JLabel lblProjectName, JTextField textCreateAssignment, JLabel lblCreateAssignment, JLabel lblChooseAssignmentFrom, JButton btnChooseAssignment, JButton btnCreateAssignment, JLabel lblStartWeek, JLabel lblDuration, JLabel lblNumberOfHours, JLabel lblSetBudgettedTime, JTextField textSetBudgettedTime, JButton btnSetBudgettedTime, JTextField textStartWeek, JTextField textDuration, JTextField textHours, JButton btnGetAvailableEmployees, JTextField textYear, JLabel lblYear, JLabel lblChooseAvailableEmployee, JButton btnManAssignment, JLabel lblBudgettedTime, JTextField textDayNumber, JTextField textWeekNumber, JButton btnRegisterTime2, JButton btnToday, JLabel lblDayNumber, JLabel lblWeekNumber, JLabel lblTypeWeekNumber, JTextField textYearNumber, JLabel lblNewRegistration, JButton btnOldRegistrations, JLabel lblYearNumber, JTextField textHoursRegistration, JLabel lblHours, JLabel lblChooseAnEmployee, JButton btnDeleteEmployee2, JLabel lblDeleteProject, JButton btnDeleteProject, JButton btnDeleteAssignment, JLabel lblDeleteAssignmentFrom, JButton btnChooseAssignmentSeekAssistance, JLabel lblChooseAnAssignmentSeekAssistance, JButton btnGetAvailableEmployees2, JButton btnSeekAssistance2, JButton btnRegisterIllness, JButton btnBookVacation, JButton btnBookSeminar, JButton btnChangeHours, JLabel lblChooseARegistration, JLabel lblBookedTime) {
         lblTypeProjectID.setVisible(false);
         btnLeadProject.setVisible(false);
         lblListExplainer.setText("");
@@ -1273,6 +1289,7 @@ public class Screen{
         btnBookSeminar.setVisible(false);
         btnChangeHours.setVisible(false);
         lblChooseARegistration.setVisible(false);
+        lblBookedTime.setText("");
     }
 
     private void setListEmpty(JList list) {
