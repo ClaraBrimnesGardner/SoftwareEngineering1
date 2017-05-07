@@ -50,15 +50,13 @@ public class TestAdditionalTests {
         // Creates a system
         System SoftwareHouse = new System();
 
-        // Test equals i DayCalender
-        WeekCalendar week2 = new WeekCalendar(2017,43);
-        DayCalendar day2 = new DayCalendar(week2,2);
-        assertFalse(day2.equals(week2));
-
         // Adds two employees
         String ID01 = "CBG";
         SoftwareHouse.createEmployee(ID01);
         Employee Employee1 = SoftwareHouse.getEmployees().get(0);
+        String ID02 = "SARA";
+        SoftwareHouse.createEmployee(ID02);
+        Employee Employee2 = SoftwareHouse.getEmployees().get(0);
 
         // Adds a project and an assignment
         String projectID = "Project";
@@ -74,18 +72,21 @@ public class TestAdditionalTests {
         assertNull(Employee1.getProjectByName(fakeProject));
 
         // Man assignment to create assignmentEmployee
+        WeekCalendar week2 = new WeekCalendar(2017,43);
         SoftwareHouse.getDatabase().getAssignment(assignmentID01).setBudgetedTime(170);
         SoftwareHouse.getDatabase().getAssignment(assignmentID01).manAssignment(Employee1,week2,2,170);
 
         // Test getAssignmentEmployeeByID in Employee
-        assertNull(Employee1.getAssignmentEmployeeByID(2));
+        assertNull(Employee1.getAssignmentEmployeeByID(3));
         assertEquals(Employee1.getAssignmentEmployeeByID(0).getTaskID(),0);
 
         // Test bookVacation in Employee
         WeekCalendar week1 = new WeekCalendar(2017,2);
-        //Employee1.bookVacation(week1,1,2);
+        Employee1.bookVacation(week1,1,2);
 
         // Test bookSeminar in Employee
+        WeekCalendar week3 = new WeekCalendar(2017,3);
+        Employee2.bookSeminar(week3,1,2);
     }
 
     /*
@@ -145,5 +146,10 @@ public class TestAdditionalTests {
 
         // Tests after in WeekCalender
         assertTrue(week2.after(week1));
+
+        // Test equals i DayCalender
+        WeekCalendar week3 = new WeekCalendar(2017,43);
+        DayCalendar day2 = new DayCalendar(week3,2);
+        assertFalse(day2.equals(week3));
     }
 }
