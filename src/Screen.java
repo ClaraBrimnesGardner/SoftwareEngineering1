@@ -771,12 +771,12 @@ public class Screen{
                 textYear.setVisible(true);
                 lblYear.setVisible(true);
                 try {
-                    textYear.setText("" + system.getThisDay().weekCalendar.getYear());
+                    textYear.setText("" + system.getThisDay().getWeekCalendar().getYear());
                 } catch (Exception e1) {
                     JOptionPane.showMessageDialog(null,e1.getMessage());
                 }
                 try {
-                    textStartWeek.setText("" + system.getThisDay().weekCalendar.getWeekNumber());
+                    textStartWeek.setText("" + system.getThisDay().getWeekCalendar().getWeekNumber());
                 } catch (Exception e1) {
                     JOptionPane.showMessageDialog(null,e1.getMessage());
                 }
@@ -920,9 +920,9 @@ public class Screen{
                 } catch (Exception e1) {
                     JOptionPane.showMessageDialog(null,e1.getMessage());
                 }
-                textWeekNumber.setText("" + dayCalendar.weekCalendar.getWeekNumber());
-                textDayNumber.setText("" + dayCalendar.dayNumber);
-                textYearNumber.setText("" + dayCalendar.weekCalendar.getYear());
+                textWeekNumber.setText("" + dayCalendar.getWeekCalendar().getWeekNumber());
+                textDayNumber.setText("" + dayCalendar.getDayNumber());
+                textYearNumber.setText("" + dayCalendar.getWeekCalendar().getYear());
             }
         });
 
@@ -1051,7 +1051,7 @@ public class Screen{
                 textHours.setText("");
                 textYear.setVisible(true);
                 try {
-                    textYear.setText(String.valueOf(system.getThisDay().weekCalendar.getYear()));
+                    textYear.setText(String.valueOf(system.getThisDay().getWeekCalendar().getYear()));
                 } catch (Exception e1) {
                     JOptionPane.showMessageDialog(null,e1.getMessage());
                 }
@@ -1059,7 +1059,7 @@ public class Screen{
                 textDuration.setText("");
                 textStartWeek.setVisible(true);
                 try {
-                    textStartWeek.setText(String.valueOf(system.getThisDay().weekCalendar.getWeekNumber()));
+                    textStartWeek.setText(String.valueOf(system.getThisDay().getWeekCalendar().getWeekNumber()));
                 } catch (Exception e1) {
                     JOptionPane.showMessageDialog(null,e1.getMessage());
                 }
@@ -1136,12 +1136,12 @@ public class Screen{
                 textYear.setVisible(true);
                 textStartWeek.setVisible(true);
                 try {
-                    textYear.setText("" + system.getThisDay().weekCalendar.getYear());
+                    textYear.setText("" + system.getThisDay().getWeekCalendar().getYear());
                 } catch (Exception e1) {
                     JOptionPane.showMessageDialog(null,e1.getMessage());
                 }
                 try {
-                    textStartWeek.setText("" + system.getThisDay().weekCalendar.getWeekNumber());
+                    textStartWeek.setText("" + system.getThisDay().getWeekCalendar().getWeekNumber());
                 } catch (Exception e1) {
                     JOptionPane.showMessageDialog(null,e1.getMessage());
                 }
