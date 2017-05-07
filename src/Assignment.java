@@ -43,7 +43,6 @@ public class Assignment {
 
     // Method to man an assignment
     public void manAssignment(Employee employee, WeekCalendar week, int duration, int hours) throws Exception{
-        if((bookedTime + hours) > budgetedTime){
         if(hours<database.getMinBookedHalfHours()){
             throw new TooManyHoursException("You can't book less than 0 hours");
         }
