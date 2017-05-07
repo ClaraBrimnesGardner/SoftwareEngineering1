@@ -40,7 +40,7 @@ public class System {
         if(ID.length()>database.getMaxCharactersInEmployeeId()){
             throw new WrongInputException("ID is to long");
         }
-        for (Employee employee:database.employeeList){
+        for (Employee employee: database.employeeList){
             if(employee.getEmployeeID().equals((ID))) throw new WrongInputException("Employee ID is used");
         }
         Employee employee = new Employee(ID);
@@ -48,7 +48,6 @@ public class System {
         Project OB = database.getProject(0);
         Assignment Illness = OB.getAssignmentByName("Illness");
         Illness.manAssignmentWithoutEndTime(employee);
-
     }
 
     public void createProject (String name) throws WrongInputException {
