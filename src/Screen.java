@@ -130,7 +130,7 @@ public class Screen{
         frame.getContentPane().add(lblStartWeek);
         lblStartWeek.setVisible(false);
 
-        JLabel lblDuration = new JLabel("Duration");
+        JLabel lblDuration = new JLabel("Weeks");
         lblDuration.setBounds(198, 117, 61, 16);
         frame.getContentPane().add(lblDuration);
         lblDuration.setVisible(false);
