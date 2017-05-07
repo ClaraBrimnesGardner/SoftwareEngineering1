@@ -776,12 +776,12 @@ public class Screen{
                 lblDeleteAssignmentFrom.setVisible(false);
                 btnGetAvailableEmployees.setVisible(true);
                 try {
-                    lblBudgettedTime.setText("Budgetted time:  " + system.getDatabase().getProject(currentProjectID).getAssignmentByName(currentAssignmentName).getBudgetedTime() + " hours");
+                    lblBudgettedTime.setText("Budgetted time:  " + ((double) system.getDatabase().getProject(currentProjectID).getAssignmentByName(currentAssignmentName).getBudgetedTime()) / 2.0 + " hours");
                 } catch (WrongInputException e1) {
                     JOptionPane.showMessageDialog(null,e1.getMessage());
                 }
                 try {
-                    lblBookedTime.setText("Booked time:      " + system.getDatabase().getProject(currentProjectID).getAssignmentByName(currentAssignmentName).getBookedTime() + " hours");
+                    lblBookedTime.setText("Booked time:      " + ((double)system.getDatabase().getProject(currentProjectID).getAssignmentByName(currentAssignmentName).getBookedTime())/2.0 + " hours");
                 } catch (WrongInputException e1) {
                     JOptionPane.showMessageDialog(null,e1.getMessage());
                 }
@@ -854,7 +854,7 @@ public class Screen{
                 int duration = Integer.parseInt(textDuration.getText());
                 int hours = system.convertToHalfHours(Double.parseDouble(textHours.getText()));
                 try {
-                    system.getDatabase().getProject(currentProjectID).getAssignmentByName(currentAssignmentName).manAssignment(system.getDatabase().getEmployee(name), weekCalendar, duration, hours);
+                    system.getDatabase().getProject(currentProjectID).getAssignmentByName(currentAssignmentName).manAssignment(system.getDatabase().getEmployee(name), weekCalendar, duration,hours);
                 } catch (Exception e1) {
                     JOptionPane.showMessageDialog(null, e1.getMessage());
 
@@ -865,7 +865,7 @@ public class Screen{
                 }
                 list.setModel(employees);
                 try {
-                    lblBookedTime.setText("Booked time:      " + system.getDatabase().getProject(currentProjectID).getAssignmentByName(currentAssignmentName).getBookedTime() + " hours");
+                    lblBookedTime.setText("Booked time:      " + ((double)system.getDatabase().getProject(currentProjectID).getAssignmentByName(currentAssignmentName).getBookedTime())/2.0 + " hours");
                 } catch (WrongInputException e1) {
                     JOptionPane.showMessageDialog(null,e1.getMessage());
                 }

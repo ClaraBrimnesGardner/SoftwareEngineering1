@@ -43,7 +43,7 @@ public class Assignment {
 
     // Method to man an assignment
     public void manAssignment(Employee employee, WeekCalendar week, int duration, int hours) throws Exception{
-        if(hours>budgetedTime){
+        if((bookedTime + hours) > budgetedTime){
             throw new TooManyHoursException("The hours you want to book exceeds the budgetted time");
         }
         AssignmentEmployee assignmentEmployee = new AssignmentEmployee(employee, this);
