@@ -6,7 +6,7 @@ import java.util.*;
 import java.lang.System;
 
 public class Database {
-    private static final String RESERVED_NAME= "Other Business";
+    private static final String RESERVED_NAME = "Other Business";
     private static final String VACATION = "Vacation";
     private static final String ILLNESS = "Illness";
     private static final String SEMINARS = "Seminars";

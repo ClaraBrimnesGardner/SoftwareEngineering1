@@ -13,10 +13,12 @@ public class Assignment {
 
     // Constructor
     public Assignment(String name, Project project){
-        this.name=name;
-        this.project=project;
-        bookedTime=0;
-        budgetedTime=0;
+        this.name = name;
+        this.project = project;
+        bookedTime = 0;
+        if (name == "Vacation" || name == "Seminars") {
+            budgetedTime = 1000000000;
+        } else { budgetedTime = 0;}
     }
 
     // Getter methods
