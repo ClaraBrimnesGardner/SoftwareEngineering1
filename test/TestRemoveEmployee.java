@@ -25,7 +25,6 @@ public class TestRemoveEmployee {
             SoftwareHouse.logIn("Employee3");
         } catch(WrongInputException e){
             assertEquals("Employee doesn't exist", e.getMessage());
-
         }
         SoftwareHouse.logIn("CBG");
 
