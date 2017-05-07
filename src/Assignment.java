@@ -10,7 +10,6 @@ public class Assignment {
     private int bookedTime;
     private Database database;
 
-
     // Constructor
     public Assignment(String name, Project project){
         this.name = name;
@@ -84,11 +83,5 @@ public class Assignment {
             database.addAssignmentEmployee(assignmentEmployee);
         }
     }
-
-
-
-
-
-
 
 }
