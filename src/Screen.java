@@ -1185,6 +1185,8 @@ public class Screen{
                 } catch (WrongInputException e1) {
                     JOptionPane.showMessageDialog(null,e1.getMessage());
                 }
+                textHours.setText("");
+                textDuration.setText("");
             }
         });
 
