@@ -40,7 +40,7 @@ public class System {
         if(ID.length()>database.getMaxCharactersInEmployeeId()){
             throw new WrongInputException("ID is to long");
         }
-        for (Employee employee:database.employeeList){
+        for (Employee employee:database.getEmployeeList()){
             if(employee.getEmployeeID().equals((ID))) throw new WrongInputException("Employee ID is used");
         }
         Employee employee = new Employee(ID);
@@ -108,7 +108,7 @@ public class System {
     public void removeProject (int projectID) throws WrongInputException {
         Project project1 = database.getProject(projectID);
         if(project1 == null) throw new WrongInputException ("Project doesn't exist");
-        if(!project1.projectLeader.equals(employee)) throw new WrongInputException("You are not project leader of this project");
+        if(!project1.getProjectLeader().equals(employee)) throw new WrongInputException("You are not project leader of this project");
         database.deleteProject(project1);
     }
 

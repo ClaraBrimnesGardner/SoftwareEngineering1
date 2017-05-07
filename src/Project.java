@@ -5,10 +5,10 @@ import javax.xml.crypto.Data;
 import java.util.*;
 
 public class Project {
-    public String name;
-    public int projectID;
-    public Employee projectLeader;
-    public System system;
+    private String name;
+    private int projectID;
+    private Employee projectLeader;
+    private System system;
     private Database database;
 
     // Constructor

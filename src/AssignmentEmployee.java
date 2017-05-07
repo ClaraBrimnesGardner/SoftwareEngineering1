@@ -7,8 +7,8 @@ import java.lang.System;
 
 
 public class AssignmentEmployee {
-    public int taskID;
-    public Employee employee;
+    private int taskID;
+    private Employee employee;
     private List<WeekBooking> weekBookings = new ArrayList<>();
     private List<DayRegistration> dayRegistrationList = new ArrayList<>();
     private Assignment assignment;

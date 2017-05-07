@@ -47,9 +47,9 @@ public class TestSeekAssistance {
         SoftwareHouse.logIn(ID02);
         assertEquals(Employee2.getAssignmentEmployeeList().size(),2);
         // Test  that the taskID's are the same
-        assertEquals(Employee2.getAssignmentEmployeeList().get(Employee2.getAssignmentEmployeeList().size()-1).taskID,SoftwareHouse.getDatabase().assignmentEmployeeList.get(0).taskID);
+        assertEquals(Employee2.getAssignmentEmployeeList().get(Employee2.getAssignmentEmployeeList().size()-1).getTaskID(),SoftwareHouse.getDatabase().getAssignmentEmployeeList("CBG").get(0).getTaskID());
         // Test that the employeeID's are different (to make sure that it's not just a copy of the other assignment)
-        assertNotEquals(Employee2.getAssignmentEmployeeList().get(Employee2.getAssignmentEmployeeList().size()-1).employee.employeeID,SoftwareHouse.getDatabase().assignmentEmployeeList.get(0).employee.employeeID);
+        assertNotEquals(Employee2.getAssignmentEmployeeList().get(Employee2.getAssignmentEmployeeList().size()-1).getEmployee().employeeID,SoftwareHouse.getDatabase().getAssignmentEmployeeList("CBG").get(0).getEmployee().employeeID);
     }
 
     /*

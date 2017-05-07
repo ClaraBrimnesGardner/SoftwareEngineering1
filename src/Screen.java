@@ -765,8 +765,8 @@ public class Screen{
                 textHours.setText("");
                 textYear.setVisible(true);
                 lblYear.setVisible(true);
-                textYear.setText("" + system.getThisDay().weekCalendar.getYear());
-                textStartWeek.setText("" + system.getThisDay().weekCalendar.getWeekNumber());
+                textYear.setText("" + system.getThisDay().getWeekCalendar().getYear());
+                textStartWeek.setText("" + system.getThisDay().getWeekCalendar().getWeekNumber());
                 btnDeleteAssignment.setVisible(false);
                 lblDeleteAssignmentFrom.setVisible(false);
                 btnGetAvailableEmployees.setVisible(true);
@@ -889,9 +889,9 @@ public class Screen{
             @Override
             public void actionPerformed(ActionEvent e) {
                 DayCalendar dayCalendar = system.getThisDay();
-                textWeekNumber.setText("" + dayCalendar.weekCalendar.getWeekNumber());
-                textDayNumber.setText("" + dayCalendar.dayNumber);
-                textYearNumber.setText("" + dayCalendar.weekCalendar.getYear());
+                textWeekNumber.setText("" + dayCalendar.getWeekCalendar().getWeekNumber());
+                textDayNumber.setText("" + dayCalendar.getDayNumber());
+                textYearNumber.setText("" + dayCalendar.getWeekCalendar().getYear());
             }
         });
 
@@ -964,8 +964,8 @@ public class Screen{
                 for (AssignmentEmployee assignmentEmployee : system.getDatabase().getAssignmentEmployeeList(system.getCurrentEmployee().employeeID)) {
                     for (DayRegistration dayRegistration : assignmentEmployee.getDayRegistrationList()) {
                         oldRegistrations.addElement(assignmentEmployee.getAssignment().getName() + " on " +
-                                dayRegistration.getDayCalendar().weekCalendar.getYear() + "/" + dayRegistration.getDayCalendar().weekCalendar.getWeekNumber() +
-                                "/" + dayRegistration.getDayCalendar().dayNumber + "  Hours: " + ((double) dayRegistration.getRegisteredHalfHours()) / 2);
+                                dayRegistration.getDayCalendar().getWeekCalendar().getYear() + "/" + dayRegistration.getDayCalendar().getWeekCalendar().getWeekNumber() +
+                                "/" + dayRegistration.getDayCalendar().getDayNumber() + "  Hours: " + ((double) dayRegistration.getRegisteredHalfHours()) / 2);
                     }
                 }
                 list.setModel(oldRegistrations);
@@ -1003,8 +1003,8 @@ public class Screen{
                 for (AssignmentEmployee assignmentEmployee1 : system.getDatabase().getAssignmentEmployeeList(system.getCurrentEmployee().employeeID)) {
                     for (DayRegistration dayRegistration : assignmentEmployee1.getDayRegistrationList()) {
                         oldRegistrations.addElement(assignmentEmployee1.getAssignment().getName() + " on " +
-                                dayRegistration.getDayCalendar().weekCalendar.getYear() + "/" + dayRegistration.getDayCalendar().weekCalendar.getWeekNumber() +
-                                "/" + dayRegistration.getDayCalendar().dayNumber + "  Hours: " + ((double) dayRegistration.getRegisteredHalfHours()) / 2);
+                                dayRegistration.getDayCalendar().getWeekCalendar().getYear() + "/" + dayRegistration.getDayCalendar().getWeekCalendar().getWeekNumber() +
+                                "/" + dayRegistration.getDayCalendar().getDayNumber() + "  Hours: " + ((double) dayRegistration.getRegisteredHalfHours()) / 2);
                     }
                 }
                 list.setModel(oldRegistrations);
@@ -1019,11 +1019,11 @@ public class Screen{
                 textHours.setVisible(true);
                 textHours.setText("");
                 textYear.setVisible(true);
-                textYear.setText(String.valueOf(system.getThisDay().weekCalendar.getYear()));
+                textYear.setText(String.valueOf(system.getThisDay().getWeekCalendar().getYear()));
                 textDuration.setVisible(true);
                 textDuration.setText("");
                 textStartWeek.setVisible(true);
-                textStartWeek.setText(String.valueOf(system.getThisDay().weekCalendar.getWeekNumber()));
+                textStartWeek.setText(String.valueOf(system.getThisDay().getWeekCalendar().getWeekNumber()));
                 lblYear.setVisible(true);
                 lblNumberOfHours.setVisible(true);
                 lblDuration.setVisible(true);
@@ -1096,8 +1096,8 @@ public class Screen{
                 textDuration.setText("");
                 textYear.setVisible(true);
                 textStartWeek.setVisible(true);
-                textYear.setText("" + system.getThisDay().weekCalendar.getYear());
-                textStartWeek.setText("" + system.getThisDay().weekCalendar.getWeekNumber());
+                textYear.setText("" + system.getThisDay().getWeekCalendar().getYear());
+                textStartWeek.setText("" + system.getThisDay().getWeekCalendar().getWeekNumber());
                 lblNumberOfHours.setVisible(true);
                 lblYear.setVisible(true);
                 lblStartWeek.setVisible(true);
