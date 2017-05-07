@@ -38,7 +38,7 @@ public class TestManAssignment {
         WeekCalendar week1 = new WeekCalendar(2017,1);
         WeekCalendar week2 = new WeekCalendar(2017, 2);
 
-        // manAssignment
+        // Man assignment
         Assignment currentAssignment = currentProject.getAssignmentByName("test");
         assertEquals(SoftwareHouse.getCurrentEmployee().getAvailableHours(week1,1),80);
         currentAssignment.setBudgetedTime(80);
@@ -51,6 +51,13 @@ public class TestManAssignment {
         }
 
         currentAssignment.manAssignment(SoftwareHouse.getEmployees().get(0),  week1,  1,  2);
+
+        DayCalendar day2 = new DayCalendar(new WeekCalendar(2017,5),3);
+        try {
+            SoftwareHouse.getDatabase().getAssignmentEmployeeList("CBG").get(0).changeRegistration(day2, 300);
+        } catch (TooManyHoursException e){
+            assertEquals("You have registered too many hours today", e.getMessage());
+        }
 
         assertEquals(SoftwareHouse.getDatabase().getAssignmentEmployeeList(ID).size(),2);
         assertEquals(SoftwareHouse.getEmployees().get(0).getBookedHours(week1,1),2);

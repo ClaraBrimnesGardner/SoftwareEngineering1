@@ -102,7 +102,7 @@ public class TestAdditionalTests {
     }
 
     /*
-    Additional tests in Project
+    Additional tests in System
      */
     @Test
     public void testAdditionalTestSystem() throws Exception {
@@ -157,4 +157,5 @@ public class TestAdditionalTests {
         assertFalse(day2.equals(week3));
         assertFalse(week3.equals(day2));
     }
+
 }
