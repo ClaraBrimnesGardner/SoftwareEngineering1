@@ -74,7 +74,6 @@ public class System {
 
         if (assistanceEmployee == null) throw new WrongInputException("Wrong employee name");
         if (!assistanceEmployee.isAvailable(weekCalendar,1,bookedHours)) throw new WrongInputException("Employee is not available");
-
         Assignment assignment = database.getAssignment(assignmentID);
         if (database.createBooking(assistanceEmployee, assignment, booking)) return true;
 
