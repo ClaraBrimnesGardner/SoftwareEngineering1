@@ -770,8 +770,16 @@ public class Screen{
                 textHours.setText("");
                 textYear.setVisible(true);
                 lblYear.setVisible(true);
-                textYear.setText("" + system.getThisDay().weekCalendar.getYear());
-                textStartWeek.setText("" + system.getThisDay().weekCalendar.getWeekNumber());
+                try {
+                    textYear.setText("" + system.getThisDay().weekCalendar.getYear());
+                } catch (Exception e1) {
+                    JOptionPane.showMessageDialog(null,e1.getMessage());
+                }
+                try {
+                    textStartWeek.setText("" + system.getThisDay().weekCalendar.getWeekNumber());
+                } catch (Exception e1) {
+                    JOptionPane.showMessageDialog(null,e1.getMessage());
+                }
                 btnDeleteAssignment.setVisible(false);
                 lblDeleteAssignmentFrom.setVisible(false);
                 btnGetAvailableEmployees.setVisible(true);
@@ -904,7 +912,12 @@ public class Screen{
         btnToday.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                DayCalendar dayCalendar = system.getThisDay();
+                DayCalendar dayCalendar = null;
+                try {
+                    dayCalendar = system.getThisDay();
+                } catch (Exception e1) {
+                    JOptionPane.showMessageDialog(null,e1.getMessage());
+                }
                 textWeekNumber.setText("" + dayCalendar.weekCalendar.getWeekNumber());
                 textDayNumber.setText("" + dayCalendar.dayNumber);
                 textYearNumber.setText("" + dayCalendar.weekCalendar.getYear());
@@ -1035,11 +1048,19 @@ public class Screen{
                 textHours.setVisible(true);
                 textHours.setText("");
                 textYear.setVisible(true);
-                textYear.setText(String.valueOf(system.getThisDay().weekCalendar.getYear()));
+                try {
+                    textYear.setText(String.valueOf(system.getThisDay().weekCalendar.getYear()));
+                } catch (Exception e1) {
+                    JOptionPane.showMessageDialog(null,e1.getMessage());
+                }
                 textDuration.setVisible(true);
                 textDuration.setText("");
                 textStartWeek.setVisible(true);
-                textStartWeek.setText(String.valueOf(system.getThisDay().weekCalendar.getWeekNumber()));
+                try {
+                    textStartWeek.setText(String.valueOf(system.getThisDay().weekCalendar.getWeekNumber()));
+                } catch (Exception e1) {
+                    JOptionPane.showMessageDialog(null,e1.getMessage());
+                }
                 lblYear.setVisible(true);
                 lblNumberOfHours.setVisible(true);
                 lblDuration.setVisible(true);
@@ -1112,8 +1133,16 @@ public class Screen{
                 textDuration.setText("");
                 textYear.setVisible(true);
                 textStartWeek.setVisible(true);
-                textYear.setText("" + system.getThisDay().weekCalendar.getYear());
-                textStartWeek.setText("" + system.getThisDay().weekCalendar.getWeekNumber());
+                try {
+                    textYear.setText("" + system.getThisDay().weekCalendar.getYear());
+                } catch (Exception e1) {
+                    JOptionPane.showMessageDialog(null,e1.getMessage());
+                }
+                try {
+                    textStartWeek.setText("" + system.getThisDay().weekCalendar.getWeekNumber());
+                } catch (Exception e1) {
+                    JOptionPane.showMessageDialog(null,e1.getMessage());
+                }
                 lblNumberOfHours.setVisible(true);
                 lblYear.setVisible(true);
                 lblStartWeek.setVisible(true);
