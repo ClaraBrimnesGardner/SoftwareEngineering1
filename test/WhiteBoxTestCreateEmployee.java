@@ -37,7 +37,7 @@ public class WhiteBoxTestCreateEmployee {
         try{
             SoftwareHouse.createEmployee(EID01);
         } catch (WrongInputException e){
-            assertEquals("ID is to long", e.getMessage());
+            assertEquals("ID is too long", e.getMessage());
         }
         assertEquals(0, SoftwareHouse.getEmployees().size());
     }

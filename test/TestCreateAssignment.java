@@ -71,7 +71,7 @@ public class TestCreateAssignment {
         try {
             currentProject.createAssignment("test");
         } catch (WrongInputException e){
-            assertEquals("Projectname is used", e.getMessage());
+            assertEquals("Assignment name is used", e.getMessage());
         }
         assertEquals(currentProject.getAssignmentList().size(),1);
 
