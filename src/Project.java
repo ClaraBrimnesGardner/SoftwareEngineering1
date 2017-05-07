@@ -57,6 +57,7 @@ public class Project {
     // Setter methods
     public void setSystem(System newSystem){system = newSystem;
     }
+
     public void setProjectID(int newProjectID){
         projectID=newProjectID;
     }

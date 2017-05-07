@@ -1,5 +1,7 @@
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 
 /**
  * Created by sarad on 05-05-2017.
@@ -74,8 +76,74 @@ public class TestAdditionalTests {
         // Man assignment to create assignmentEmployee
         SoftwareHouse.getDatabase().getAssignment(assignmentID01).setBudgetedTime(170);
         SoftwareHouse.getDatabase().getAssignment(assignmentID01).manAssignment(Employee1,week2,2,170);
+
         // Test getAssignmentEmployeeByID in Employee
-        //assertNull(Employee1.getAssignmentEmployeeByID(1));
-        //assertEquals(Employee1.getAssignmentEmployeeByID(0).getTaskID(),0);
+        assertNull(Employee1.getAssignmentEmployeeByID(2));
+        assertEquals(Employee1.getAssignmentEmployeeByID(0).getTaskID(),0);
+
+        // Test bookVacation in Employee
+        WeekCalendar week1 = new WeekCalendar(2017,2);
+        //Employee1.bookVacation(week1,1,2);
+
+        // Test bookSeminar in Employee
+    }
+
+    /*
+    Additional tests in Project
+     */
+    @Test
+    public void testAdditionalTestProject() throws Exception {
+        // Creates a system
+        System SoftwareHouse = new System();
+
+        // Adds two employees
+        String ID01 = "CBG";
+        SoftwareHouse.createEmployee(ID01);
+        Employee Employee1 = SoftwareHouse.getEmployees().get(0);
+
+        // Adds a project
+        String projectID = "Project";
+        SoftwareHouse.createProject(projectID);
+        Project currentProject = SoftwareHouse.getProjects().get(0);
+
+        // Tests getSystem and setSystem in Project
+        System system = currentProject.getSystem();
+        System newSystem = new System();
+        currentProject.setSystem(newSystem);
+    }
+
+    /*
+    Additional tests in Project
+     */
+    @Test
+    public void testAdditionalTestSystem() throws Exception {
+        // Creates a system
+        System SoftwareHouse = new System();
+
+        // Test getThisDay in System
+        Calendar calendarTest = new GregorianCalendar();
+        assertEquals(Calendar.DAY_OF_WEEK,SoftwareHouse.getThisDay().dayNumber);
+
+        // Tests convertToHalfHours in System
+        int hours = 4;
+        assertEquals(SoftwareHouse.convertToHalfHours(hours),4*2);
+    }
+
+    /*
+    Additional tests in WeekCalender
+     */
+    @Test
+    public void testAdditionalTestWeekCalendar() throws Exception {
+        WeekCalendar week1 = new WeekCalendar(2016,40);
+        WeekCalendar week2 = new WeekCalendar(2017,2);
+
+        // Tests weeksTo in WeekCalendar
+        assertEquals(week1.weeksTo(week2),14);
+
+        // Tests increadeWeek in WeekCalendar
+        assertEquals(week1.increaseWeek(30).getWeekNumber(),18);
+
+        // Tests after in WeekCalender
+        assertTrue(week2.after(week1));
     }
 }
