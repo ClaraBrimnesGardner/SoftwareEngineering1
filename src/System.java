@@ -80,20 +80,16 @@ public class System {
         return false;
     }
 
-    public static DayCalendar getThisDay () {
+    public static DayCalendar getThisDay () throws Exception{
         Calendar calendar=new GregorianCalendar();
         int year=calendar.get(Calendar.YEAR);
         int week=calendar.get(Calendar.WEEK_OF_YEAR);
         int day=calendar.get(Calendar.DAY_OF_WEEK);
-        if (day==1) try {
-            return new DayCalendar(new WeekCalendar(year,week),7);
-        } catch (WrongInputException e) {
-            e.printStackTrace();
+        if (day==1) {
+            return new DayCalendar(new WeekCalendar(year, week), 7);
         }
-        try {
-            return new DayCalendar(new WeekCalendar(year,week),day-1);
-        } catch (WrongInputException e) {
-            e.printStackTrace();
+        else if (day<8 && day>1) {
+            return new DayCalendar(new WeekCalendar(year, week), day - 1);
         }
         return null;
     }

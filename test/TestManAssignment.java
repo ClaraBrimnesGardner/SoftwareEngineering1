@@ -26,7 +26,6 @@ public class TestManAssignment {
         assertEquals(SoftwareHouse.getCurrentEmployee(),SoftwareHouse.getEmployees().get(0));
 
         // Become projectLeader
-
         assertEquals(SoftwareHouse.getCurrentEmployee().getProjectLeaderList().size(),0);
         SoftwareHouse.getCurrentEmployee().becomeProjectLeader(1);
         assertEquals(SoftwareHouse.getCurrentEmployee().getProjectLeaderList().size(),1);
@@ -45,6 +44,13 @@ public class TestManAssignment {
         Assignment currentAssignment = currentProject.getAssignmentByName("test");
         assertEquals(SoftwareHouse.getCurrentEmployee().getAvailableHours(week1,1),80);
         currentAssignment.setBudgetedTime(80);
+
+        DayCalendar day1 = new DayCalendar(new WeekCalendar(2017, 6), 2);
+        try {
+            SoftwareHouse.getDatabase().getAssignmentEmployeeList("CBG").get(0).registerTime(day1, -30);
+        } catch (TooManyHoursException e){
+            assertEquals("You can't register less than 0 hours", e.getMessage());
+        }
 
         currentAssignment.manAssignment(SoftwareHouse.getEmployees().get(0),  week1,  1,  2);
 

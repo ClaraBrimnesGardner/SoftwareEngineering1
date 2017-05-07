@@ -26,20 +26,8 @@ public class TestAdditionalTests {
         // Test last return statement in getAssignment in Database
         assertNull(SoftwareHouse.getDatabase().getAssignment("assingment"));
 
-        // Adds a project and an assignment
-        String projectID = "Project";
-        SoftwareHouse.createProject(projectID);
-        Project currentProject = SoftwareHouse.getProjects().get(0);
-        String assignmentID01 = "Assignment1";
-        currentProject.createAssignment(assignmentID01);
-        Assignment assignment1 = currentProject.getAssignmentByName(assignmentID01);
-        WeekBooking week1 = new WeekBooking(new WeekCalendar(2017,8),20);
-        // Test last return statement in createBooking in Database
-        //assertFalse(SoftwareHouse.getDatabase().createBooking(Employee1,assignment1,week1));
-
         // Test last return statement in getAvailableProjects in Database
         SoftwareHouse.getDatabase().getAvailableProjects();
-
     }
 
     /*
@@ -128,6 +116,17 @@ public class TestAdditionalTests {
         // Tests convertToHalfHours in System
         int hours = 4;
         assertEquals(SoftwareHouse.convertToHalfHours(hours),4*2);
+
+        // Adds a project and an assignment
+        String projectID = "Project";
+        SoftwareHouse.createProject(projectID);
+        Project currentProject = SoftwareHouse.getProjects().get(0);
+        // Tests becomeProjectLeader in System
+        try{
+            SoftwareHouse.becomeProjectLeader(currentProject.getProjectID());
+        } catch(OperationNotAllowedException e){
+            assertEquals("LogIn to become projectleader", e.getMessage());
+        }
     }
 
     /*
@@ -146,10 +145,16 @@ public class TestAdditionalTests {
 
         // Tests after in WeekCalender
         assertTrue(week2.after(week1));
+        assertFalse(week1.after(week2));
+
+        // Tests before in WeekCalender
+        assertTrue(week1.before(week2));
+        assertFalse(week2.before(week1));
 
         // Test equals i DayCalender
         WeekCalendar week3 = new WeekCalendar(2017,43);
         DayCalendar day2 = new DayCalendar(week3,2);
         assertFalse(day2.equals(week3));
+        assertFalse(week3.equals(day2));
     }
 }
