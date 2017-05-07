@@ -10,13 +10,13 @@ public class Database {
     private static final String VACATION = "Vacation";
     private static final String ILLNESS = "Illness";
     private static final String SEMINARS = "Seminars";
-    private static final int MAX_BOOKED_HALF_HOURS=80;
-    private static final int MAX_REGISTERED_HALF_HOURS= 16;
-    private static final int MIN_REGISTERED_HALF_HOURS=0;
-    private static final int MIN_BOOKED_HALF_HOURS=0;
-    private static final int MAX_CHARACTERS_IN_EMPLOYEE_ID=4;
-    private List<Employee> employeeList;
-    private List<Project> projectList;
+    private static final int MAX_BOOKED_HALF_HOURS = 80;
+    private static final int MAX_REGISTERED_HALF_HOURS = 16;
+    private static final int MIN_REGISTERED_HALF_HOURS = 0;
+    private static final int MIN_BOOKED_HALF_HOURS = 0;
+    private static final int MAX_CHARACTERS_IN_EMPLOYEE_ID = 4;
+    public List<Employee> employeeList;
+    public List<Project> projectList;
     private List<Assignment> assignmentList;
     private List<AssignmentEmployee> assignmentEmployeeList;
 

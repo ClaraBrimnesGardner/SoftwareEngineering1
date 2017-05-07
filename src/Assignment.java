@@ -14,7 +14,7 @@ public class Assignment {
         this.name = name;
         this.project = project;
         bookedTime = 0;
-        if (name == "Vacation" || name == "Seminars") {
+        if (name.equals("Vacation") || name.equals("Seminars")) {
             budgetedTime = 1000000000;
         } else { budgetedTime = 0;}
     }

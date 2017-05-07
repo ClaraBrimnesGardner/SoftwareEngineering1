@@ -59,7 +59,7 @@ public class Project {
     }
 
     public void setProjectID(int newProjectID){
-        projectID=newProjectID;
+        projectID = newProjectID;
     }
 
     public void setProjectLeader(Employee projectLeader){
