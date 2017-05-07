@@ -7,7 +7,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
  */
 public class TestBlackBoxUseCase1 {
     /*
-    Black box tests for the revised use case 4 which concentrates the methods getAvailableEmployees and manAssignment
+    Black box tests for the revised use case 4 which concentrates the methods createProject and manAssignment
      */
 
     /*

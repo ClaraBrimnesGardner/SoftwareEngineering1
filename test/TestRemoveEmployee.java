@@ -70,14 +70,14 @@ public class TestRemoveEmployee {
         // Try to remove project without being project leader
         SoftwareHouse.logIn(ID02);
         try{
-            SoftwareHouse.removeProject(currentProject.projectID);
+            SoftwareHouse.removeProject(currentProject.getProjectID());
         } catch(WrongInputException e) {
             assertEquals("You are not project leader of this project", e.getMessage());
         }
 
         // Remove project as project leader
         SoftwareHouse.logIn(ID01);
-        SoftwareHouse.removeProject(currentProject.projectID);
+        SoftwareHouse.removeProject(currentProject.getProjectID());
         assertEquals(SoftwareHouse.getDatabase().getProjectList().size(),1);
 
         // Adds project again

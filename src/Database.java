@@ -15,13 +15,13 @@ public class Database {
     private static final int MIN_REGISTERED_HALF_HOURS=0;
     private static final int MIN_BOOKED_HALF_HOURS=0;
     private static final int MAX_CHARACTERS_IN_EMPLOYEE_ID=4;
-    public List<Employee> employeeList;
-    public List<Project> projectList;
+    private List<Employee> employeeList;
+    private List<Project> projectList;
     private List<Assignment> assignmentList;
-    public List<AssignmentEmployee> assignmentEmployeeList;
+    private List<AssignmentEmployee> assignmentEmployeeList;
 
-    int newProjectID;
-    int newTaskID;
+    private int newProjectID;
+    private int newTaskID;
 
     // Constructor
     public Database () {
@@ -117,14 +117,14 @@ public class Database {
 
     public Project getProject (int ID) {
         for (Project project:projectList){
-            if (project.projectID==ID) return project;
+            if (project.getProjectID()==ID) return project;
         }
         return null;
     }
 
     public Assignment getAssignment(String ID){
         for(Assignment assignment: assignmentList) {
-            if(assignment.name.equals(ID)) return assignment;
+            if(assignment.getName().equals(ID)) return assignment;
         }
         return null;
     }
@@ -170,7 +170,7 @@ public class Database {
 
     public AssignmentEmployee getAssignmentEmployeeByNameAndEmployee(String name, Employee employee) {
         for (AssignmentEmployee assignmentEmployee : assignmentEmployeeList) {
-            if ((assignmentEmployee.getAssignment().getName().equals(name)) && (assignmentEmployee.employee.equals(employee))) {
+            if ((assignmentEmployee.getAssignment().getName().equals(name)) && (assignmentEmployee.getEmployee().equals(employee))) {
                 return assignmentEmployee;
             }
         }
