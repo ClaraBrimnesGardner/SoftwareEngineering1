@@ -78,7 +78,7 @@ public class Project {
     // Method to create an assignment
     public void createAssignment(String name) throws WrongInputException{
         for (Assignment assignment: database.getProjectAssignmentList(this)){
-            if (assignment.getName().equals((name))) throw new WrongInputException("Projectname is used");
+            if (assignment.getName().equals((name))) throw new WrongInputException("Assignment name is used");
         }
         Assignment newAssignment = new Assignment(name,this);
         getDatabase().addAssignment(newAssignment);
